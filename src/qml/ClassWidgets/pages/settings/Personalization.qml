@@ -11,6 +11,11 @@ FluentPage {
     title: qsTr("Personalization")
     property string pendingThemeId: ""
 
+    // 导航到子页面
+    function openPage(page) {
+        navigationView.push(PathManager.qml("pages/settings/" + page))
+    }
+
     // InfoBar {
     //     Layout.fillWidth: true
     //     title: qsTr("Warning")
@@ -206,7 +211,6 @@ FluentPage {
             }
         }
     }
-
 
     Dialog {
         id: incompatibleDialog

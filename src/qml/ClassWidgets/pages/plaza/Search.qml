@@ -5,7 +5,7 @@ import ClassWidgets.Components
 
 FluentPage {
     id: root
-    title: root.hasQuery ? "\u201C" + root.query + "\u201D" : qsTr("Search")
+    title: qsTr("Search")
     horizontalPadding: 0
     wrapperWidth: width - 42 * 2
 
@@ -34,17 +34,12 @@ FluentPage {
     property var activeTagsRequest: null
     property var activeSuggestionsRequest: null
     property var activeRecommendationsRequest: null
-    property var flickable: null
-    readonly property int prefetchThreshold: 50
 
     readonly property bool hasQuery: query.trim().length > 0
-    readonly property bool hasMore: hasQuery && !loading && page < totalPages && errorMessage.length === 0
 
     onQueryChanged: {
-        console.log("[Search] onQueryChanged fired, query:", query, "hasQuery:", hasQuery)
         activeTag = ""
-        // 注意：不能依赖 hasQuery，QML readonly binding 在信号处理期间尚未重新计算
-        if (query.trim().length > 0)
+        if (hasQuery)
             search(1)
         else {
             loadSuggestions()
@@ -69,82 +64,46 @@ FluentPage {
         return xhr
     }
 
-    function findFlickable() {
-        var p = layout.parent
-        while (p) {
-            if (p.toString().indexOf("Flickable") !== -1) {
-                flickable = p
-                return
-            }
-            p = p.parent
-        }
-    }
-
-    function search(nextPage, append) {
+    function search(nextPage) {
         var serial = ++searchSerial
-        console.log("[Search] search called, nextPage:", nextPage, "append:", append, "hasQuery:", hasQuery, "query:", query)
         if (activeSearchRequest)
             activeSearchRequest.abort()
-        // 注意：不能依赖 hasQuery，从 onQueryChanged 调用时 binding 尚未更新
-        if (query.trim().length === 0) {
+        if (!hasQuery) {
             plugins = []
             total = 0
             totalPages = 1
             return
         }
-        var targetPage = nextPage || 1
-        var isAppend = append === true && targetPage > 1
-        if (!isAppend)
-            plugins = []
-        page = targetPage
+        page = nextPage || 1
         loading = true
         errorMessage = ""
         var params = "?q=" + encodeURIComponent(query.trim())
             + "&page=" + page + "&per_page=" + perPage
             + "&sort=" + encodeURIComponent(sort)
         if (activeTag) params += "&tag=" + encodeURIComponent(activeTag)
-        var requestUrl = baseUrl + "/api/plugins/search" + params
-        activeSearchRequest = request(requestUrl, function(response) {
-            if (serial !== searchSerial) {
-                console.log("[Search] serial mismatch, ignoring response")
+        activeSearchRequest = request(baseUrl + "/api/plugins/search" + params, function(response) {
+            if (serial !== searchSerial)
                 return
-            }
             if (response.ok === false) {
-                if (!isAppend) plugins = []
+                plugins = []
                 total = 0
                 totalPages = 1
                 errorMessage = response.error || qsTr("The plaza rejected the request.")
             } else {
-                var newItems = response.data instanceof Array ? response.data : []
-                plugins = isAppend ? plugins.concat(newItems) : newItems
+                plugins = response.data instanceof Array ? response.data : []
                 total = response.meta && response.meta.total !== undefined ? response.meta.total : plugins.length
                 totalPages = response.meta && response.meta.total_pages ? response.meta.total_pages : 1
             }
             loading = false
         }, function(error) {
-            console.log("[Search] search request failed:", error)
             if (serial !== searchSerial)
                 return
-            if (!isAppend) plugins = []
+            plugins = []
             total = 0
             totalPages = 1
             errorMessage = qsTr("Unable to search plugins: ") + error
             loading = false
         })
-    }
-
-    function loadMore() {
-        if (!hasMore)
-            return
-        search(page + 1, true)
-    }
-
-    function checkLoadMore() {
-        if (!flickable || !hasMore)
-            return
-        var remaining = flickable.contentHeight - (flickable.contentY + flickable.height)
-        if (remaining <= prefetchThreshold)
-            loadMore()
     }
 
     function loadTags() {
@@ -205,16 +164,15 @@ FluentPage {
 
     function selectTag(tagId) {
         activeTag = tagId
-        search(1, false)
+        search(1)
     }
 
     function selectSort(value) {
         sort = value
-        search(1, false)
+        search(1)
     }
 
     Component.onCompleted: {
-        findFlickable()
         loadTags()
         if (hasQuery)
             search(1)
@@ -238,15 +196,7 @@ FluentPage {
             activeTagsRequest.abort()
     }
 
-    Connections {
-        target: root.flickable
-        enabled: root.flickable !== null
-        function onContentYChanged() { root.checkLoadMore() }
-        function onContentHeightChanged() { root.checkLoadMore() }
-    }
-
     ColumnLayout {
-        id: layout
         Layout.fillWidth: true
         spacing: 16
 
@@ -323,30 +273,11 @@ FluentPage {
                 Layout.fillWidth: true
                 spacing: 12
 
-                Segmented {
-                    enabled: !root.loading
-
-                    SegmentedItem {
-                        text: qsTr("All")
-                        checked: root.activeTag === ""
-                        onClicked: root.selectTag("")
-                    }
-
-                    Repeater {
-                        model: root.tags instanceof Array ? root.tags.slice(0, 5) : []
-
-                        delegate: SegmentedItem {
-                            required property var modelData
-                            readonly property string tagId: modelData.id || modelData.name || ""
-                            text: modelData.name || modelData.id || ""
-                            checked: root.activeTag === tagId
-                            onClicked: root.selectTag(tagId)
-                        }
-                    }
-                }
-
-                Item {
+                Text {
                     Layout.fillWidth: true
+                    text: "\u201C" + root.query + "\u201D"
+                    typography: Typography.Title
+                    elide: Text.ElideRight
                 }
 
                 DropDownButton {
@@ -366,25 +297,40 @@ FluentPage {
                     MenuItem { text: qsTr("Downloads"); onTriggered: root.selectSort("downloads") }
                 }
             }
+
+            Segmented {
+                enabled: !root.loading
+
+                SegmentedItem {
+                    text: qsTr("All")
+                    checked: root.activeTag === ""
+                    onClicked: root.selectTag("")
+                }
+
+                Repeater {
+                    model: root.tags instanceof Array ? root.tags.slice(0, 5) : []
+
+                    delegate: SegmentedItem {
+                        required property var modelData
+                        readonly property string tagId: modelData.id || modelData.name || ""
+                        text: modelData.name || modelData.id || ""
+                        checked: root.activeTag === tagId
+                        onClicked: root.selectTag(tagId)
+                    }
+                }
+            }
         }
 
         PlazaLoading {
             Layout.fillWidth: true
-            visible: root.hasQuery && root.loading && root.page === 1
+            visible: root.hasQuery && root.loading
         }
 
         PluginGrid {
             Layout.fillWidth: true
-            visible: root.hasQuery && root.errorMessage.length === 0 && root.plugins.length > 0
+            visible: root.hasQuery && !root.loading && root.errorMessage.length === 0 && root.plugins.length > 0
             plugins: root.plugins
             loading: false
-        }
-
-        PlazaLoading {
-            Layout.fillWidth: true
-            Layout.topMargin: 4
-            Layout.bottomMargin: 8
-            visible: root.hasQuery && root.loading && root.page > 1
         }
 
         ErrorState {
@@ -392,7 +338,7 @@ FluentPage {
             visible: root.hasQuery && !root.loading && root.errorMessage.length > 0
             title: qsTr("Could not search plugins")
             description: root.errorMessage
-            onRetryRequested: root.search(root.page, root.page > 1)
+            onRetryRequested: root.search(root.page)
         }
 
         EmptyState {
@@ -413,6 +359,14 @@ FluentPage {
             // iconName: "ic_fluent_search_info_24_regular"
             title: qsTr("No plugins found")
             description: qsTr("Try another search or category.")
+        }
+
+        Pagination {
+            Layout.alignment: Qt.AlignHCenter
+            visible: root.hasQuery && !root.loading && root.errorMessage.length === 0 && root.totalPages > 1
+            currentPage: root.page
+            totalPages: root.totalPages
+            onPageRequested: function(value) { root.search(value) }
         }
     }
 }

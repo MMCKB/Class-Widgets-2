@@ -1,19 +1,24 @@
-name: Build & Release ClassWidgets-2
+name: 构建、发布与国际化
 
 on:
   push:
+    branches: [main]
     tags:
-      - "*"
+      - "v*"
+    paths:
+      - "src/**/*.py"
+      - "src/**/*.qml"
+      - "assets/locales/*.ts"
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version'
-        required: true
+        description: '版本号'
+        required: false
         default: '2.0.0.dev31546377'
         type: string
       version_type:
-        description: 'Type'
-        required: true
+        description: '版本类型'
+        required: false
         default: 'alpha'
         type: choice
         options:
@@ -21,8 +26,8 @@ on:
           - beta
           - stable
       upload2webdav:
-        description: 'Upload to...'
-        required: true
+        description: '上传到网盘'
+        required: false
         default: 'None'
         type: choice
         options:
@@ -31,17 +36,27 @@ on:
           - OneDrive
           - Both
       is_signing:
-        description: 'Sign Windows executable (SignPath)'
+        description: '签名Windows可执行文件 (SignPath)'
         required: false
-        default: true
+        default: false
         type: boolean
       release:
-        description: 'Create GitHub Release'
-        required: true
+        description: '创建GitHub Release'
+        required: false
         default: false
         type: boolean
       prerelease:
-        description: 'Mark as Pre-release'
+        description: '标记为预发布版本'
+        required: false
+        default: true
+        type: boolean
+      update_ts_files:
+        description: "更新翻译源文件 (.ts)"
+        required: false
+        default: true
+        type: boolean
+      compile_to_qm:
+        description: "编译翻译文件 (.qm)"
         required: false
         default: true
         type: boolean
@@ -51,17 +66,162 @@ permissions:
   id-token: write
 
 jobs:
+  # ========== 翻译更新任务 ==========
+  i18n-detect:
+    name: 检测文件变更
+    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.update_ts_files == true)
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.detect.outputs.should_run }}
+    steps:
+      - name: ⬇️ 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: 📄 检测文件变更
+        id: detect
+        shell: bash
+        run: |
+          should_run="false"
+          
+          if [[ "${{ github.event_name }}" == "push" ]]; then
+            if git rev-parse HEAD~1 >/dev/null 2>&1; then
+              changed_files=$(git diff --name-only HEAD~1 HEAD)
+            else
+              changed_files=$(git diff-tree --no-commit-id --name-only -r HEAD)
+            fi
+            
+            if echo "$changed_files" | grep -qE '^src/.+\.(py|qml)$' || \
+               echo "$changed_files" | grep -qE '^assets/locales/.+\.ts$'; then
+              should_run="true"
+            fi
+          elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            should_run="true"
+          fi
+          
+          echo "should_run=$should_run" >> "$GITHUB_OUTPUT"
+
+  i18n-update:
+    name: 更新翻译文件
+    runs-on: ubuntu-latest
+    needs: i18n-detect
+    if: needs.i18n-detect.outputs.should_run == 'true'
+    steps:
+      - name: ⬇️ 检出代码
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: 📦 安装Python和uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+          enable-cache: true
+          activate-environment: true
+
+      - name: 📦 安装PySide6工具
+        shell: bash
+        run: uv pip install "PySide6~=6.9.3"
+
+      - name: 📝 更新翻译源文件
+        shell: bash
+        run: |
+          mapfile -t source_files < <(find src -type f \( -name "*.py" -o -name "*.qml" \) | sort)
+          for ts_file in assets/locales/*.ts; do
+            if [ -f "$ts_file" ]; then
+              echo "更新 $(basename "$ts_file")"
+              pyside6-lupdate "${source_files[@]}" -ts "$ts_file"
+            fi
+          done
+
+      - name: 📤 提交更新后的翻译文件
+        uses: stefanzweifel/git-auto-commit-action@v5
+        continue-on-error: true
+        with:
+          commit_message: |
+            chore(i18n): update ts files
+            
+            - actor: ${{ github.actor }}
+            - event: ${{ github.event_name }}
+            - sha: ${{ github.sha }}
+            - run: ${{ github.run_id }}
+          commit_options: "--no-verify --signoff"
+          file_pattern: "assets/locales/*.ts"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "41898282+github-actions[bot]@users.noreply.github.com"
+          commit_author: "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
+
+  i18n-compile:
+    name: 编译翻译文件
+    runs-on: ubuntu-latest
+    needs: [i18n-detect, i18n-update]
+    if: |
+      always() &&
+      needs.i18n-detect.outputs.should_run == 'true' &&
+      (needs.i18n-update.result == 'success' || needs.i18n-update.result == 'skipped')
+    steps:
+      - name: ⬇️ 检出代码
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: 📦 安装Python和uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+          enable-cache: true
+          activate-environment: true
+
+      - name: 📦 安装PySide6工具
+        shell: bash
+        run: uv pip install "PySide6~=6.9.3"
+
+      - name: 📦 编译翻译文件
+        shell: bash
+        run: |
+          for ts_file in assets/locales/*.ts; do
+            if [ -f "$ts_file" ]; then
+              qm_file="${ts_file%.ts}.qm"
+              echo "编译 $(basename "$ts_file") -> $(basename "$qm_file")"
+              pyside6-lrelease "$ts_file" -qm "$qm_file"
+            fi
+          done
+
+      - name: 📤 提交编译后的翻译文件
+        uses: stefanzweifel/git-auto-commit-action@v5
+        continue-on-error: true
+        with:
+          commit_message: |
+            chore(i18n): compile qm files
+            
+            - actor: ${{ github.actor }}
+            - event: ${{ github.event_name }}
+            - sha: ${{ github.sha }}
+            - run: ${{ github.run_id }}
+          commit_options: "--no-verify --signoff"
+          file_pattern: "assets/locales/*.qm"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "41898282+github-actions[bot]@users.noreply.github.com"
+          commit_author: "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
+
+  # ========== 构建任务 ==========
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [windows-latest, macos-15-intel, macos-latest]
+    needs: [i18n-update, i18n-compile]
+    if: |
+      always() &&
+      (needs.i18n-update.result == 'success' || needs.i18n-update.result == 'skipped') &&
+      (needs.i18n-compile.result == 'success' || needs.i18n-compile.result == 'skipped') &&
+      (github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v'))
+    runs-on: windows-latest
 
     steps:
-      - name: ⬇️ Checkout code
+      - name: ⬇️ 检出代码
         uses: actions/checkout@v5
 
-      - name: 📦 Set up Python & Install uv
+      - name: 📦 安装Python和uv
         uses: astral-sh/setup-uv@v6
 
       - name: 🏷️ Resolve build version
@@ -136,7 +296,7 @@ jobs:
 
           grep -E '^__version__|^__version_type__' src/__init__.py
 
-      - name: 📦 Cache dependencies
+      - name: 📦 缓存依赖
         uses: actions/cache@v4
         with:
           path: ~/.cache/uv
@@ -144,13 +304,12 @@ jobs:
           restore-keys: |
             uv-${{ runner.os }}-${{ github.workflow }}-
 
-      - name: 📦 Install dependencies
+      - name: 📦 安装依赖
         run: |
           uv sync
           uv pip install pyinstaller
 
-      - name: 🔨 Build ClassWidgets-2 (Windows)
-        if: runner.os == 'Windows'
+      - name: 🔨 构建主程序 (Windows)
         shell: bash
         run: |
           uv run pyinstaller --noconsole \
@@ -158,30 +317,36 @@ jobs:
             --add-data "src/qml:src/qml" \
             --add-data "src/plugins:src/plugins" \
             --add-data "src/themes:src/themes" \
+            --add-data "themes:themes" \
             --add-data "assets:assets" \
             --add-data "LICENSE:." \
+            --hidden-import "src.settings_plaza_app" \
             --paths=. \
             --contents-directory . \
             --name="Class Widgets 2" \
             src/app.py
 
-      - name: 🔨 Build ClassWidgets-2 (macOS)
-        if: runner.os == 'macOS'
+      - name: 🔨 构建设置启动器 (Windows)
         shell: bash
         run: |
-          uv run pyinstaller --noconsole \
-            --icon "assets/images/logo.icns" \
-            --add-data "src/qml:src/qml" \
-            --add-data "src/plugins:src/plugins" \
-            --add-data "src/themes:src/themes" \
-            --add-data "assets:assets" \
-            --add-data "LICENSE:." \
-            --paths=. \
-            --contents-directory . \
-            --name="Class Widgets 2" \
-            src/app.py
+          uv run pyinstaller --noconsole --onefile \
+            --icon "assets/images/logo.ico" \
+            --name="Class Widgets 2 Settings" \
+            --distpath "dist/Class Widgets 2" \
+            --workpath "build/settings-launcher" \
+            src/settings_launcher.py
 
-      - name: 🧹 Remove unnecessary PySide6 files (Only Windows)
+      - name: 🔨 构建插件中心启动器 (Windows)
+        shell: bash
+        run: |
+          uv run pyinstaller --noconsole --onefile \
+            --icon "assets/images/logo.ico" \
+            --name="Class Widgets 2 Plugin Plaza" \
+            --distpath "dist/Class Widgets 2" \
+            --workpath "build/plugin-plaza-launcher" \
+            src/plugin_plaza_launcher.py
+
+      - name: 🧹 清理PySide6文件 (仅Windows)
         if: runner.os == 'Windows'
         shell: bash
         run: |
@@ -189,61 +354,66 @@ jobs:
           JSON_FILE="$GITHUB_WORKSPACE/scripts/qt_files_clean-Windows.json"
           
           if [ -d "$TARGET" ]; then
-            echo "Contents of PySide6 directory (first 20 items):"
-            ls -la "$TARGET" | head -20
-            echo ""
-            
             if [ -f "$JSON_FILE" ]; then
-              echo "Reading cleanup list from $JSON_FILE"
-              echo ""
-              
               jq -r '.[]' "$JSON_FILE" | while IFS= read -r item; do
-              
                 item=${item%$'\r'}
                 full_path="$TARGET/$item"
                 if [ -f "$full_path" ] || [ -d "$full_path" ]; then
                   rm -rf "$full_path"
                   echo "Removed: $item"
-                else
-                  echo "Not found: $item"
                 fi
               done
-              
-              echo ""
-              echo "Cleanup compleeeeeeeeeted"
-            else
-              echo "JSON file not found at $JSON_FILE, skipping cleanup"
+              echo "Cleanup completed"
             fi
-          else
-            echo "PySide6 directory not found at $TARGET, skipping cleanup"
           fi
 
-      - name: 📦 Zip build (Windows)
+      - name: 📦 打包ZIP (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
           Compress-Archive -Path "dist/Class Widgets 2/*" -DestinationPath "dist/ClassWidgets-2-Windows.zip"
 
-      - name: 🔏 Prepare exe for signing (Windows)
-        if: runner.os == 'Windows' && inputs.is_signing
+      - name: 🔏 解析签名配置 (Windows)
+        id: signing
+        shell: bash
+        env:
+          SIGNPATH_API_TOKEN: ${{ secrets.SIGNPATH_API_TOKEN }}
+          SIGNPATH_ORG_ID: ${{ vars.SIGNPATH_ORG_ID }}
+          SIGNPATH_PROJECT_SLUG: ${{ vars.SIGNPATH_PROJECT_SLUG }}
+          SIGNPATH_POLICY_SLUG: ${{ vars.SIGNPATH_POLICY_SLUG }}
+        run: |
+          if [[ "${{ inputs.is_signing }}" == "true" \
+            && -n "$SIGNPATH_API_TOKEN" \
+            && -n "$SIGNPATH_ORG_ID" \
+            && -n "$SIGNPATH_PROJECT_SLUG" \
+            && -n "$SIGNPATH_POLICY_SLUG" ]]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+            echo "SignPath签名已启用"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "SignPath签名已跳过：未启用或配置不完整"
+          fi
+
+      - name: 🔏 准备签名文件 (Windows)
+        if: steps.signing.outputs.enabled == 'true'
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Path "./exe-for-signing" -Force | Out-Null
-          $exe = Get-ChildItem -Path "dist/Class Widgets 2" -Filter "*.exe" | Select-Object -First 1
-          if ($null -eq $exe) { Write-Error "未找到待签名的可执行文件"; exit 1 }
+          $exe = Get-Item -Path "dist/Class Widgets 2/Class Widgets 2.exe" -ErrorAction SilentlyContinue
+          if ($null -eq $exe) { Write-Error "未找到待签名的主程序可执行文件"; exit 1 }
           Copy-Item $exe.FullName -Destination "./exe-for-signing/$($exe.Name)" -Force
           echo "EXE_NAME=$($exe.Name)" >> $env:GITHUB_ENV
 
-      - name: ☁️ Upload unsigned exe (Windows)
-        if: runner.os == 'Windows' && inputs.is_signing
+      - name: ☁️ 上传未签名文件 (Windows)
+        if: steps.signing.outputs.enabled == 'true'
         id: upload_unsigned
         uses: actions/upload-artifact@v4
         with:
           name: windows-exe-unsigned
           path: ./exe-for-signing
 
-      - name: 🔏 Submit signing request (Windows)
-        if: runner.os == 'Windows' && inputs.is_signing
+      - name: 🔏 提交签名请求 (Windows)
+        if: steps.signing.outputs.enabled == 'true'
         uses: signpath/github-action-submit-signing-request@v2
         with:
           api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
@@ -254,41 +424,20 @@ jobs:
           wait-for-completion: true
           output-artifact-directory: ./signed-output
 
-      - name: 🔏 Replace with signed exe (Windows)
-        if: runner.os == 'Windows' && inputs.is_signing
+      - name: 🔏 替换签名文件 (Windows)
+        if: steps.signing.outputs.enabled == 'true'
         shell: pwsh
         run: |
           $signedExe = "./signed-output/${env:EXE_NAME}"
           if (Test-Path $signedExe) {
             Copy-Item $signedExe "dist/Class Widgets 2/${env:EXE_NAME}" -Force
-            # Re-zip with signed exe
             Remove-Item "dist/ClassWidgets-2-Windows.zip" -Force
             Compress-Archive -Path "dist/Class Widgets 2/*" -DestinationPath "dist/ClassWidgets-2-Windows.zip"
-            echo "✅ 已使用签名后的可执行文件重新打包"
+            echo "已使用签名后的可执行文件重新打包"
           } else {
             Write-Error "未找到已签名的可执行文件"
             exit 1
           }
-
-      - name: 🔧 Install Inno Setup
-        if: runner.os == 'Windows'
-        shell: pwsh
-        run: |
-          choco install innosetup -y
-
-      - name: 🏗️ Build Windows Installer
-        if: runner.os == 'Windows'
-        shell: cmd
-        run: |
-          set CW_VERSION=${{ steps.version.outputs.version }}
-          iscc scripts\cw2-cicd.iss
-
-      - name: ☁️ Upload installer artifact
-        if: runner.os == 'Windows'
-        uses: actions/upload-artifact@v4
-        with:
-          name: ClassWidgets-2-Windows-Installer
-          path: output/ClassWidgets-*-Win-Installer.exe
 
       - name: 📦 Zip build (macOS)
         if: runner.os == 'macOS'
@@ -297,6 +446,19 @@ jobs:
           hdiutil create -volname "Class Widgets 2" -srcfolder dist -ov -format UDZO ClassWidgets-2-macOS-${{ runner.arch }}.dmg
         # ditto -c -k --sequesterRsrc --keepParent "Class Widgets 2".app ClassWidgets-2-macOS-${{ runner.arch }}.zip
 
+      - name: ✅ Verify Windows packages
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $packages = @("dist/ClassWidgets-2-Windows.zip")
+          foreach ($package in $packages) {
+            if (-not (Test-Path $package)) {
+              Write-Error "Expected package was not created: $package"
+              exit 1
+            }
+            Write-Host "Created package: $package ($((Get-Item $package).Length) bytes)"
+          }
+
       - name: ☁️ Upload artifact (Windows)
         if: runner.os == 'Windows'
         uses: actions/upload-artifact@v4
@@ -304,24 +466,22 @@ jobs:
           name: ClassWidgets-2-Windows
           path: dist/ClassWidgets-2-Windows.zip
 
-      - name: ☁️ Upload artifact (macOS)
-        if: runner.os == 'macOS'
-        uses: actions/upload-artifact@v4
-        with:
-          name: ClassWidgets-2-macOS-${{ runner.arch }}
-          path: ClassWidgets-2-macOS-${{ runner.arch }}.dmg
-
+  # ========== 发布任务 ==========
   release:
     needs: [build]
+    if: |
+      always() &&
+      needs.build.result == 'success' &&
+      (github.event_name == 'push' || inputs.release == true)
     runs-on: ubuntu-latest
 
     steps:
-      - name: ⬇️ Checkout code
+      - name: ⬇️ 检出代码
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      - name: 🏷️ Resolve release version
+      - name: 🏷️ 解析发布版本
         id: version
         shell: bash
         run: |
@@ -339,6 +499,8 @@ jobs:
               VERSION="${VERSION%%-alpha*}"
               VERSION="${VERSION%%.alpha*}"
               VERSION="${VERSION%%_alpha*}"
+            elif [[ "$VERSION" =~ (^|[-._])dev([-.0-9]*)?$ ]]; then
+              VERSION_TYPE="alpha"
             elif [[ "$VERSION" =~ (^|[-._])beta([-.0-9]*)?$ ]]; then
               VERSION_TYPE="beta"
               VERSION="${VERSION%%-beta*}"
@@ -357,71 +519,54 @@ jobs:
           echo "version_tag=$VERSION_TAG" >> "$GITHUB_OUTPUT"
           echo "prerelease=$PRERELEASE" >> "$GITHUB_OUTPUT"
 
-      - name: ⬇️ Download artifacts
+      - name: ⬇️ 下载构建产物
         uses: actions/download-artifact@v5
         with:
           path: dist/
           merge-multiple: true
 
-      - name: 🧱 Set up git-cliff
+      - name: 🧱 安装git-cliff
         uses: kenji-miyake/setup-git-cliff@v2
 
-      - name: 🏷️ Create local tag for CHANGELOG
+      - name: 🏷️ 创建本地标签
         if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
           git tag "${{ steps.version.outputs.version_tag }}"
 
-      - name: 📜 Generate CHANGELOG.md
+      - name: 📜 生成CHANGELOG.md
         run: |
           git cliff --latest --tag "${{ steps.version.outputs.version_tag }}" --config .git-cliff.toml > CHANGELOG.md
 
-      - name: 🚀 Create GitHub Release
+      - name: 🚀 创建GitHub Release
         uses: softprops/action-gh-release@v2
-        # 推送/手动+发布 ==> 发布
-        if: ${{  github.event_name == 'push' || github.event.inputs.release == 'true' }}
+        if: ${{ github.event_name == 'push' || github.event.inputs.release == 'true' }}
         with:
           name: Class Widgets ${{ steps.version.outputs.version_tag }}
           tag_name: ${{ steps.version.outputs.version_tag }}
           body_path: CHANGELOG.md
           prerelease: ${{ steps.version.outputs.prerelease }}
-          files: |
-            dist/ClassWidgets-2-Windows.zip
-            dist/ClassWidgets-2-macOS-X64.dmg
-            dist/ClassWidgets-2-macOS-ARM64.dmg
+          files: dist/ClassWidgets-2-Windows.zip
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}     
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 📤 Upload CHANGELOG & packages to 123Pan
-        # 推送/手动+上传 ==> 上传
+      - name: 📤 上传到123Pan
         if: success() && 
-          ( github.event_name == 'push' ||
+          (github.event_name == 'push' ||
            github.event.inputs.upload2webdav == '123Pan' ||
            github.event.inputs.upload2webdav == 'Both')
         run: |
           VERSION="${{ steps.version.outputs.version_tag }}"
           ENCODED_VERSION=$(echo "$VERSION" | sed 's/ /%20/g')
-
-          # Create directory
           curl -v -u "${{ secrets.PAN_USER }}:${{ secrets.PAN_PASS }}" \
                -X MKCOL "https://webdav.123pan.cn/webdav/${ENCODED_VERSION}"
-
-          # Upload files
           curl -u "${{ secrets.PAN_USER }}:${{ secrets.PAN_PASS }}" \
             -T "CHANGELOG.md" \
             "https://webdav.123pan.cn/webdav/${ENCODED_VERSION}/CHANGELOG.md"
-
           curl -u "${{ secrets.PAN_USER }}:${{ secrets.PAN_PASS }}" \
             -T "dist/ClassWidgets-2-Windows.zip" \
             "https://webdav.123pan.cn/webdav/${ENCODED_VERSION}/ClassWidgets-2-Windows.zip"
 
-          curl -u "${{ secrets.PAN_USER }}:${{ secrets.PAN_PASS }}" \
-            -T "dist/ClassWidgets-2-macOS-X64.dmg" \
-            "https://webdav.123pan.cn/webdav/${ENCODED_VERSION}/ClassWidgets-2-macOS-X64.dmg"
-          curl -u "${{ secrets.PAN_USER }}:${{ secrets.PAN_PASS }}" \
-            -T "dist/ClassWidgets-2-macOS-ARM64.dmg" \
-            "https://webdav.123pan.cn/webdav/${ENCODED_VERSION}/ClassWidgets-2-macOS-ARM64.dmg"
-
-      - name: 🔔 Trigger Official Website Update
+      - name: 🔔 触发官网更新
         if: success()
         run: |
           curl -L \
@@ -432,7 +577,7 @@ jobs:
             https://api.github.com/repos/Class-Widgets/official_website/dispatches \
             -d '{"event_type": "update-version"}'
 
-      - name: 📤 Upload CHANGELOG & packages to OneDrive
+      - name: 📤 上传到OneDrive
         if: success() &&
           (github.event_name == 'push' ||
           github.event.inputs.upload2webdav == 'OneDrive' ||
@@ -440,21 +585,11 @@ jobs:
         run: |
           VERSION="${{ steps.version.outputs.version_tag }}"
           ENCODED_VERSION=$(echo "$VERSION" | sed 's/ /%20/g')
-
           curl -v -u "${{ secrets.ONEDRIVE_USER }}:${{ secrets.ONEDRIVE_PASS }}" \
                -X MKCOL "https://app.koofr.net/dav/1Drv/Class-Widgets/${ENCODED_VERSION}"
-
           curl -u "${{ secrets.ONEDRIVE_USER }}:${{ secrets.ONEDRIVE_PASS }}" \
             -T "CHANGELOG.md" \
             "https://app.koofr.net/dav/1Drv/Class-Widgets/${ENCODED_VERSION}/CHANGELOG.md"
-
           curl -u "${{ secrets.ONEDRIVE_USER }}:${{ secrets.ONEDRIVE_PASS }}" \
             -T "dist/ClassWidgets-2-Windows.zip" \
             "https://app.koofr.net/dav/1Drv/Class-Widgets/${ENCODED_VERSION}/ClassWidgets-2-Windows.zip"
-
-          curl -u "${{ secrets.ONEDRIVE_USER }}:${{ secrets.ONEDRIVE_PASS }}" \
-            -T "dist/ClassWidgets-2-macOS-X64.dmg" \
-            "https://app.koofr.net/dav/1Drv/Class-Widgets/${ENCODED_VERSION}/ClassWidgets-2-macOS-X64.dmg"
-          curl -u "${{ secrets.ONEDRIVE_USER }}:${{ secrets.ONEDRIVE_PASS }}" \
-            -T "dist/ClassWidgets-2-macOS-ARM64.dmg" \
-            "https://app.koofr.net/dav/1Drv/Class-Widgets/${ENCODED_VERSION}/ClassWidgets-2-macOS-ARM64.dmg"

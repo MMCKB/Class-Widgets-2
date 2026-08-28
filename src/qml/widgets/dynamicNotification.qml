@@ -241,7 +241,7 @@ Widget {
             MarqueeTitle {
                 id: titleLabel
                 color: "#FFF"
-                text: editMode || !root.enabled ? qsTr("No notification yet") : notificationTitle
+                text: editMode ? qsTr("No notification yet") : notificationTitle
                 maximumWidth: 150
                 speed: 100
             }

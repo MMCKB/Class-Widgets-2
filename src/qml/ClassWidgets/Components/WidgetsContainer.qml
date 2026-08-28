@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Window
-import Qt5Compat.GraphicalEffects
 import RinUI
 import ClassWidgets.Easing
 
@@ -21,41 +20,8 @@ Column {
 
     property real dragOffsetX: 0
     property real dragOffsetY: 0
-    property real hideMargin: {
-        switch (Qt.platform.os) {
-            case "osx":
-                return 48
-            default:
-                return 24
-        }
-    } // 隐藏时保留的可点击空间
-    property bool isTopPosition: preferences.widgets_anchor.indexOf("top_") === 0
-    property real hideFade: 0
-
+    property real hideMargin: 24  // 隐藏时保留的可点击空间
     signal contentGeometryChanged()
-
-    Behavior on hideFade {
-        NumberAnimation {
-            duration: 300
-            easing.type: Easing.InOutQuad
-        }
-    }
-
-    layer.enabled: Qt.platform.os === "osx" && isTopPosition
-    layer.effect: OpacityMask {
-        maskSource: Rectangle {
-            width: widgetsContainer.width
-            height: widgetsContainer.height
-            gradient: Gradient {
-                orientation: Gradient.Vertical
-                GradientStop { position: 0; color: Qt.alpha("white", 1.0 - hideFade) }
-                GradientStop { position: 0.75; color: Qt.alpha("white", 1.0 - hideFade * 0.95) }
-                GradientStop { position: 0.95; color: "white" }
-            }
-        }
-    }
-
-    onHideChanged: hideFade = hide ? 1.0 : 0.0
 
     // 编辑按钮高度：与首个小组件对齐，无小组件时回退默认值
     // property real buttonHeight: widgetRepeater.count > 0
@@ -302,8 +268,8 @@ Column {
                     running: editMode
                     loops: Animation.Infinite
 
-                    NumberAnimation { to: rotationAnim.angle1; duration: 250; easing.type: Easing.InOutQuad }
-                    NumberAnimation { to: rotationAnim.angle2; duration: 250; easing.type: Easing.InOutQuad }
+                    NumberAnimation { to: rotationAnim.angle1; duration: 125; easing.type: Easing.InOutQuad }
+                    NumberAnimation { to: rotationAnim.angle2; duration: 125; easing.type: Easing.InOutQuad }
 
                     onRunningChanged: {
                         rotationAnim.angle1 = Math.random() * 2.0

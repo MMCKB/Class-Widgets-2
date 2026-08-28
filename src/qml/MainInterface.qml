@@ -135,6 +135,7 @@ QQW.Window {
         id: trayPanel
     }
 
+
     Component.onCompleted: {
         updateLayer()
         // 应用当前主题的主题色

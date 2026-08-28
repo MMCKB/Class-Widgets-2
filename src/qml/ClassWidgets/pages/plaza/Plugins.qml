@@ -25,9 +25,6 @@ FluentPage {
     property int requestSerial: 0
     property var activePluginRequest: null
     property var activeTagsRequest: null
-    property var flickable: null
-    readonly property int prefetchThreshold: 50
-    readonly property bool hasMore: !loading && !initialLoad && page < totalPages && errorMessage.length === 0
 
     function request(url, callback, failure) {
         var xhr = new XMLHttpRequest()
@@ -46,28 +43,11 @@ FluentPage {
         return xhr
     }
 
-    function findFlickable() {
-        var p = layout.parent
-        while (p) {
-            if (p.toString().indexOf("Flickable") !== -1) {
-                flickable = p
-                return
-            }
-            p = p.parent
-        }
-    }
-
-    function loadPlugins(nextPage, append) {
+    function loadPlugins(nextPage) {
         var serial = ++requestSerial
         if (activePluginRequest)
             activePluginRequest.abort()
-        var targetPage = nextPage || 1
-        var isAppend = append === true && targetPage > 1
-        if (!isAppend) {
-            plugins = []
-            initialLoad = true
-        }
-        page = targetPage
+        page = nextPage || 1
         loading = true
         errorMessage = ""
         var endpoint = activeTag ? "/api/plugins/category" : "/api/plugins"
@@ -77,13 +57,12 @@ FluentPage {
             if (serial !== requestSerial)
                 return
             if (response.ok === false) {
-                if (!isAppend) plugins = []
+                plugins = []
                 total = 0
                 totalPages = 1
                 errorMessage = response.error || qsTr("The plaza rejected the request.")
             } else {
-                var newItems = response.data instanceof Array ? response.data : []
-                plugins = isAppend ? plugins.concat(newItems) : newItems
+                plugins = response.data instanceof Array ? response.data : []
                 total = response.meta && response.meta.total !== undefined ? response.meta.total : plugins.length
                 totalPages = response.meta && response.meta.total_pages ? response.meta.total_pages : 1
             }
@@ -92,27 +71,13 @@ FluentPage {
         }, function(error) {
             if (serial !== requestSerial)
                 return
-            if (!isAppend) plugins = []
+            plugins = []
             total = 0
             totalPages = 1
             errorMessage = qsTr("Unable to load plugins: ") + error
             loading = false
             initialLoad = false
         })
-    }
-
-    function loadMore() {
-        if (!hasMore)
-            return
-        loadPlugins(page + 1, true)
-    }
-
-    function checkLoadMore() {
-        if (!flickable || !hasMore)
-            return
-        var remaining = flickable.contentHeight - (flickable.contentY + flickable.height)
-        if (remaining <= prefetchThreshold)
-            loadMore()
     }
 
     function loadTags() {
@@ -124,24 +89,16 @@ FluentPage {
     }
 
     function selectTag(tagId) {
-        if (activeTag === tagId)
-            return
         activeTag = tagId
-        loadPlugins(1, false)
+        loadPlugins(1)
     }
 
     function selectSort(value) {
-        if (sort === value)
-            return
         sort = value
-        loadPlugins(1, false)
+        loadPlugins(1)
     }
 
-    Component.onCompleted: {
-        findFlickable()
-        loadPlugins(1)
-        loadTags()
-    }
+    Component.onCompleted: { loadPlugins(1); loadTags() }
 
     Component.onDestruction: {
         ++requestSerial
@@ -151,15 +108,7 @@ FluentPage {
             activeTagsRequest.abort()
     }
 
-    Connections {
-        target: root.flickable
-        enabled: root.flickable !== null
-        function onContentYChanged() { root.checkLoadMore() }
-        function onContentHeightChanged() { root.checkLoadMore() }
-    }
-
     ColumnLayout {
-        id: layout
         Layout.fillWidth: true
         spacing: 16
 
@@ -186,19 +135,12 @@ FluentPage {
             loading: false
         }
 
-        PlazaLoading {
-            Layout.fillWidth: true
-            Layout.topMargin: 4
-            Layout.bottomMargin: 8
-            visible: !root.initialLoad && root.loading && root.page > 1
-        }
-
         ErrorState {
             Layout.fillWidth: true
             visible: !root.initialLoad && root.errorMessage.length > 0
             title: qsTr("Could not load plugins")
             description: root.errorMessage
-            onRetryRequested: root.loadPlugins(root.page, root.page > 1)
+            onRetryRequested: root.loadPlugins(root.page)
         }
 
         EmptyState {
@@ -207,6 +149,14 @@ FluentPage {
             // icon.name: "ic_fluent_search_info_24_regular"
             title: qsTr("No plugins found")
             description: root.activeTag ? qsTr("Try another category.") : qsTr("The plaza is empty right now.")
+        }
+
+        Pagination {
+            Layout.alignment: Qt.AlignHCenter
+            visible: !root.initialLoad && !root.loading && root.errorMessage.length === 0 && root.totalPages > 1
+            currentPage: root.page
+            totalPages: root.totalPages
+            onPageRequested: function(value) { root.loadPlugins(value) }
         }
     }
 }

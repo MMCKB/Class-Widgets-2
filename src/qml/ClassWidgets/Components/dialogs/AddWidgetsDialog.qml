@@ -16,27 +16,6 @@ Dialog {
         ? widgetsListView.model[widgetsListView.currentIndex]
         : null
     property bool themeReloading: false
-    property string widgetSource: ""
-
-    onSelectedWidgetChanged: {
-        // 切换时先清空再延迟加载，参考 WidgetLoader 的 cacheBuster 机制
-        widgetSource = ""
-        if (selectedWidget) {
-            Qt.callLater(function() {
-                addWidgetsDialog.widgetSource = addWidgetsDialog.selectedWidget.qml_path + "?t=" + Date.now()
-            })
-        }
-    }
-
-    onVisibleChanged: {
-        if (visible && selectedWidget) {
-            // 重新打开 Dialog 时强制刷新
-            widgetSource = ""
-            Qt.callLater(function() {
-                addWidgetsDialog.widgetSource = addWidgetsDialog.selectedWidget.qml_path + "?t=" + Date.now()
-            })
-        }
-    }
 
     Connections {
         target: CWThemeManager
@@ -46,15 +25,6 @@ Dialog {
 
         function onThemeReadyToReload() {
             addWidgetsDialog.themeReloading = false
-            // 主题重载后强制刷新，参考 WidgetLoader 的实现
-            if (addWidgetsDialog.selectedWidget) {
-                var oldSource = widgetSource.toString()
-                widgetSource = ""
-                Qt.callLater(function() {
-                    var cacheBuster = (oldSource.indexOf("?") >= 0 ? "&" : "?") + "t=" + Date.now()
-                    addWidgetsDialog.widgetSource = oldSource.split("?")[0] + cacheBuster
-                })
-            }
         }
     }
 
@@ -135,7 +105,6 @@ Dialog {
                 Layout.leftMargin: 20
                 Layout.topMargin: 20
                 elide: Text.ElideMiddle
-                // text: widgetLoader.status
                 text: addWidgetsDialog.selectedWidget
                     ? addWidgetsDialog.selectedWidget.name
                     : qsTr("No Widget Selected")
@@ -145,13 +114,33 @@ Dialog {
                 Layout.fillHeight: true
             }
 
-            // 动态加载组件样式（外层容器负责阴影和居中）
-            Item {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+            // 动态加载组件样式
+            Loader {
+                id: widgetLoader
                 Layout.alignment: Qt.AlignCenter
+                active: addWidgetsDialog.visible
+                    && addWidgetsDialog.selectedWidget !== null
+                    && !addWidgetsDialog.themeReloading
+                source: addWidgetsDialog.selectedWidget
+                    ? addWidgetsDialog.selectedWidget.qml_path
+                    : ""
+                enabled: false // 阻止事件传递
 
-                // 外层容器应用阴影，避免与 Widget 内部的 layer 嵌套冲突
+                onItemChanged: {
+                    if (item && addWidgetsDialog.selectedWidget) {
+                        if (addWidgetsDialog.selectedWidget.backend_obj) {
+                            item.backend = addWidgetsDialog.selectedWidget.backend_obj
+                        }
+                        if (addWidgetsDialog.selectedWidget.default_settings) {
+                            item.settings = addWidgetsDialog.selectedWidget.default_settings
+                        }
+                        Qt.callLater(function() {
+                            if (widgetLoader.item)
+                                anim.start()
+                        })
+                    }
+                }
+
                 layer.enabled: true
                 layer.effect: MultiEffect {
                     shadowEnabled: true
@@ -160,49 +149,19 @@ Dialog {
                     shadowVerticalOffset: 4
                 }
 
-                Loader {
-                    id: widgetLoader
-                    anchors.centerIn: parent
-                    width: item ? item.implicitWidth : 0
-                    height: item ? item.height : 0
-                    source: widgetSource
-                    active: addWidgetsDialog.visible
-                        && addWidgetsDialog.selectedWidget !== null
-                        && !addWidgetsDialog.themeReloading
-                    enabled: false // 阻止事件传递
-                    asynchronous: true
-
-                    onStatusChanged: {
-                        if (status === Loader.Ready) {
-                            if (item && addWidgetsDialog.selectedWidget) {
-                                if (addWidgetsDialog.selectedWidget.backend_obj) {
-                                    item.backend = addWidgetsDialog.selectedWidget.backend_obj
-                                }
-                                if (addWidgetsDialog.selectedWidget.default_settings) {
-                                    item.settings = addWidgetsDialog.selectedWidget.default_settings
-                                }
-                                anim.start()
-                            }
-                        } else if (status === Loader.Error) {
-                            console.error("AddWidgetsDialog: Failed to load widget preview:",
-                                addWidgetsDialog.selectedWidget ? addWidgetsDialog.selectedWidget.name : "null")
-                        }
+                ParallelAnimation {
+                    id: anim
+                    NumberAnimation {
+                        target: widgetLoader
+                        property: "opacity"
+                        from: 0; to: 1; duration: 300
+                        easing.type: Easing.OutCubic
                     }
-
-                    ParallelAnimation {
-                        id: anim
-                        NumberAnimation {
-                            target: widgetLoader
-                            property: "opacity"
-                            from: 0; to: 1; duration: 300
-                            easing.type: Easing.OutCubic
-                        }
-                        NumberAnimation {
-                            target: widgetLoader;
-                            property: "scale";
-                            from: 0.8; to: 1; duration: 400;
-                            easing.type: Easing.OutBack
-                        }
+                    NumberAnimation {
+                        target: widgetLoader;
+                        property: "scale";
+                        from: 0.8; to: 1; duration: 400;
+                        easing.type: Easing.OutBack
                     }
                 }
             }

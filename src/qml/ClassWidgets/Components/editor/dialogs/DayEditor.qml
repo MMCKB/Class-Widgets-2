@@ -2,60 +2,15 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import RinUI
-import ClassWidgets.Components
 
 Dialog {
     id: dayEditor
     modal: true
-    width: 500  
+    width: 420
     title: currentId ? qsTr("Edit Timeline") : qsTr("New Timeline")
 
     property string currentId: ""         // 如果有 id = 编辑，否则 = 新建
     property var currentData: ({})        // 临时缓存的数据副本
-
-    // 周循环文案格式（与 WeekSelector.qml 同步）
-    property int maxWeekCycle: AppCentral.scheduleEditor.meta.maxWeekCycle
-    property int roundWeek: 1
-    property int customWeek: 1
-    onRoundWeekChanged: checkValid()
-    onCustomWeekChanged: checkValid()
-    property var roundWeekOptions: []
-    property string weekCycleFormat: qsTr("Week {value} of every %1 weeks").arg(maxWeekCycle)
-    property string weekCyclePrefix: weekCycleFormat.split("{value}")[0]
-    property string weekCycleSuffix: weekCycleFormat.split("{value}")[1]
-    property string weekFormat: qsTr("Week {value}")
-    property string weekPrefix: weekFormat.split("{value}")[0]
-    property string weekSuffix: weekFormat.split("{value}")[1]
-
-    function updateRoundWeekOptions() {
-        var options = []
-        var cycleLength = Math.max(1, maxWeekCycle)
-        for (var i = 1; i <= cycleLength; i++) {
-            options.push({
-                text: cycleLength === 2
-                    ? i === 1 ? qsTr("1") : qsTr("2")
-                    : qsTr("%1").arg(i),
-                value: i
-            })
-        }
-        roundWeekOptions = options
-    }
-    function normalizeRoundWeek() {
-        var cycleLength = Math.max(1, maxWeekCycle)
-        if (roundWeek < 1) {
-            roundWeek = 1
-        } else if (roundWeek > cycleLength) {
-            roundWeek = cycleLength
-        }
-    }
-    onMaxWeekCycleChanged: {
-        normalizeRoundWeek()
-        updateRoundWeekOptions()
-    }
-    Component.onCompleted: {
-        normalizeRoundWeek()
-        updateRoundWeekOptions()
-    }
 
     // 打开方式
     function openFor(data) {
@@ -76,7 +31,7 @@ Dialog {
         dayId.text = currentData.id || qsTr("(auto)")
 
         // 日期
-        if (currentData.date) dayDate.selectedDate = currentData.date
+        if (currentData.date) dayDate.setDate(currentData.date)
 
         // 星期
         for (var i = 0; i < dayButtons.count; i++) {
@@ -101,11 +56,10 @@ Dialog {
         }
 
         // 周循环
-        weekCycleTypeAll.checked = currentData.weeks === "all" || currentData.weeks === undefined || currentData.weeks === null
+        weekCycleTypeAll.checked = currentData.weeks === "all"
         weekCycleTypeRound.checked = typeof currentData.weeks === "number"
-        if (weekCycleTypeRound.checked) roundWeek = Number(currentData.weeks)
+        if (weekCycleTypeRound.checked) weekCycleRound.value = currentData.weeks
         weekCycleTypeCustom.checked = Array.isArray(currentData.weeks)
-        if (weekCycleTypeCustom.checked && currentData.weeks.length > 0) customWeek = Number(currentData.weeks[0])
 
         checkValid()
     }
@@ -122,17 +76,17 @@ Dialog {
             }
             if (!hasDaySelected) valid = false
             else if (weekCycleTypeAll.checked || weekCycleTypeCustom.checked) valid = true
-            else if (weekCycleTypeRound.checked && roundWeek >= 1) valid = true
+            else if (weekCycleTypeRound.checked && weekCycleRound.value >= 1) valid = true
         } else {
             // 日期模式
-            valid = !!dayDate.selectedDate
+            valid = !!dayDate.date
         }
 
         footer.okButton.enabled = valid
     }
 
     ColumnLayout {
-        spacing: 24
+        spacing: 12
         Layout.fillWidth: true
 
         Segmented {
@@ -152,23 +106,21 @@ Dialog {
         RowLayout {
             visible: daySegmented.currentIndex === 1
             Text { text: qsTr("Date"); width: 100 }
-
-            Item { Layout.fillWidth: true }
-
-            CalendarDatePicker {
+            DatePicker {
                 id: dayDate
-                onSelectedDateChanged: checkValid()
+                Layout.fillWidth: true
+                onDateChanged: checkValid()
             }
         }
 
         ColumnLayout {
             Layout.fillWidth: true
-            spacing: 12
+            spacing: 8
             visible: daySegmented.currentIndex === 0
 
-            ColumnLayout {
-                spacing: 6
-                Text { text: qsTr("Days of Week")}
+            RowLayout {
+                spacing: 8
+                Text { text: qsTr("Days of Week"); width: 100 }
                 Flow {
                     Layout.fillWidth: true
                     spacing: 4
@@ -188,46 +140,20 @@ Dialog {
 
             ColumnLayout {
                 Layout.fillWidth: true
-                spacing: 6
-                Text { text: qsTr("Week")}
-
+                spacing: 4
+                ButtonGroup { id: weekCycleType; buttons: weekCycleTypeColumn.children }
                 RowLayout {
                     id: weekCycleTypeColumn
-                    spacing: 12
                     RadioButton { id: weekCycleTypeAll; text: qsTr("Every Week"); onCheckedChanged: dayEditor.checkValid() }
-                    RadioButton { id: weekCycleTypeRound; text: qsTr("Repeat on a Cycle"); onCheckedChanged: dayEditor.checkValid() }
-                    RadioButton { id: weekCycleTypeCustom; text: qsTr("One Specific Week"); onCheckedChanged: dayEditor.checkValid() }
+                    RadioButton { id: weekCycleTypeRound; text: qsTr("Specific Round"); onCheckedChanged: dayEditor.checkValid() }
+                    RadioButton { id: weekCycleTypeCustom; text: qsTr("Custom"); onCheckedChanged: dayEditor.checkValid(); enabled: false }
                 }
+            }
 
-                RowLayout {
-                    visible: weekCycleTypeRound.checked
-                    spacing: 2
-                    Text { text: weekCyclePrefix }
-                    ComboBox {
-                        id: weekCycleRound
-                        model: dayEditor.roundWeekOptions
-                        Layout.preferredWidth: 72
-                        textRole: "text"
-                        valueRole: "value"
-                        currentIndex: Math.max(0, dayEditor.roundWeek - 1)
-                        onActivated: dayEditor.roundWeek = currentIndex + 1
-                    }
-                    Text { text: weekCycleSuffix }
-                }
-
-                RowLayout {
-                    visible: weekCycleTypeCustom.checked
-                    spacing: 2
-                    Text { text: weekPrefix }
-                    SpinBox {
-                        id: weekCycleCustom
-                        from: 1
-                        to: 9999
-                        value: dayEditor.customWeek
-                        onValueChanged: dayEditor.customWeek = value
-                    }
-                    Text { text: weekSuffix }
-                }
+            RowLayout {
+                visible: weekCycleTypeRound.checked
+                Text { text: qsTr("Week of Cycle"); width: 100 }
+                SpinBox { id: weekCycleRound; from: 1; to: AppCentral.scheduleEditor.meta.maxWeekCycle; onValueChanged: dayEditor.checkValid() }
             }
         }
     }
@@ -249,13 +175,13 @@ Dialog {
                 if (weekCycleTypeAll.checked) {
                     weeks = "all"
                 } else if (weekCycleTypeRound.checked) {
-                    weeks = roundWeek
+                    weeks = weekCycleRound.value
                 } else if (weekCycleTypeCustom.checked) {
-                    weeks = [customWeek]
+                    weeks = []  // TODO: custom 逻辑
                 }
             } else {
                 // 日期模式
-                date = dayDate.selectedDate
+                date = dayDate.date
                 weeks = "all"
             }
 

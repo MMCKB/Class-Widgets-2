@@ -82,6 +82,14 @@ class ReleasableWindow(RinUIWindow):
         self.engine.deleteLater()
 
 
+class ExamModeWindow(ReleasableWindow):
+    """只显示时间、日期和退出按钮的无边框全屏考试时钟。"""
+
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.load(CW_PATH / "Windows" / "ExamMode.qml")
+
+
 class Settings(ReleasableWindow, QObject):
     extraSettingsChanged = Signal()
 

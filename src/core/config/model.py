@@ -131,6 +131,13 @@ class AppConfig(ConfigBaseModel):
     channel: str = __version_type__
     tutorial_completed: bool = False  # 是否完成初始化
     auto_startup: bool = False  # 开机自启
+    startup_animation_enabled: bool = True  # 启动动画开关
+    startup_animation_skip_once: bool = False  # 完成引导后下一次启动跳过动画
+    startup_animation_media_path: str = ""  # 本地图片或视频的绝对路径
+    startup_animation_media_type: str = "none"  # none / image / video
+    startup_animation_force_video_completion: bool = False  # 视频媒体时强制播放完毕
+    startup_animation_show_info: bool = True  # 显示图标、软件名和版本信息
+    show_update_summary: bool = True  # 更新完成后显示更新摘要
 
 
 class PreferencesConfig(ConfigBaseModel):
@@ -186,6 +193,30 @@ class InteractionsConfig(ConfigBaseModel):
     hide: HideInteractionsConfig = Field(default_factory=HideInteractionsConfig)  # 隐藏配置
 
 
+class SceneMode(ConfigBaseModel):
+    """用户保存的一组可管理场景；旧配置未声明类型时视为普通展示场景。"""
+
+    id: str
+    name: str
+    kind: str = "settings"
+    settings: dict[str, JsonData] = Field(default_factory=dict)
+
+    @field_validator("kind")
+    @classmethod
+    def validate_kind(cls, value: str) -> str:
+        if value not in {"settings", "exam"}:
+            raise ValueError("场景类型必须是 settings 或 exam")
+        return value
+
+
+class SceneModesConfig(ConfigBaseModel):
+    """场景模式的本地持久化配置。"""
+
+    scenes: list[SceneMode] = Field(default_factory=list)
+    active_scene_id: str = ""
+    exam_preset_initialized: bool = False
+
+
 class PluginsConfig(ConfigBaseModel):
     enabled: list[str] = ["builtin.classwidgets.widgets"]
     configs: dict[str, dict[str, JsonData]] = Field(default_factory=dict)
@@ -210,6 +241,23 @@ class ScheduleConfig(ConfigBaseModel):
     class_swap: dict[str, JsonData] = Field(default_factory=dict)  # 临时换课记录
 
 
+class TimeConfig(ConfigBaseModel):
+    """全局时钟与 NTP 同步配置。"""
+
+    use_precise_time: bool = False
+    ntp_server: str = "time.cloudflare.com"
+
+
+class CentralControlConfig(ConfigBaseModel):
+    """集控策略的本地接收配置。"""
+
+    schedule_manifest_url: str = ""
+    auto_fetch_enabled: bool = False
+    auto_fetch_interval_minutes: int = 15
+    allow_remote_power_commands: bool = False
+    executed_command_ids: list[str] = Field(default_factory=list)
+
+
 class NetworkConfig(ConfigBaseModel):
     """
     网络配置
@@ -218,6 +266,7 @@ class NetworkConfig(ConfigBaseModel):
     current_mirror: str = "gh_proxy"  # 当前镜像源
     mirror_enabled: bool = True  # 是否启用网络功能
     releases_url: str = "https://classwidgets.rinlit.cn/2/releases.json"  # 版本更新地址
+    github_releases_url: str = ""  # 自定义 GitHub Releases 页面地址；非空时优先使用
     auto_check_updates: bool = True  # 自动检查更新
 
     plaza_url: str = "https://plaza.cw.rinlit.cn"

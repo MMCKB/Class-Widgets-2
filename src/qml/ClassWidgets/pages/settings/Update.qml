@@ -285,6 +285,58 @@ FluentPage {
                 Component.onCompleted: checked = Configs.data.network.auto_check_updates
             }
         }
+
+        SettingCard {
+            Layout.fillWidth: true
+            icon.name: "ic_fluent_document_bullet_list_20_regular"
+            title: qsTr("显示更新摘要")
+            description: qsTr("更新安装完成后，在下次启动时打开更新摘要窗口")
+
+            Switch {
+                enabled: !Configs.isKeyLocked("app.show_update_summary")
+                onCheckedChanged: Configs.set("app.show_update_summary", checked)
+                Component.onCompleted: checked = Configs.data.app.show_update_summary
+            }
+        }
+
+        SettingCard {
+            Layout.fillWidth: true
+            icon.name: "ic_fluent_cloud_arrow_up_20_regular"
+            title: qsTr("GitHub Releases 更新源")
+            description: qsTr(
+                "填写 GitHub 仓库的 Releases 页面地址。保存后仅检查此源，不再使用默认更新服务器。"
+            )
+
+            RowLayout {
+                spacing: 4
+
+                ToolButton {
+                    icon.name: "ic_fluent_delete_20_regular"
+                    enabled: !Configs.isKeyLocked("network.github_releases_url")
+                    onClicked: {
+                        githubReleasesField.text = ""
+                        Configs.set("network.github_releases_url", "")
+                    }
+
+                    ToolTip {
+                        text: qsTr("清除自定义更新源")
+                        visible: parent.hovered
+                    }
+                }
+
+                TextField {
+                    id: githubReleasesField
+                    Layout.fillWidth: true
+                    placeholderText: "https://github.com/owner/repository/releases"
+                    enabled: !Configs.isKeyLocked("network.github_releases_url")
+                    Component.onCompleted: text = Configs.data.network.github_releases_url
+                    onEditingFinished: {
+                        text = text.trim()
+                        Configs.set("network.github_releases_url", text)
+                    }
+                }
+            }
+        }
     }
 
     ColumnLayout {

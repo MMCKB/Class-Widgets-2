@@ -10,9 +10,9 @@ Window {
     title: qsTr("Quick Access Panel")
     // title: Configs.data.app.version
     width: 375
-    height: 475
+    height: sceneSwitcher.visible ? 535 : 475
     minimumWidth: 375
-    minimumHeight: 475
+    minimumHeight: height
     minimizeVisible: false
     maximizeVisible: false
 
@@ -80,6 +80,40 @@ Window {
         }
 
         ColumnLayout {
+            id: sceneSwitcher
+            Layout.fillWidth: true
+            visible: sceneData.length > 0
+            spacing: 4
+            property var sceneData: AppCentral.sceneModes.scenes
+
+            function activeSceneIndex() {
+                const activeSceneId = AppCentral.sceneModes.activeSceneId
+                for (let index = 0; index < sceneData.length; index++) {
+                    if (sceneData[index].id === activeSceneId)
+                        return index
+                }
+                return 0
+            }
+
+            Text {
+                typography: Typography.BodyStrong
+                text: qsTr("切换场景")
+            }
+
+            ComboBox {
+                id: sceneSelector
+                Layout.fillWidth: true
+                textRole: "name"
+                model: sceneSwitcher.sceneData
+                currentIndex: sceneSwitcher.activeSceneIndex()
+                onActivated: {
+                    if (currentIndex >= 0 && currentIndex < sceneSwitcher.sceneData.length)
+                        AppCentral.sceneModes.applyScene(sceneSwitcher.sceneData[currentIndex].id)
+                }
+            }
+        }
+
+        ColumnLayout {
             Layout.fillWidth: true
 
             Text {
@@ -119,7 +153,6 @@ Window {
     RowLayout {
         id: bottomRow
         anchors.right: parent.right
-        anchors.left: parent.left
         anchors.bottom: parent.bottom
         anchors.margins: 4
         spacing: 0
@@ -127,6 +160,7 @@ Window {
         ToolButton {
             flat: true
             icon.name: "ic_fluent_developer_board_search_20_regular"
+            visible: Configs.data.app.debug_mode
             enabled: Configs.data.app.debug_mode
             onClicked: {
                 panel.hide()
@@ -135,24 +169,11 @@ Window {
             ToolTip { text: qsTr("Debugger"); visible: parent.hovered }
         }
 
-        Item {
-            Layout.fillWidth: true
-        }
-
         ToolButton {
             flat: true
             icon.name: "ic_fluent_arrow_counterclockwise_20_regular"
             onClicked: AppCentral.restart()
-            visible: !AppCentral.restartRequired
             ToolTip { text: qsTr("Restart"); visible: parent.hovered }
-        }
-
-        Button {
-            flat: true
-            icon.name: "ic_fluent_arrow_counterclockwise_20_regular"
-            onClicked: AppCentral.restart()
-            visible: AppCentral.restartRequired
-            text: qsTr("Restart required")
         }
 
         ToolButton {

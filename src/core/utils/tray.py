@@ -27,7 +27,7 @@ class TrayIcon(QObject):
 
         self._set_app_user_model_id("Class Widgets 2")
 
-        self.tray = QSystemTrayIcon(QIcon(tray_icon_path), self)
+        self.tray = QSystemTrayIcon(QIcon(tray_icon_path))
         self.tray.setToolTip("Class Widgets 2")
         self.tray.activated.connect(self.on_click)
         self.tray.show()
@@ -56,8 +56,4 @@ class TrayIcon(QObject):
 
     def push_notification(self, title: str, text: str, icon: QIcon = None):
         self.tray.showMessage(title, text, icon or QIcon(Path(self.icon_paths["default"]).as_posix()), 5000)
-
-    def cleanup(self):
-        self.tray.hide()
-        self.tray.deleteLater()
 

@@ -25,6 +25,7 @@ class AppWindowManager(QObject):
             "single_instance": self._create_single_instance,
             "tutorial": self._create_tutorial,
             "debugger": self._create_debugger,
+            "exam_mode": self._create_exam_mode,
         }
         self._errors = {
             "settings": "Settings window not initialized correctly.",
@@ -36,6 +37,7 @@ class AppWindowManager(QObject):
             "single_instance": "Single Instance Dialog not initialized correctly.",
             "tutorial": "Tutorial window not initialized correctly.",
             "debugger": "Debugger window not initialized correctly.",
+            "exam_mode": "Exam mode window not initialized correctly.",
         }
 
     @Slot()
@@ -152,6 +154,12 @@ class AppWindowManager(QObject):
     def close_debugger(self) -> None:
         self.release("debugger")
 
+    def open_exam_mode(self) -> None:
+        self.open("exam_mode")
+
+    def close_exam_mode(self) -> None:
+        self.release("exam_mode")
+
     def open(self, name: str) -> None:
         try:
             window = self.ensure(name)
@@ -262,6 +270,11 @@ class AppWindowManager(QObject):
         from src.core.utils.debugger import DebuggerWindow
 
         return DebuggerWindow(self.central)
+
+    def _create_exam_mode(self):
+        from src.core.windows.windows import ExamModeWindow
+
+        return ExamModeWindow(self.central)
 
     def _apply_settings_window_workarounds(self, window) -> None:
         import platform

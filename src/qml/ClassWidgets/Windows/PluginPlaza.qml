@@ -102,21 +102,8 @@ FluentWindow {
 
             function submitSearch(keyword) {
                 var query = keyword.trim()
-                if (!query)
-                    return
-                var searchPageUrl = PathManager.qml("pages/plaza/Search.qml")
-                var stack = navigationView.navigationBar.stackView
-                if (navigationView.currentPage === searchPageUrl
-                    && stack && stack.currentItem
-                    && stack.currentItem.query !== undefined) {
-                    var page = stack.currentItem
-                    if (page.query === query)
-                        page.search(1, false)
-                    else
-                        page.query = query
-                    return
-                }
-                navigationView.push(searchPageUrl, { query: query })
+                if (query)
+                    navigationView.push(PathManager.qml("pages/plaza/Search.qml"), { query: query })
             }
 
             onTextChanged: {
@@ -167,27 +154,44 @@ FluentWindow {
 
 
 
-        ProgressRing {
+        ToolButton {
+            flat: true
             Layout.alignment: Qt.AlignRight
-            visible: PluginManager.plazaInstallActive
-            strokeWidth: 3
-            size: 20
-            value: PluginManager.installProgress / 100
-            backgroundColor: indeterminate ? "transparent" : Colors.proxy.controlAltTertiaryColor
-            indeterminate: PluginManager.installStatus === "Installing"
+            icon.name: "ic_fluent_arrow_sync_20_regular"
+            size: 18
 
             ToolTip {
+                text: qsTr("Refresh")
                 visible: parent.hovered
-                text: PluginManager.installTotalBytes > 0
-                        ? qsTr("Downloaded: %1 / %2")
-                          .arg(root.formatBytes(PluginManager.installDownloadedBytes))
-                          .arg(root.formatBytes(PluginManager.installTotalBytes))
-                        : qsTr("Downloading")
             }
-        }
 
-        RestartButton {
-            Layout.alignment: Qt.AlignRight
+            onClicked: {
+                PlazaBridge.refreshAll()
+            }
+
+            ProgressRing {
+                visible: PluginManager.plazaInstallActive
+                // Layout.alignment: Qt.AlignVCenter
+                strokeWidth: 3
+                anchors {
+                    right: parent.left
+                    verticalCenter: parent.verticalCenter
+                    rightMargin: 12
+                }
+                size: 20
+                value: PluginManager.installProgress / 100
+                backgroundColor: indeterminate ? "transparent" : Colors.proxy.controlAltTertiaryColor
+                indeterminate: PluginManager.installStatus === "Installing"
+
+                ToolTip {
+                    visible: parent.hovered
+                    text: PluginManager.installTotalBytes > 0
+                            ? qsTr("Downloaded: %1 / %2")
+                              .arg(root.formatBytes(PluginManager.installDownloadedBytes))
+                              .arg(root.formatBytes(PluginManager.installTotalBytes))
+                            : qsTr("Downloading")
+                }
+            }
         }
     }
 
