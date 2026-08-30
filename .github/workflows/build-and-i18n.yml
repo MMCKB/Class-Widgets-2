@@ -1,6 +1,6 @@
 name: 构建与翻译更新
 
-on:
+'on':
   push:
     branches: [main]
     tags:
@@ -20,7 +20,7 @@ on:
         description: '版本类型'
         required: true
         default: 'alpha'
-        type: choice:
+        type: choice
           - alpha
           - beta
           - stable
@@ -28,7 +28,7 @@ on:
         description: '上传到...'
         required: true
         default: 'None'
-        type: choice:
+        type: choice
           - None
           - 123Pan
       update_ts_files:
