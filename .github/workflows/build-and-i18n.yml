@@ -21,6 +21,7 @@ name: 构建与翻译更新
         required: true
         default: 'alpha'
         type: choice
+        options:
           - alpha
           - beta
           - stable
@@ -29,6 +30,7 @@ name: 构建与翻译更新
         required: true
         default: 'None'
         type: choice
+        options:
           - None
           - 123Pan
       update_ts_files:
@@ -40,6 +42,11 @@ name: 构建与翻译更新
         description: '是否编译 .qm 文件'
         required: true
         default: true
+        type: boolean
+      release:
+        description: '创建 GitHub Release'
+        required: true
+        default: false
         type: boolean
 
 concurrency:
@@ -284,8 +291,11 @@ jobs:
 
   # ========== 构建发布任务 ==========
   build:
-    name: 构建与发布
-    runs-on: ubuntu-latest
+    name: 构建应用
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, macos-15-intel, macos-latest]
     if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
     steps:
       - name: 检出代码
@@ -298,17 +308,232 @@ jobs:
           enable-cache: true
           activate-environment: true
 
+      - name: 解析版本号
+        id: version
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            VERSION="${{ inputs.version }}"
+            VERSION_TYPE="${{ inputs.version_type }}"
+            VERSION_TAG="${VERSION}"
+          else
+            VERSION_TAG="${{ github.ref_name }}"
+            VERSION="${VERSION_TAG#v}"
+            VERSION_TYPE="stable"
+
+            if [[ "$VERSION" =~ (^|[-._])alpha([-.0-9]*)?$ ]]; then
+              VERSION_TYPE="alpha"
+              VERSION="${VERSION%%-alpha*}"
+              VERSION="${VERSION%%.alpha*}"
+              VERSION="${VERSION%%_alpha*}"
+            elif [[ "$VERSION" =~ (^|[-._])dev([-.0-9]*)?$ ]]; then
+              VERSION_TYPE="alpha"
+            elif [[ "$VERSION" =~ (^|[-._])beta([-.0-9]*)?$ ]]; then
+              VERSION_TYPE="beta"
+              VERSION="${VERSION%%-beta*}"
+              VERSION="${VERSION%%.beta*}"
+              VERSION="${VERSION%%_beta*}"
+            fi
+          fi
+
+          PRERELEASE="true"
+          if [[ "$VERSION_TYPE" == "stable" ]]; then
+            PRERELEASE="false"
+          fi
+
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "version_type=$VERSION_TYPE" >> "$GITHUB_OUTPUT"
+          echo "version_tag=$VERSION_TAG" >> "$GITHUB_OUTPUT"
+          echo "prerelease=$PRERELEASE" >> "$GITHUB_OUTPUT"
+
+      - name: 写入版本号到源码
+        shell: bash
+        env:
+          CW_VERSION: ${{ steps.version.outputs.version }}
+          CW_VERSION_TYPE: ${{ steps.version.outputs.version_type }}
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import os
+          import re
+
+          path = Path('src/__init__.py')
+          content = path.read_text(encoding='utf-8')
+          content = re.sub(r'__version__ = ["\'][^"\']*["\']', f'__version__ = "{os.environ["CW_VERSION"]}"', content)
+          content = re.sub(r'__version_type__ = ["\'][^"\']*["\']', f'__version_type__ = "{os.environ["CW_VERSION_TYPE"]}"', content)
+          path.write_text(content, encoding='utf-8')
+          PY
+
+          grep -E '^__version__|^__version_type__' src/__init__.py
+
       - name: 安装依赖
         shell: bash
         run: |
-          uv pip install -r requirements.txt
+          uv sync
+          uv pip install pyinstaller
 
-      - name: 构建应用
+      - name: 构建应用 (Windows)
+        if: runner.os == 'Windows'
         shell: bash
         run: |
-          echo "[DEBUG] 开始构建..."
+          uv run pyinstaller --noconsole \
+            --icon "assets/images/logo.ico" \
+            --add-data "src/qml:src/qml" \
+            --add-data "src/plugins:src/plugins" \
+            --add-data "src/themes:src/themes" \
+            --add-data "assets:assets" \
+            --add-data "LICENSE:." \
+            --paths=. \
+            --contents-directory . \
+            --name="Class Widgets 2" \
+            src/app.py
 
-      - name: 发布
+      - name: 构建应用 (macOS)
+        if: runner.os == 'macOS'
         shell: bash
         run: |
-          echo "[DEBUG] 发布版本..."
+          uv run pyinstaller --noconsole \
+            --icon "assets/images/logo.icns" \
+            --add-data "src/qml:src/qml" \
+            --add-data "src/plugins:src/plugins" \
+            --add-data "src/themes:src/themes" \
+            --add-data "assets:assets" \
+            --add-data "LICENSE:." \
+            --paths=. \
+            --contents-directory . \
+            --name="Class Widgets 2" \
+            src/app.py
+
+      - name: 清理 PySide6 文件 (仅 Windows)
+        if: runner.os == 'Windows'
+        shell: bash
+        run: |
+          TARGET="dist/Class Widgets 2/PySide6"
+          JSON_FILE="$GITHUB_WORKSPACE/scripts/qt_files_clean-Windows.json"
+          
+          if [ -d "$TARGET" ] && [ -f "$JSON_FILE" ]; then
+            jq -r '.[]' "$JSON_FILE" | while IFS= read -r item; do
+              item=${item%$'\r'}
+              full_path="$TARGET/$item"
+              if [ -f "$full_path" ] || [ -d "$full_path" ]; then
+                rm -rf "$full_path"
+                echo "已清理: $item"
+              fi
+            done
+          fi
+
+      - name: 打包 zip (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          Compress-Archive -Path "dist/Class Widgets 2/*" -DestinationPath "dist/ClassWidgets-2-Windows.zip"
+
+      - name: 打包 dmg (macOS)
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          hdiutil create -volname "Class Widgets 2" -srcfolder dist -ov -format UDZO ClassWidgets-2-macOS-${{ runner.arch }}.dmg
+
+      - name: 上传构建产物 (Windows)
+        if: runner.os == 'Windows'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ClassWidgets-2-Windows
+          path: dist/ClassWidgets-2-Windows.zip
+
+      - name: 上传构建产物 (macOS)
+        if: runner.os == 'macOS'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ClassWidgets-2-macOS-${{ runner.arch }}
+          path: ClassWidgets-2-macOS-${{ runner.arch }}.dmg
+
+  release:
+    name: 发布到 GitHub
+    needs: [build]
+    runs-on: ubuntu-latest
+    if: |
+      always() &&
+      needs.build.result == 'success' &&
+      (startsWith(github.ref, 'refs/tags/') || github.event.inputs.release == 'true')
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 解析版本号
+        id: version
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            VERSION="${{ inputs.version }}"
+            VERSION_TYPE="${{ inputs.version_type }}"
+            VERSION_TAG="${VERSION}"
+          else
+            VERSION_TAG="${{ github.ref_name }}"
+            VERSION="${VERSION_TAG#v}"
+            VERSION_TYPE="stable"
+
+            if [[ "$VERSION" =~ (^|[-._])alpha([-.0-9]*)?$ ]]; then
+              VERSION_TYPE="alpha"
+              VERSION="${VERSION%%-alpha*}"
+              VERSION="${VERSION%%.alpha*}"
+              VERSION="${VERSION%%_alpha*}"
+            elif [[ "$VERSION" =~ (^|[-._])beta([-.0-9]*)?$ ]]; then
+              VERSION_TYPE="beta"
+              VERSION="${VERSION%%-beta*}"
+              VERSION="${VERSION%%.beta*}"
+              VERSION="${VERSION%%_beta*}"
+            fi
+          fi
+
+          PRERELEASE="true"
+          if [[ "$VERSION_TYPE" == "stable" ]]; then
+            PRERELEASE="false"
+          fi
+
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "version_type=$VERSION_TYPE" >> "$GITHUB_OUTPUT"
+          echo "version_tag=$VERSION_TAG" >> "$GITHUB_OUTPUT"
+          echo "prerelease=$PRERELEASE" >> "$GITHUB_OUTPUT"
+
+      - name: 下载构建产物
+        uses: actions/download-artifact@v5
+        with:
+          path: dist/
+          merge-multiple: true
+
+      - name: 创建 GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Class Widgets ${{ steps.version.outputs.version_tag }}
+          tag_name: ${{ steps.version.outputs.version_tag }}
+          prerelease: ${{ steps.version.outputs.prerelease }}
+          files: |
+            dist/ClassWidgets-2-Windows.zip
+            dist/ClassWidgets-2-macOS-X64.dmg
+            dist/ClassWidgets-2-macOS-ARM64.dmg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 上传到 123Pan
+        if: success() && github.event.inputs.upload2webdav == '123Pan'
+        run: |
+          VERSION="${{ steps.version.outputs.version_tag }}"
+          ENCODED_VERSION=$(echo "$VERSION" | sed 's/ /%20/g')
+
+          curl -v -u "${{ secrets.PAN_USER }}:${{ secrets.PAN_PASS }}" \
+               -X MKCOL "https://webdav.123pan.cn/webdav/${ENCODED_VERSION}"
+
+          curl -u "${{ secrets.PAN_USER }}:${{ secrets.PAN_PASS }}" \
+            -T "dist/ClassWidgets-2-Windows.zip" \
+            "https://webdav.123pan.cn/webdav/${ENCODED_VERSION}/ClassWidgets-2-Windows.zip"
+
+          curl -u "${{ secrets.PAN_USER }}:${{ secrets.PAN_PASS }}" \
+            -T "dist/ClassWidgets-2-macOS-X64.dmg" \
+            "https://webdav.123pan.cn/webdav/${ENCODED_VERSION}/ClassWidgets-2-macOS-X64.dmg"
+
+          curl -u "${{ secrets.PAN_USER }}:${{ secrets.PAN_PASS }}" \
+            -T "dist/ClassWidgets-2-macOS-ARM64.dmg" \
+            "https://webdav.123pan.cn/webdav/${ENCODED_VERSION}/ClassWidgets-2-macOS-ARM64.dmg"
