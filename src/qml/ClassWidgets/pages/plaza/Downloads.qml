@@ -261,12 +261,7 @@ FluentPage {
                     primaryActionEnabled: !PluginManager.plazaInstallActive
                     primaryActionText: qsTr("Update")
                     primaryActionIcon: "ic_fluent_arrow_sync_20_regular"
-                    enableSwitchVisible: true
-                    pluginEnabled: PluginManager.isPluginEnabled(modelData.id)
 
-                    onEnableToggled: function(checked) {
-                        PluginManager.setPluginEnabled(modelData.id, checked)
-                    }
                     onPrimaryActionRequested: PluginManager.installPlazaUpdate(modelData.id)
                     onOpenStoreRequested: root.openPlugin(modelData.id)
                     onCopyLinkRequested: root.copyStoreUrl(modelData.id)

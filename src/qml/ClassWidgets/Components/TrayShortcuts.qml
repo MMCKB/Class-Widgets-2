@@ -139,26 +139,11 @@ ColumnLayout {
                                     modelData.id, shortcutTile.visualIndex)
                 }
 
-                // ToolButton {
-                //     id: deleteBtn
-                //     visible: widgetsContainer.editMode
-                //     icon.name: "ic_fluent_line_horizontal_1_20_filled"
-                //     size: 12
-                //     width: 24
-                //     height: 24
-                //     anchors.top: parent.top
-                //     anchors.left: parent.left
-                //     onClicked: WidgetsModel.removeInstance(model.instanceId)
-                // }
-
                 ToolButton {
                     visible: root.editMode
                     anchors.top: parent.top
                     anchors.left: parent.left
-                    size: 12
-                    width: 24
-                    height: 24
-                    // anchors.margins: -6
+                    anchors.margins: -6
                     icon.name: "ic_fluent_line_horizontal_1_20_filled"
                     onClicked: UtilsBackend.setShortcutEnabled(modelData.id, false)
 

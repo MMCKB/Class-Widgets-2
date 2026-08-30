@@ -19,14 +19,6 @@ FluentWindow {
         WindowManager.closeSettings()
     }
 
-    titleBarArea: RowLayout {
-        anchors.fill: parent
-
-        RestartButton {
-            Layout.alignment: Qt.AlignRight
-        }
-    }
-
     navigationItems: [
         {
             title: qsTr("Home"),
@@ -38,19 +30,23 @@ FluentWindow {
             title: qsTr("General"),
             icon: "ic_fluent_settings_20_regular",
             page: PathManager.qml("pages/settings/General/Index.qml"),
-            // subItems: [
-            //
-            // ]
-        },
-        {
-            title: qsTr("Widgets"),
-            page: PathManager.qml("pages/settings/General/Widgets.qml"),
-            icon: "ic_fluent_apps_20_regular"
-        },
-        {
-            title: qsTr("Interactions"),
-            page: PathManager.qml("pages/settings/General/Interactions.qml"),
-            icon: "ic_fluent_hand_draw_20_regular"
+            subItems: [
+                {
+                    title: qsTr("Widgets"),
+                    page: PathManager.qml("pages/settings/General/Widgets.qml"),
+                    icon: "ic_fluent_apps_20_regular"
+                },
+                {
+                    title: qsTr("Interactions"),
+                    page: PathManager.qml("pages/settings/General/Interactions.qml"),
+                    icon: "ic_fluent_hand_draw_20_regular"
+                },
+                {
+                    title: qsTr("场景模式"),
+                    page: PathManager.qml("pages/settings/General/SceneModes.qml"),
+                    icon: "ic_fluent_window_multiple_20_regular"
+                }
+            ]
         },
         {
             title: qsTr("Personalization"),
@@ -72,6 +68,16 @@ FluentWindow {
                     icon: "ic_fluent_clock_20_regular"
                 }
             ]
+        },
+        {
+            title: qsTr("集控"),
+            page: PathManager.qml("pages/settings/CentralControl.qml"),
+            icon: "ic_fluent_people_team_20_regular",
+        },
+        {
+            title: qsTr("自动化"),
+            page: PathManager.qml("pages/settings/Automation.qml"),
+            icon: "ic_fluent_branch_compare_20_regular",
         },
         {
             title: qsTr("Plugins"),

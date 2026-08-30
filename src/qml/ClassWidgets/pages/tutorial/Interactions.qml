@@ -25,9 +25,9 @@ TutorialComponents.TutorialPage {
         SettingExpander {
             Layout.fillWidth: true
             Layout.minimumHeight: 200
-            icon.name: "ic_fluent_tap_single_20_regular"
-            title: qsTr("Tap Action")
-            description: qsTr("Choose whether tapping a widget hides it or switches to mini mode")
+            icon.name: "ic_fluent_slide_hide_20_regular"
+            title: qsTr("Hide Behavior")
+            description: qsTr("Choose whether widgets disappear or become compact")
             expanded: true
 
             ButtonGroup {
@@ -43,12 +43,12 @@ TutorialComponents.TutorialPage {
                         model: [
                             {
                                 "name": qsTr("Hide"),
-                                "value": "hide",
+                                "miniMode": false,
                                 "preview": "hide_default"
                             },
                             {
                                 "name": qsTr("Mini Mode"),
-                                "value": "mini_mode",
+                                "miniMode": true,
                                 "preview": "hide_mini"
                             }
                         ]
@@ -66,12 +66,12 @@ TutorialComponents.TutorialPage {
                             }
 
                             RadioButton {
-                                Layout.alignment: Qt.AlignHCenter
+                                Layout.fillWidth: true
                                 text: modelData.name
-                                checked: Configs.data.interactions.tapped_action === modelData.value
-                                enabled: !Configs.isKeyLocked("interactions.tapped_action")
+                                checked: Configs.data.interactions.hide.mini_mode === modelData.miniMode
+                                enabled: !Configs.isKeyLocked("interactions.hide.mini_mode")
                                 ButtonGroup.group: hideModeGroup
-                                onClicked: Configs.set("interactions.tapped_action", modelData.value)
+                                onClicked: Configs.set("interactions.hide.mini_mode", modelData.miniMode)
                             }
                         }
                     }

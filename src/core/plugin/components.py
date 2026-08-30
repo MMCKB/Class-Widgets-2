@@ -183,6 +183,11 @@ class RuntimeAPI(BaseAPI):
         return self._runtime.current_time
 
     @property
+    def current_offset_time(self) -> datetime:
+        """返回包含用户秒级偏移的当前时间。"""
+        return self._runtime.current_offset_time
+
+    @property
     def current_day_of_week(self) -> int:
         return self._runtime.current_day_of_week
 
@@ -314,8 +319,102 @@ class ConfigAPI(BaseAPI):
 
 
 class AutomationAPI(BaseAPI):
+    """插件自动化入口。
+
+    ``register`` 保留给已有插件注册 AutomationTask；``register_project``
+    用于在内置自动化设置页注册一个受用户控制的插件项目。
+    """
+
     def register(self, task):
         self._app.automation_manager.add_task(task)
+
+    def register_project(
+        self,
+        project_id: str,
+        title: str,
+        description: str = "",
+        icon: str = "ic_fluent_plug_connected_20_regular",
+        on_enabled_changed: Callable[[bool], object] | None = None,
+        on_open_settings: Callable[[], object] | None = None,
+    ) -> str:
+        """注册插件自动化项目并返回全局项目 ID。
+
+        项目 ID 会自动加上插件 ID 命名空间。插件不能通过该接口向
+        内置规则引擎注入远程命令、任意触发器或其他高权限动作；它只
+        获得用户启用状态回调和可选的设置入口回调。
+        """
+        plugin = self.current_plugin
+        if plugin is None:
+            raise ValueError("No plugin context available. Make sure this method is called within a plugin.")
+        plugin_id = plugin.meta.get("id")
+        if not plugin_id:
+            raise ValueError("Plugin initialization failed, missing meta.id")
+        service = self._app.automation_manager.init_user_profiles()
+        return service.register_plugin_project(
+            plugin_id=plugin_id,
+            project_id=project_id,
+            title=title,
+            description=description,
+            icon=icon,
+            on_enabled_changed=on_enabled_changed,
+            on_open_settings=on_open_settings,
+        )
+
+    def register_trigger(
+        self,
+        trigger_id: str,
+        title: str,
+        description: str = "",
+        icon: str = "ic_fluent_plug_connected_20_regular",
+    ) -> str:
+        """注册一个可在自动化规则中选择、仅由该插件主动发出的触发器。"""
+        plugin = self.current_plugin
+        if plugin is None:
+            raise ValueError("No plugin context available. Make sure this method is called within a plugin.")
+        plugin_id = plugin.meta.get("id")
+        if not plugin_id:
+            raise ValueError("Plugin initialization failed, missing meta.id")
+        return self._app.automation_manager.init_user_profiles().register_plugin_trigger(
+            plugin_id, trigger_id, title, description, icon
+        )
+
+    def emit_trigger(self, trigger_id: str) -> bool:
+        """发出已注册触发器；推荐传入 ``register_trigger`` 返回的全局 ID。"""
+        service = self._app.automation_manager.init_user_profiles()
+        trigger_id = str(trigger_id).strip()
+        if trigger_id.startswith("plugin."):
+            return service.emit_registered_plugin_trigger(trigger_id)
+
+        plugin = self.current_plugin
+        if plugin is None:
+            raise ValueError("No plugin context available. Pass the registered global trigger ID outside lifecycle hooks.")
+        plugin_id = plugin.meta.get("id")
+        if not plugin_id:
+            raise ValueError("Plugin initialization failed, missing meta.id")
+        return service.emit_plugin_trigger(plugin_id, trigger_id)
+
+    def register_action(
+        self,
+        action_id: str,
+        title: str,
+        on_execute: Callable[[dict[str, Any]], object],
+        description: str = "",
+        icon: str = "ic_fluent_plug_connected_20_regular",
+    ) -> str:
+        """注册一个可在自动化规则中选择、命中时执行本地插件回调的行动。"""
+        plugin = self.current_plugin
+        if plugin is None:
+            raise ValueError("No plugin context available. Make sure this method is called within a plugin.")
+        plugin_id = plugin.meta.get("id")
+        if not plugin_id:
+            raise ValueError("Plugin initialization failed, missing meta.id")
+        return self._app.automation_manager.init_user_profiles().register_plugin_action(
+            plugin_id, action_id, title, on_execute, description, icon
+        )
+
+    def unregister_plugin_projects(self, plugin_id: str) -> None:
+        """供插件管理器在插件卸载或替换时移除项目、触发器和行动。"""
+        self._app.automation_manager.init_user_profiles().unregister_plugin_projects(plugin_id)
 
 
 class ActionsAPI(BaseAPI):

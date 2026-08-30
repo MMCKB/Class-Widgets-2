@@ -27,6 +27,8 @@ if TYPE_CHECKING:
     from src.core.utils.instance_locker import SingleInstanceGuard
     from src.core.widgets import WidgetsWindow, WidgetListModel
     from src.core.automations.manager import AutomationManager
+    from src.core.scene_modes import SceneModeService
+    from src.core.exam_mode import ExamModeService
     from src.core.windows.manager import AppWindowManager
 
 # runtime imports
@@ -47,7 +49,12 @@ from src.core.utils import AppTranslator, UtilsBackend
 from src.core.utils.instance_locker import SingleInstanceGuard
 from src.core.widgets import WidgetsWindow, WidgetListModel
 from src.core.automations.manager import AutomationManager
+from src.core.scene_modes import SceneModeService
+from src.core.exam_mode import ExamModeService
 from src.core.windows.manager import AppWindowManager
+from src.core.startup_animation import StartupAnimation
+from src.core.time_service import TimeService
+from src.core.central_control import CentralControlScheduleService
 
 
 class QmlContextWindow(Protocol):
@@ -78,7 +85,6 @@ class AppCentral(QObject):  # Class Widgets 的中枢
     widgetRegistered = Signal(str)  # 新增：widget注册信号
     retranslate = Signal()  # 新增：翻译信号
     trayShortcutRequested = Signal(str)
-    restartRequiredChanged = Signal(bool)  # 新增：需要重启以应用更改
 
     def __init__(self) -> None:  # 初始化
         super().__init__()
@@ -92,10 +98,15 @@ class AppCentral(QObject):  # Class Widgets 的中枢
         self._startup_state = StartupState.CREATED
         self._startup_swap_restore_pending: bool = False
         self._startup_swap_restore_scheduled: bool = False
+        self._startup_animation_waiting: bool = False
+        self._widgets_start_ready: bool = False
+        self._widgets_started: bool = False
+        self._update_summary_pending: bool = False
+        self._update_summary_scheduled: bool = False
         self._cleanup_started = False
         self._restart_requested = False
-        self._restart_required = False  # 是否有待应用的重启（UI 提示用）
         self._initialize_cores()
+        self.startup_animation.finished.connect(self._on_startup_animation_finished)
         self._initialize_app_icon()
         self._initialize_windows_appid()
         self._initialize_notification()
@@ -127,10 +138,12 @@ class AppCentral(QObject):  # Class Widgets 的中枢
         self.app_instance: Optional[QApplication] = QApplication.instance()
         self.path_manager: PathManager = PathManager()  # 统一路径管理
         self.configs: ConfigManager = ConfigManager(path=CONFIGS_PATH, filename="configs.json")
+        self.time_service: TimeService = TimeService(self.configs, self)
         self.theme_manager: ThemeManager = ThemeManager(self)
         self.widgets_model: WidgetListModel = WidgetListModel(self)
         self.tray_icon: Optional[TrayIcon] = None
         self.window_manager: AppWindowManager = AppWindowManager(self)
+        self.startup_animation: StartupAnimation = StartupAnimation(self)
 
     def _initialize_notification(self) -> None:
         """初始化通知系统"""
@@ -144,6 +157,8 @@ class AppCentral(QObject):  # Class Widgets 的中枢
         self.plugin_manager: PluginManager = PluginManager(self.plugin_api, self)
         self.utils_backend: UtilsBackend = UtilsBackend(self)
         self.automation_manager: AutomationManager = AutomationManager(self)
+        self._scene_modes: Optional[SceneModeService] = None
+        self._exam_mode: Optional[ExamModeService] = None
         self.updater_bridge: UpdaterBridge = UpdaterBridge(self)
 
     def _register_shortcuts(self) -> None:
@@ -178,7 +193,6 @@ class AppCentral(QObject):  # Class Widgets 的中枢
             "ic_fluent_arrow_swap_20_regular",
             self.window_manager.open_class_swap,
         )
-
     def _request_reschedule_day_shortcut(self) -> bool:
         self.trayShortcutRequested.emit("com.classwidgets.reschedule-day")
         return False
@@ -195,6 +209,12 @@ class AppCentral(QObject):  # Class Widgets 的中枢
         """初始化调度相关组件"""
         self.union_update_timer: UnionUpdateTimer = UnionUpdateTimer()
         self.schedule_manager: ScheduleManager = ScheduleManager(Path(CONFIGS_PATH / "schedules"), self)
+        self.central_control: CentralControlScheduleService = CentralControlScheduleService(
+            self.configs,
+            self.schedule_manager,
+            self._notification,
+            self,
+        )
 
         self.runtime: ScheduleRuntime = ScheduleRuntime(self)
         self._schedule_editor: ScheduleEditor = ScheduleEditor(self.schedule_manager)
@@ -202,13 +222,7 @@ class AppCentral(QObject):  # Class Widgets 的中枢
 
     def _initialize_app_icon(self) -> None:
         """设置图标"""
-        if sys.platform == "darwin":
-            return
-            # icon_path = ASSETS_PATH / "images" / "logo.icns"
-        elif sys.platform == "win32":
-            icon_path = ASSETS_PATH / "images" / "logo.ico"
-        else:
-            icon_path = ASSETS_PATH / "images" / "logo.png"
+        icon_path = ASSETS_PATH / "images" / "logo.ico"
         self.app_instance.setWindowIcon(QIcon(str(icon_path)))
 
     def _initialize_windows_appid(self) -> None:
@@ -223,7 +237,7 @@ class AppCentral(QObject):  # Class Widgets 的中枢
     def _initialize_ui_components(self):
         """初始化启动必需的UI组件"""
         self.widgets_window: WidgetsWindow = WidgetsWindow(self)
-        self.widgets_window.qmlReady.connect(self._schedule_startup_swap_restore_prompt)
+        self.widgets_window.qmlReady.connect(self._on_widgets_qml_ready)
         if self.multi_instances:
             self.window_manager.ensure("single_instance")
 
@@ -255,6 +269,8 @@ class AppCentral(QObject):  # Class Widgets 的中枢
             self.window_manager.open_tutorial()
             return  # 中断后续初始化流程，教程窗口负责完成设置后重启
 
+        # 首次完成引导后的下一次启动跳过动画；之后恢复用户的常规动画设置。
+        self._startup_animation_waiting = self._start_startup_animation_if_needed()
         self._startup_state = StartupState.INITIALIZING
         try:
             self._setup_logging()  # 设置日志
@@ -274,6 +290,40 @@ class AppCentral(QObject):  # Class Widgets 的中枢
         self.initialized.emit()
         logger.info("Initialization completed.")
         self._schedule_startup_swap_restore_prompt()
+        self._schedule_update_summary()
+
+    def _start_startup_animation_if_needed(self) -> bool:
+        """消费一次性跳过标记，或启动并等待启动动画。"""
+        if getattr(self.configs.app, "startup_animation_skip_once", False):
+            self.configs.set("app.startup_animation_skip_once", False)
+            self.configs.save(silent=True)
+            logger.info("Skipped startup animation once after completing the tutorial")
+            return False
+        return self.startup_animation.start()
+
+    @Slot()
+    def _on_startup_animation_finished(self) -> None:
+        if not self._startup_animation_waiting:
+            return
+        self._startup_animation_waiting = False
+        logger.info("Startup animation finished; starting widgets when initialization is ready")
+        self._start_widgets_if_ready()
+
+    @Slot()
+    def _on_widgets_qml_ready(self) -> None:
+        self._schedule_startup_swap_restore_prompt()
+        self._schedule_update_summary()
+
+    def _start_widgets_if_ready(self) -> None:
+        """仅在初始化与启动动画均完成后创建小组件窗口。"""
+        if (
+            not self._widgets_start_ready
+            or self._startup_animation_waiting
+            or self._widgets_started
+        ):
+            return
+        self._widgets_started = True
+        self.widgets_window.run()
 
     @Slot()
     def _schedule_startup_swap_restore_prompt(self) -> None:
@@ -299,6 +349,28 @@ class AppCentral(QObject):  # Class Widgets 的中枢
         logger.warning("Detected temporary class swaps for today on startup, prompting user for action")
         self.window_manager.open_class_swap_restore()
 
+    def _schedule_update_summary(self) -> None:
+        if (
+            self._startup_state is not StartupState.RUNNING
+            or not self._update_summary_pending
+            or self._update_summary_scheduled
+            or not self.widgets_window.is_qml_ready
+        ):
+            return
+        self._update_summary_scheduled = True
+        QTimer.singleShot(0, self._show_update_summary)
+
+    def _show_update_summary(self) -> None:
+        self._update_summary_scheduled = False
+        if (
+            self._startup_state is not StartupState.RUNNING
+            or not self._update_summary_pending
+            or not self.widgets_window.is_qml_ready
+        ):
+            return
+        self._update_summary_pending = False
+        self.window_manager.open_whatsnew()
+
     def resolve_class_swap_restore(self, *, discard: bool) -> None:
         if discard:
             self._class_swap_manager.discardTodaySwaps()
@@ -313,6 +385,8 @@ class AppCentral(QObject):  # Class Widgets 的中枢
     def _load_config(self) -> None:
         """加载和验证配置"""
         self.configs.load_config()
+        self.time_service.start()
+        self.central_control.start()
 
     def _load_class_swap(self) -> None:
         """加载换课记录，跨天时自动清理"""
@@ -328,13 +402,16 @@ class AppCentral(QObject):  # Class Widgets 的中枢
         self._cleanup_started = True
 
         cleanup_steps = (
+            ("time service stop", self.time_service.stop),
+            ("central control stop", self.central_control.stop),
+            ("automation stop", self.automation_manager.stop),
             ("configuration save", self.configs.save),
             ("update timer stop", self.union_update_timer.stop),
-            ("main window release", self.widgets_window.release),
             ("auxiliary window release", self.window_manager.release_all),
+            ("main window release", self.widgets_window.release),
+            ("startup animation release", self.startup_animation.release),
             ("plugin cleanup", self.plugin_manager.cleanup),
             ("RinUI theme cleanup", self.widgets_window.theme_manager.clean_up),
-            ("tray icon cleanup", self._cleanup_tray_icon),
             ("single instance lock release", self.instance_guard.release),
         )
         for step_name, cleanup_step in cleanup_steps:
@@ -343,6 +420,14 @@ class AppCentral(QObject):  # Class Widgets 的中枢
             except Exception:
                 logger.exception("Failed during {}", step_name)
         logger.info("Clean up.")
+
+    @Property(QObject)
+    def startupAnimation(self) -> QObject:
+        return self.startup_animation
+
+    @Property(QObject)
+    def timeService(self) -> QObject:
+        return self.time_service
 
     @Property(QObject, notify=initialized)
     def scheduleRuntime(self) -> QObject:  # 运行时
@@ -365,6 +450,26 @@ class AppCentral(QObject):  # Class Widgets 的中枢
     @Property(QObject, notify=updated)
     def scheduleManager(self):  # 课程表管理器
         return self.schedule_manager
+
+    @Property(QObject)
+    def centralControl(self) -> QObject:
+        return self.central_control
+
+    @Property(QObject)
+    def automationProfiles(self) -> QObject:
+        return self.automation_manager.init_user_profiles()
+
+    @Property(QObject)
+    def sceneModes(self) -> QObject:
+        if self._scene_modes is None:
+            self._scene_modes = SceneModeService(self)
+        return self._scene_modes
+
+    @Property(QObject)
+    def examMode(self) -> QObject:
+        if self._exam_mode is None:
+            self._exam_mode = ExamModeService(self)
+        return self._exam_mode
 
     @Property(QObject, notify=initialized)
     def translator(self):
@@ -400,19 +505,6 @@ class AppCentral(QObject):  # Class Widgets 的中枢
             return
 
         self.app_instance.quit()
-
-    @Property(bool, notify=restartRequiredChanged)
-    def restartRequired(self) -> bool:
-        """是否有待应用的重启（供 UI 显示重启提示按钮）"""
-        return self._restart_required
-
-    @Slot()
-    def markRestartRequired(self) -> None:
-        """标记需要重启以应用更改（如插件启用/禁用状态变化）"""
-        if self._restart_required:
-            return
-        self._restart_required = True
-        self.restartRequiredChanged.emit(True)
 
     def setup_qml_context(self, window: QmlContextWindow) -> None:
         """
@@ -478,11 +570,14 @@ class AppCentral(QObject):  # Class Widgets 的中枢
 
     def _run_utils(self) -> None:
         self.automation_manager.init_builtin_tasks()
-        self.widgets_window.run()
+        self._widgets_start_ready = True
+        self._start_widgets_if_ready()
 
         if "--update-done" in sys.argv:
             sys.argv.remove("--update-done")
-            self.window_manager.open_whatsnew()
+            self._update_summary_pending = getattr(
+                self.configs.app, "show_update_summary", True
+            )
             self.updater_bridge.update_complete()
 
     def _load_theme_and_plugins(self) -> None:
@@ -501,11 +596,6 @@ class AppCentral(QObject):  # Class Widgets 的中枢
 
         self.tray_icon = TrayIcon()
         self.tray_icon.togglePanel.connect(self._on_tray_toggle)
-
-    def _cleanup_tray_icon(self) -> None:
-        if self.tray_icon is not None:
-            self.tray_icon.cleanup()
-            self.tray_icon = None
 
     def _setup_logging(self) -> None:
         """根据 Configs.app.no_logs 决定是否写日志到文件"""

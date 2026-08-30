@@ -31,10 +31,8 @@ ColumnLayout {
             icon.name: "ic_fluent_chevron_right_20_regular"
             enabled: root.tagId.length > 0
             onClicked: navigationView.push(Qt.resolvedUrl("../../pages/plaza/Plugins.qml"), { initialTag: root.tagId })
-            ToolTip {
-                text: qsTr("View all %1 plugins").arg(root.title)
-                visible: parent.hovered
-            }
+            ToolTip.text: qsTr("View all %1 plugins").arg(root.title)
+            ToolTip.visible: hovered
         }
     }
 

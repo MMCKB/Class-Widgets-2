@@ -208,6 +208,7 @@ class WidgetsWindow(ReleasableWindow, QObject):
             )
             mask = mask.united(QRegion(rect))
 
+
         self.interactive_rect = mask
         # An empty mask clips the whole transparent window. This is common while
         # asynchronous widget loaders are still resolving their item sizes.

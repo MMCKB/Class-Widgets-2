@@ -113,13 +113,9 @@ QQW.Window {
 
         TapHandler {
             id: hideTapHandler
-            enabled: Configs.data.interactions.hide.clicked
+            enabled: !Configs.isKeyLocked("interactions.hide.state")
             onTapped: {
-                // 点击小组件：根据 tapped_action 决定隐藏或切换迷你模式
-                if (Configs.data.interactions.tapped_action === "mini_mode") {
-                    if (!Configs.isKeyLocked("preferences.mini_mode"))
-                        Configs.set("preferences.mini_mode", !Configs.data.preferences.mini_mode)
-                } else if (!Configs.isKeyLocked("interactions.hide.state")) {
+                if (Configs.data.interactions.hide.clicked) {
                     Configs.set("interactions.hide.state", !Configs.data.interactions.hide.state)
                 }
             }
@@ -138,6 +134,7 @@ QQW.Window {
     TrayPanel {
         id: trayPanel
     }
+
 
     Component.onCompleted: {
         updateLayer()

@@ -1,24 +1,43 @@
+from __future__ import annotations
+
+import sys
 from pathlib import Path
 
 from PySide6.QtCore import QObject, Slot
 
-# Define paths
-SRC_PATH = Path(__file__).parents[1]
-ROOT_PATH = SRC_PATH.parent
 
-ASSETS_PATH = SRC_PATH.parent / "assets"
+def _resolve_install_root() -> Path:
+    """Return the application directory in both source and frozen portable builds."""
+    if getattr(sys, "frozen", False):
+        return Path(sys.executable).resolve().parent
+    return Path(__file__).resolve().parents[2]
+
+
+def _resolve_source_root(install_root: Path) -> Path:
+    """Return the directory containing QML and built-in plugin resources."""
+    if getattr(sys, "frozen", False):
+        return install_root / "src"
+    return Path(__file__).resolve().parents[1]
+
+
+# Application resources and writable portable data are all resolved relative to
+# the directory containing the executable. This keeps the ZIP distribution fully
+# self-contained and movable.
+ROOT_PATH = _resolve_install_root()
+SRC_PATH = _resolve_source_root(ROOT_PATH)
+ASSETS_PATH = ROOT_PATH / "assets"
 QML_PATH = SRC_PATH / "qml"
 CW_PATH = QML_PATH / "ClassWidgets"
 DEFAULT_THEME = QML_PATH
-
-CONFIGS_PATH = ROOT_PATH / "configs"
-SCHEDULES_PATH = CONFIGS_PATH / "schedules"
-THEMES_PATH = ROOT_PATH / "themes"
-PLUGINS_PATH = ROOT_PATH / "plugins"
 BUILTIN_PLUGINS_PATH = SRC_PATH / "plugins"
-LOGS_PATH = ROOT_PATH / "logs"
-
 EXAMPLES_PATH = ROOT_PATH / "examples"
+
+DATA_PATH = ROOT_PATH
+CONFIGS_PATH = DATA_PATH / "configs"
+SCHEDULES_PATH = CONFIGS_PATH / "schedules"
+THEMES_PATH = DATA_PATH / "themes"
+PLUGINS_PATH = DATA_PATH / "plugins"
+LOGS_PATH = DATA_PATH / "logs"
 
 PATHS = [
     SRC_PATH,

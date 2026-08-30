@@ -7,12 +7,8 @@ import ClassWidgets.Components
 
 
 FluentPage {
-    id: root
     title: qsTr("Interactions & Actions")
-
-    function hidePreviewSource(name) {
-        return PathManager.images("tutorial/" + name + (Theme.isDark() ? "-dark.png" : "-light.png"))
-    }
+    // id: generalPage
 
     ColumnLayout {
         Layout.fillWidth: true
@@ -20,69 +16,6 @@ FluentPage {
         Text {
             typography: Typography.BodyStrong
             text: qsTr("Widgets")
-        }
-
-        SettingExpander {
-            Layout.fillWidth: true
-            icon.name: "ic_fluent_tap_single_20_regular"
-            title: qsTr("Tap Action")
-            description: qsTr("Choose whether tapping a widget hides it or switches to mini mode")
-            expanded: true
-
-            action: Switch {
-                id: tapToHideSwitch
-                enabled: !Configs.isKeyLocked("interactions.hide.clicked")
-                onCheckedChanged: Configs.set("interactions.hide.clicked", checked)
-                Component.onCompleted: checked = Configs.data.interactions.hide.clicked
-            }
-
-            ButtonGroup {
-                id: hideModeGroup
-            }
-
-            SettingItem {
-                RowLayout {
-                    Layout.fillWidth: true
-                    spacing: 12
-
-                    Repeater {
-                        model: [
-                            {
-                                "name": qsTr("Hide"),
-                                "value": "hide",
-                                "preview": "hide_default"
-                            },
-                            {
-                                "name": qsTr("Mini Mode"),
-                                "value": "mini_mode",
-                                "preview": "hide_mini"
-                            }
-                        ]
-
-                        delegate: ColumnLayout {
-                            Layout.fillWidth: true
-                            spacing: 4
-
-                            Image {
-                                Layout.fillWidth: true
-                                Layout.preferredHeight: 72
-                                source: root.hidePreviewSource(modelData.preview)
-                                fillMode: Image.PreserveAspectFit
-                                asynchronous: true
-                            }
-
-                            RadioButton {
-                                Layout.alignment: Qt.AlignHCenter
-                                text: modelData.name
-                                checked: Configs.data.interactions.tapped_action === modelData.value
-                                enabled: !Configs.isKeyLocked("interactions.tapped_action")
-                                ButtonGroup.group: hideModeGroup
-                                onClicked: Configs.set("interactions.tapped_action", modelData.value)
-                            }
-                        }
-                    }
-                }
-            }
         }
 
         SettingCard {
@@ -101,6 +34,21 @@ FluentPage {
             }
         }
 
+        SettingCard {
+            Layout.fillWidth: true
+            icon.name: "ic_fluent_tap_single_20_regular"
+            title: qsTr("Tap to hide")
+            description: qsTr(
+                "Click on the widget to hide it, click it again to bring it back"
+            )
+            Switch {
+                id: tapToHideSwitch
+                enabled: !Configs.isKeyLocked("interactions.hide.clicked")
+                onCheckedChanged: Configs.set("interactions.hide.clicked", checked)
+                Component.onCompleted: checked = Configs.data.interactions.hide.clicked
+            }
+        }
+
         SettingExpander {
             Layout.fillWidth: true
             title: qsTr("More hide behavior")
@@ -111,14 +59,17 @@ FluentPage {
                 id: modeSelector
                 Layout.preferredWidth: 180
                 model: ListModel {
-                    ListElement { text: qsTr("Hide Widgets"); value: "hide" }
-                    ListElement { text: qsTr("Switch to mini mode"); value: "mini_mode" }
+                    ListElement { text: qsTr("Hide Widgets"); value: false }
+                    ListElement { text: qsTr("Switch to mini mode"); value: true }
                 }
                 textRole: "text"
                 valueRole: "value"
-                enabled: !Configs.isKeyLocked("interactions.hide.action")
-                onCurrentValueChanged: if (focus) Configs.set("interactions.hide.action", currentValue) // !important "focus"!!!
-                Component.onCompleted: currentIndex = indexOfValue(Configs.data.interactions.hide.action)
+                enabled: !Configs.isKeyLocked("interactions.hide.mini_mode")
+                onCurrentValueChanged: if (focus) Configs.set("interactions.hide.mini_mode", currentValue) // !important "focus"!!!
+                Component.onCompleted: {
+                    console.log(Configs.data.interactions.hide.mini_mode + "123")
+                    currentIndex = Configs.data.interactions.hide.mini_mode
+                }
             }
 
             SettingItem {

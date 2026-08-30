@@ -44,10 +44,7 @@ Clip {
 
     HoverHandler {
         id: hoverHandler
-        onHoveredChanged: updateListHoverState()
     }
-
-    onCheckedChanged: updateListHoverState()
 
     Menu {
         id: contextMenu
@@ -78,33 +75,30 @@ Clip {
 
     // 上拖拽调整
     Item {
-        id: startResizeHandle
         anchors.top: parent.top
-        width: parent.width
+        anchors.horizontalCenter: parent.horizontalCenter
+        width: parent.width / 6
         height: 12
-        z: 2
 
         Rectangle {
             anchors.top: parent.top
             anchors.margins: 4
-            anchors.horizontalCenter: parent.horizontalCenter
-            width: parent.width / 6
+            width: parent.width
             height: 4
             radius: height / 2
             color: Qt.alpha("white", 0.4)
         }
 
         DragHandler {
-            id: startResizeHandler
             target: null
             yAxis.enabled: true
             grabPermissions: PointerHandler.CanTakeOverFromAnything
             onTranslationChanged: {
                 let deltaMins = Math.round(translation.y / pxPerMin / 5) * 5
                 let newStart = parseTime(entry.startTime) + deltaMins
-                entryDelegate.tempStart = Math.max(0, Math.min(
-                    newStart, entryDelegate.tempEnd - 5
-                ))
+                if (newStart < entryDelegate.tempEnd - 5) {
+                    entryDelegate.tempStart = newStart
+                }
             }
             onActiveChanged: if (!active) commitUpdate()
         }
@@ -119,11 +113,10 @@ Clip {
 
     // 下拖拽调整时间
     Item {
-        id: endResizeHandle
-        width: parent.width
+        width: parent.width / 6
         height: 12
         anchors.bottom: parent.bottom
-        z: 2
+        anchors.horizontalCenter: parent.horizontalCenter
 
         visible: enabledDrag
         enabled: enabledDrag
@@ -131,24 +124,22 @@ Clip {
         Rectangle {
             anchors.bottom: parent.bottom
             anchors.margins: 4
-            anchors.horizontalCenter: parent.horizontalCenter
-            width: parent.width / 6
+            width: parent.width
             height: 4
             radius: height / 2
             color: Qt.alpha("white", 0.4)
         }
 
         DragHandler {
-            id: endResizeHandler
             target: null
             yAxis.enabled: true
             grabPermissions: PointerHandler.CanTakeOverFromAnything
             onTranslationChanged: {
                 let deltaMins = Math.round(translation.y / pxPerMin / 5) * 5
                 let newEnd = parseTime(entry.endTime) + deltaMins
-                entryDelegate.tempEnd = Math.min(24 * 60, Math.max(
-                    newEnd, entryDelegate.tempStart + 5
-                ))
+                if (newEnd > entryDelegate.tempStart + 5) {
+                    entryDelegate.tempEnd = newEnd
+                }
             }
             onActiveChanged: if (!active) commitUpdate()
         }
@@ -161,11 +152,10 @@ Clip {
     // 拖动整体调整
     DragHandler {
         id: moveHandler
-        // The selected entry must be able to take the pointer from Flickable.
-        enabled: checked && !startResizeHandler.active && !endResizeHandler.active
+        enabled: checked
         target: null
         yAxis.enabled: true
-        grabPermissions: PointerHandler.CanTakeOverFromAnything
+        grabPermissions: PointerHandler.TakeOverForbidden
 
         property int startTempStart
         property int startTempEnd
@@ -277,12 +267,6 @@ Clip {
     
     function commitUpdate() {
         updateTimer.restart()
-    }
-
-    function updateListHoverState() {
-        if (listViewRoot) {
-            listViewRoot.selectedEntryHovered = checked && hoverHandler.hovered
-        }
     }
 
     function parseTime(t) {

@@ -90,8 +90,6 @@ Clip {
                         Text {
                             opacity: 0.5
                             text: index === 0 ? qsTr("Teacher: ") : qsTr("Location: ")
-                            elide: Text.ElideRight
-                            maximumLineCount: 1
                         }
                         Text {
                             id: subjectInfo
@@ -99,8 +97,6 @@ Clip {
                             opacity: 0.75
                             horizontalAlignment: Text.AlignRight
                             text: modelData
-                            elide: Text.ElideRight
-                            maximumLineCount: 1
                         }
                     }
                 }
@@ -110,8 +106,6 @@ Clip {
                 Layout.fillWidth: true
                 typography: Typography.BodyLarge
                 text: subjectNameText
-                elide: Text.ElideRight
-                maximumLineCount: 1
             }
         }
     }

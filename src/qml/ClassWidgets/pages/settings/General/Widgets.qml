@@ -198,7 +198,6 @@ FluentPage {
                 description: qsTr("Set the thickness of the font")
 
                 Text {
-                    id: weightLabel
                     text: {
                         switch (Math.round(weightSlider.value)) {
                             case 100: return qsTr("Thin")
@@ -224,8 +223,7 @@ FluentPage {
                     tickmarks: true
                     tickFrequency: 100
                     Layout.fillWidth: true
-                    toolTip.text: weightLabel.text
-                    toolTip.visible: true
+                    showTooltip: false
                     enabled: !Configs.isKeyLocked("preferences.font_weight")
 
                     // 初始化
@@ -270,7 +268,6 @@ FluentPage {
 
         SettingExpander {
             Layout.fillWidth: true
-            expanded: true
             icon.name: "ic_fluent_laptop_20_regular"
             title: qsTr("Display")
             description: qsTr("Set which screen to display widgets on, and adjust their position")
@@ -292,16 +289,15 @@ FluentPage {
             RowLayout {
                 Layout.fillWidth: true
                 Layout.margins: 24
-                spacing: 32
+                spacing: 12
 
                 Rectangle {
                     // 屏幕边框
-                    Layout.preferredWidth: Math.min(parent.width * 0.65, 360)
-                    // Layout.preferredWidth: 360
-                    // Layout.preferredHeight: 200
+                    Layout.preferredWidth: parent.width * 0.65
+                    Layout.preferredHeight: 200
                     // Layout.fillWidth: true
-                    // Layout.fillHeight: true
-                    Layout.preferredHeight: Math.min(width / 1.75, 200)
+                    Layout.fillHeight: true
+                    // Layout.preferredHeight: Math.min(width / 1.75, 350)
                     border.width: 8
                     radius: 12
                     color: "transparent"

@@ -6,7 +6,6 @@ from loguru import logger
 
 from .base import AutomationTask
 from ..schedule import EntryType
-from ..config.model import TapAction
 
 import platform
 
@@ -59,7 +58,7 @@ class AutoHideTask(AutomationTask):
 
     def _hide(self, state: bool) -> None:
         """隐藏窗口"""
-        if self.app_central.configs.interactions.hide.action == TapAction.MINI_MODE:  # mini模式
+        if self.app_central.configs.interactions.hide.mini_mode:  # mini模式
             # if not self.app_central.configs.isKeyLocked("preferences.mini_mode"):
             self.app_central.configs.preferences.mini_mode = state
         else:

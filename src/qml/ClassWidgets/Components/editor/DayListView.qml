@@ -20,10 +20,8 @@ ColumnLayout {
         // 日期
         if (day.date) {
             const dateObj = new Date(day.date)
-            // getDay(): 0=Sun,1=Mon,...,6=Sat  →  转成 0=Mon..6=Sun 以匹配 getWeekDayName
-            const isoIndex = (dateObj.getDay() + 6) % 7
-            const dayName = getWeekDayName(isoIndex)
-            return qsTr("%1").arg(dayName)
+            const dayName = getWeekDayName(dateObj.getDay())
+            return qsTr("%1").arg(dayName)  // 这里只显示日期或星期名字
         }
 
         // 星期
@@ -47,8 +45,7 @@ ColumnLayout {
             const weeks = day.weeks
 
             if (day.date) {
-                const dateObj = new Date(day.date)
-                return Qt.formatDate(dateObj, Qt.locale().dateFormat(Locale.ShortFormat))
+                return qsTr("%1").arg(day.date)  // 日期直接显示
             }
 
             if (day.dayOfWeek) {

@@ -19,9 +19,6 @@ ColumnLayout {
 
     // 暴露
     property int currentIndex: -1
-    // A selected entry owns the pointer while the cursor is over it so that
-    // dragging it does not start Flickable scrolling.
-    property bool selectedEntryHovered: false
 
     Layout.fillWidth: true
     Layout.fillHeight: true
@@ -67,7 +64,6 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.fillHeight: true
         clip: true
-        interactive: !root.selectedEntryHovered
         contentHeight: 24 * 60 * pxPerMin
 
         Behavior on contentY {
@@ -120,13 +116,7 @@ ColumnLayout {
         // 日程
         Repeater {
             id: entryList
-            model: {
-                // Keep nested entries in sync without rebuilding the day list.
-                const revision = AppCentral.scheduleEditor.entriesRevision
-                return currentDayIndex >= 0
-                    ? AppCentral.scheduleEditor.entriesData[currentDayIndex].entries
-                    : []
-            }
+            model: currentDayIndex >= 0 ? AppCentral.scheduleEditor.days[currentDayIndex].entries : []
 
             property int prevLength: 0
 
@@ -259,7 +249,7 @@ ColumnLayout {
 
         _pendingFirstScroll = false
 
-        let day = AppCentral.scheduleEditor.entriesData[currentDayIndex]
+        let day = AppCentral.scheduleEditor.days[currentDayIndex]
         if (!day || !day.entries || day.entries.length === 0) return
 
         let firstEntry = day.entries[0]
@@ -286,7 +276,7 @@ ColumnLayout {
     function addEntry(type) {
         if (root.currentDayIndex < 0) return;
 
-        let day = AppCentral.scheduleEditor.entriesData[root.currentDayIndex]
+        let day = AppCentral.scheduleEditor.days[root.currentDayIndex]
         let entries = day.entries || []
 
         let startTimeMin = 8 * 60  // 默认 08:00

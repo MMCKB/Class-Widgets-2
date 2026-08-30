@@ -180,6 +180,7 @@ class PluginManager(QObject):
             except Exception as e:
                 logger.error(f"Failed to unload plugin {pid}: {e}")
             self.api.ui.unregister_plugin_shortcuts(pid)
+            self.api.automation.unregister_plugin_projects(pid)
             # 尝试从 sys.modules 移除对应模块（使用标准模块前缀 cw_plugin_{id}）
             mod_name = f"cw_plugin_{pid}"
             if mod_name in sys.modules:
@@ -214,6 +215,7 @@ class PluginManager(QObject):
             except Exception as error:
                 logger.warning(f"Failed to unload plugin {plugin_id} before replacement: {error}")
         self.api.ui.unregister_plugin_shortcuts(plugin_id)
+        self.api.automation.unregister_plugin_projects(plugin_id)
         sys.modules.pop(f"cw_plugin_{plugin_id}", None)
 
     def _complete_install(
@@ -666,7 +668,6 @@ class PluginManager(QObject):
             self.enabled_plugins.discard(pid)
         self.app_central.configs.plugins.enabled = list(self.enabled_plugins)
         self.pluginListChanged.emit()
-        self.app_central.markRestartRequired()
 
     @Slot(str, result=bool)
     def openPluginFolder(self, pid: str) -> bool:
@@ -741,7 +742,6 @@ class PluginManager(QObject):
             # 重新扫描插件列表
             self.scan()
             self.pluginListChanged.emit()
-            self.app_central.markRestartRequired()
             return True
         except Exception as e:
             logger.exception(f"Failed to uninstall plugin {pid}: {e}")
