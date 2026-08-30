@@ -815,27 +815,27 @@ Licensed under the MIT license</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/core/central_control.py" line="540"/>
+        <location filename="../../src/core/central_control.py" line="563"/>
         <source>重启</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/core/central_control.py" line="541"/>
+        <location filename="../../src/core/central_control.py" line="564"/>
         <source>关机</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/core/central_control.py" line="542"/>
+        <location filename="../../src/core/central_control.py" line="565"/>
         <source>休眠</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/core/central_control.py" line="543"/>
+        <location filename="../../src/core/central_control.py" line="566"/>
         <source>睡眠</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/core/central_control.py" line="544"/>
+        <location filename="../../src/core/central_control.py" line="567"/>
         <source>电源</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1014,7 +1014,7 @@ Do you want to continue using them, or discard and restore the original schedule
         <translation type="obsolete">預設</translation>
     </message>
     <message>
-        <location filename="../../src/core/config/model.py" line="228"/>
+        <location filename="../../src/core/config/model.py" line="237"/>
         <source>New Schedule 1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1660,42 +1660,42 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>EntryDelegate</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="57"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="54"/>
         <source>Remove</source>
         <translation type="unfinished">移除</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="223"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="213"/>
         <source>Class</source>
         <translation type="unfinished">班級</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="224"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="214"/>
         <source>Break</source>
         <translation type="unfinished">休息</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="225"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="215"/>
         <source>Activity</source>
         <translation type="unfinished">活動</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="226"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="216"/>
         <source>Unknown Type</source>
         <translation type="unfinished">未知類型</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="234"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="224"/>
         <source> minutes</source>
         <translation type="unfinished"> 分鐘</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="262"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="252"/>
         <source>Invalid Time Range</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="263"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="253"/>
         <source>End time must be later than start time.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1792,55 +1792,55 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>EntryListView</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="106"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="102"/>
         <source> PM</source>
         <translation type="unfinished"> 下午</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="108"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="104"/>
         <source> AM</source>
         <translation type="unfinished"> 上午</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="187"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="177"/>
         <source>New Schedule</source>
         <translation type="unfinished">新增排程</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="163"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="192"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="153"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="182"/>
         <source>Class</source>
         <translation type="unfinished">班級</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="49"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="46"/>
         <source>No timeline selected</source>
         <translation type="unfinished">未選擇時間軸</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="55"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="52"/>
         <source>Please select a timeline first to add a new schedule.</source>
         <translation type="unfinished">請先選擇時間軸以新增新的時間表</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="171"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="198"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="161"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="188"/>
         <source>Break</source>
         <translation type="unfinished">休息</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="179"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="204"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="169"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="194"/>
         <source>Activity</source>
         <translation type="unfinished">活動</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="309"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="299"/>
         <source>Conflict with existing schedule</source>
         <translation type="unfinished">與現有時間表衝突</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="311"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="301"/>
         <source>This time overlaps with an existing schedule (%1 – %2)</source>
         <translation type="unfinished">此時間與現有時間表重疊 (%1 – %2)</translation>
     </message>
@@ -1861,27 +1861,27 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>ExamMode</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/ExamMode.qml" line="13"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/ExamMode.qml" line="17"/>
         <source>考试模式</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/ExamMode.qml" line="51"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/ExamMode.qml" line="55"/>
         <source> 年 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/ExamMode.qml" line="52"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/ExamMode.qml" line="56"/>
         <source> 月 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/ExamMode.qml" line="53"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/ExamMode.qml" line="57"/>
         <source> 日</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/ExamMode.qml" line="65"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/ExamMode.qml" line="69"/>
         <source>退出考试模式</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3983,6 +3983,19 @@ It&apos;s incompatible and may cause unexpected issues.</source>
     </message>
 </context>
 <context>
+    <name>RestartButton</name>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/RestartButton.qml" line="15"/>
+        <source>Restart required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/RestartButton.qml" line="18"/>
+        <source>Restart to apply changes</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SaveFlyout</name>
     <message>
         <location filename="../../src/qml/ClassWidgets/Components/editor/SaveFlyout.qml" line="56"/>
@@ -4006,6 +4019,14 @@ It&apos;s incompatible and may cause unexpected issues.</source>
     </message>
 </context>
 <context>
+    <name>SceneModeService</name>
+    <message>
+        <location filename="../../src/core/scene_modes.py" line="79"/>
+        <source>考试模式</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SceneModes</name>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="8"/>
@@ -4015,7 +4036,7 @@ It&apos;s incompatible and may cause unexpected issues.</source>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="60"/>
-        <source>将当前的界面外观、小组件位置与交互偏好保存为场景。应用场景只会修改本机的展示设置，不会修改集控、课程表、通知、网络、账号或插件权限。</source>
+        <source>将当前的界面外观、小组件位置与交互偏好保存为场景。考试模式也是可改名、可删除的场景预设；应用它会先显示进入提示，再打开沉浸式时钟。</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4065,26 +4086,36 @@ It&apos;s incompatible and may cause unexpected issues.</source>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="147"/>
+        <source>应用后会先提示正在进入考试模式，再打开全屏沉浸式时钟。该场景可以改名或删除。</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="149"/>
         <source>当前已应用此场景。</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="148"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="150"/>
         <source>选择应用后会立即切换到此场景保存的设置。</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="157"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="159"/>
         <source>场景名称</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="171"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="174"/>
+        <source>进入考试模式</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="175"/>
         <source>应用此场景</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="177"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="182"/>
         <source>用当前设置更新</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4544,33 +4575,28 @@ It&apos;s incompatible and may cause unexpected issues.</source>
 <context>
     <name>Shortcuts</name>
     <message>
-        <location filename="../../src/core/central.py" line="169"/>
+        <location filename="../../src/core/central.py" line="168"/>
         <source>Settings</source>
         <translation type="unfinished">設定</translation>
     </message>
     <message>
-        <location filename="../../src/core/central.py" line="175"/>
+        <location filename="../../src/core/central.py" line="174"/>
         <source>Schedules</source>
         <translation type="unfinished">時程表</translation>
     </message>
     <message>
-        <location filename="../../src/core/central.py" line="181"/>
+        <location filename="../../src/core/central.py" line="180"/>
         <source>Plugin Plaza</source>
         <translation type="unfinished">插件廣場</translation>
     </message>
     <message>
-        <location filename="../../src/core/central.py" line="187"/>
+        <location filename="../../src/core/central.py" line="186"/>
         <source>Reschedule Day</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/core/central.py" line="193"/>
+        <location filename="../../src/core/central.py" line="192"/>
         <source>Class Swap</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central.py" line="199"/>
-        <source>考试模式</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
