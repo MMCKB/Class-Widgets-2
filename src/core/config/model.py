@@ -91,6 +91,13 @@ class ZOrder(str, Enum):
     BOTTOM = "bottom"
     NORMAL = "normal"
 
+
+class TapAction(str, Enum):  # 小组件点击触发的行为
+    HIDE = "hide"
+    MINI_MODE = "mini_mode"
+    FLOATING_WIDGET = "floating_widget"
+
+
 class WidgetEntry(ConfigBaseModel):
     type_id: str
     instance_id: str
@@ -191,6 +198,7 @@ class InteractionsConfig(ConfigBaseModel):
     """
     hover_fade: bool = False  # 鼠标悬停时淡出
     hide: HideInteractionsConfig = Field(default_factory=HideInteractionsConfig)  # 隐藏配置
+    tapped_action: TapAction = TapAction.HIDE  # 点击小组件触发的行为
 
 
 class SceneMode(ConfigBaseModel):

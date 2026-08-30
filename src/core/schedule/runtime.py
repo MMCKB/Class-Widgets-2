@@ -24,6 +24,11 @@ class ScheduleRuntime(QObject):
         # self.schedule_path = Path(schedule_path)
         self.schedule: Optional[ScheduleData] = None
         self.services: ScheduleServices = ScheduleServices(app_central)
+        self._pending_schedule: Optional[ScheduleData] = None
+        self._refresh_timer = QTimer(self)
+        self._refresh_timer.setSingleShot(True)
+        self._refresh_timer.setInterval(50)
+        self._refresh_timer.timeout.connect(self._flush_scheduled_refresh)
         self.current_time = app_central.time_service.now()
         self.current_offset_time = app_central.time_service.schedule_now(self.current_time)
 
@@ -221,6 +226,7 @@ class ScheduleRuntime(QObject):
         return self.current_title or ""
 
     def refresh(self, schedule: Optional[ScheduleData] = None) -> None:
+        self._refresh_timer.stop()
         if schedule is None:
             if self.schedule is None:
                 return
@@ -229,6 +235,17 @@ class ScheduleRuntime(QObject):
         self._update_time()
         self._update_notify()
         self.updated.emit()
+
+    def schedule_refresh(self, schedule: ScheduleData) -> None:
+        """合并连续的课表编辑通知，避免编辑器拖动时重复重算运行时状态。"""
+        self._pending_schedule = schedule
+        self._refresh_timer.start()
+
+    def _flush_scheduled_refresh(self) -> None:
+        schedule = self._pending_schedule
+        self._pending_schedule = None
+        if schedule is not None:
+            self.refresh(schedule)
 
     def _update_schedule(self, schedule: Optional[ScheduleData]) -> None:
         """

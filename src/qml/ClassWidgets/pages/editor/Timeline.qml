@@ -111,9 +111,7 @@ Item {
 
         onAccepted: {
             const newDate = datePicker.date
-            const startDateOk = AppCentral.scheduleEditor.setStartDate(newDate)
-            const maxWeekOk = AppCentral.scheduleEditor.setMaxWeekCycle(maxWeekCycleBox.value)
-            if (!startDateOk && !maxWeekOk) {
+            if (!AppCentral.scheduleEditor.setTimelineSettings(newDate, maxWeekCycleBox.value)) {
                 floatLayer.createInfoBar({
                     title: qsTr("Failed"),
                     text: qsTr("Failed to set start date or max week cycle. Please report this issue to the community or the developer.") ,

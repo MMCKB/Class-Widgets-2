@@ -1,6 +1,7 @@
 module ClassWidgets.Theme
 
 Widget 1.0 components/Widget.qml
+FloatingWidget 1.0 components/FloatingWidget.qml
 
 Text 1.0 components/Text.qml
 Subtitle 1.0 components/Subtitle.qml

@@ -16,11 +16,22 @@ Column {
     property bool hide: {
         return Configs.data.interactions.hide.state
     }
+    property bool floatingMode: hide && Configs.data.interactions.tapped_action === "floating_widget"
     property var preferences: Configs.data.preferences
 
     property real dragOffsetX: 0
     property real dragOffsetY: 0
-    property real hideMargin: 24  // 隐藏时保留的可点击空间
+    property real hideMargin: {
+        if (floatingMode) return 0
+        switch (Qt.platform.os) {
+        case "osx":
+            return 48
+        default:
+            return 24
+        }
+    }  // 隐藏时保留的可点击空间
+    property bool isTopPosition: preferences.widgets_anchor.indexOf("top_") === 0
+    property real hideFade: 0
     signal contentGeometryChanged()
 
     // 编辑按钮高度：与首个小组件对齐，无小组件时回退默认值

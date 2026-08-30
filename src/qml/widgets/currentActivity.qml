@@ -44,15 +44,6 @@ Widget {
             opacity: 0.5
             transparentBorder: true
         }
-        // layer.effect: RadialGradient {
-        //     anchors.fill: circle
-        //     gradient: Gradient {
-        //         GradientStop { position: 0.0; color: Qt.alpha(currentColor, 0.4) }
-        //         GradientStop { position: 0.05; color: Qt.alpha(currentColor, 0.45) }
-        //         GradientStop { position: 0.25; color: Qt.alpha(currentColor, 0.12) }
-        //         GradientStop { position: 0.5; color: Qt.alpha(currentColor, 0) }
-        //     }
-        // }
     }
 
 

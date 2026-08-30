@@ -41,6 +41,8 @@ QQW.Window {
     property bool initialized: false
     property alias editMode: widgetsLoader.editMode
     property bool mouseHovered: false
+    property bool isFloatingMode: Configs.data.interactions.hide.state
+        && Configs.data.interactions.tapped_action === "floating_widget"
 
     onMouseHoveredChanged: {
         root.flags = mouseHovered
@@ -131,6 +133,18 @@ QQW.Window {
         onContentGeometryChanged: geometryChanged()
     }
 
+    FloatingWidgetContainer {
+        id: floatingWidgetContainer
+        floatingMode: root.isFloatingMode
+        screenWidth: root.width
+        screenHeight: root.height
+
+        onClicked: {
+            if (!Configs.isKeyLocked("interactions.hide.state"))
+                Configs.set("interactions.hide.state", false)
+        }
+    }
+
     TrayPanel {
         id: trayPanel
     }
@@ -180,4 +194,3 @@ QQW.Window {
         }
     }
 }
-

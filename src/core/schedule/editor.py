@@ -2,7 +2,7 @@ from copy import deepcopy
 from datetime import datetime
 from typing import Optional
 
-from PySide6.QtCore import QObject, Property, Signal, Slot
+from PySide6.QtCore import QObject, Property, Signal, Slot, QTimer
 from PySide6.QtQml import QJSValue
 from loguru import logger
 
@@ -35,6 +35,10 @@ def _jsvalue_to_python(value):
 class ScheduleEditor(QObject):
     updated = Signal()
     subjectsChanged = Signal()
+    daysChanged = Signal()
+    entriesChanged = Signal()
+    metaChanged = Signal()
+    overridesChanged = Signal()
     dirtyChanged = Signal()
 
     def __init__(self, manager: ScheduleManager):
@@ -43,6 +47,15 @@ class ScheduleEditor(QObject):
         self._filename = manager.schedule_path.stem
         self.schedule: ScheduleData = self.manager.schedule
         self._dirty = False
+        self._entries_revision = 0
+        self._days_data: list[dict] = []
+        self._entries_data: list[dict] = []
+        self._suppress_update = False
+        self._refresh_timer = QTimer(self)
+        self._refresh_timer.setSingleShot(True)
+        self._refresh_timer.setInterval(100)
+        self._refresh_timer.timeout.connect(self.refresh_manager)
+        self._rebuild_schedule_caches()
         self.updated.connect(self._on_updated)
         self.manager.scheduleSwitched.connect(self.refresh)
 
@@ -72,16 +85,47 @@ class ScheduleEditor(QObject):
             return False
 
     def refresh(self, schedule: ScheduleData):  # 接受来自 manager 的更新
+        self._refresh_timer.stop()
         self.schedule = schedule
         self._filename = self.manager.schedule_path.stem
-        self.updated.emit()
+        self._rebuild_schedule_caches()
         self._dirty = False
+        self._suppress_update = True
+        self.updated.emit()
+        self._suppress_update = False
         self.subjectsChanged.emit()
+        self.daysChanged.emit()
+        self._entries_revision += 1
+        self.entriesChanged.emit()
+        self.metaChanged.emit()
+        self.overridesChanged.emit()
 
     def _on_updated(self):
+        if self._suppress_update:
+            return
         self._dirty = True
         self.dirtyChanged.emit()
-        self.refresh_manager()
+        self._refresh_timer.start()
+
+    def _rebuild_schedule_caches(self):
+        if not self.schedule:
+            self._days_data = []
+            self._entries_data = []
+            return
+        self._days_data = [day.model_dump() for day in self.schedule.days]
+        self._entries_data = self._days_data
+
+    def _emit_days_changed(self):
+        self._rebuild_schedule_caches()
+        self.daysChanged.emit()
+
+    def _emit_entries_changed(self):
+        if self.schedule:
+            self._entries_data = [day.model_dump() for day in self.schedule.days]
+        else:
+            self._entries_data = []
+        self._entries_revision += 1
+        self.entriesChanged.emit()
 
     def refresh_manager(self):
         self.manager.modify(self.schedule)  # 提交给 manager
@@ -142,6 +186,7 @@ class ScheduleEditor(QObject):
             day.entries = [e for e in day.entries if e.subjectId != subject_id]
 
         self.schedule.subjects.remove(subject)
+        self._emit_entries_changed()
         self.updated.emit()
         self.subjectsChanged.emit()
 
@@ -162,6 +207,9 @@ class ScheduleEditor(QObject):
             date=date or None
         )
         self.schedule.days.append(day)
+        self._emit_days_changed()
+        self._entries_revision += 1
+        self.entriesChanged.emit()
         self.updated.emit()
         return day.id
 
@@ -183,6 +231,9 @@ class ScheduleEditor(QObject):
                 day.weeks = weeks
         if date:
             day.date = date
+        self._emit_days_changed()
+        self._entries_revision += 1
+        self.entriesChanged.emit()
         self.updated.emit()
 
     @Slot(str)
@@ -194,6 +245,9 @@ class ScheduleEditor(QObject):
             return
 
         self.schedule.days.remove(day)
+        self._emit_days_changed()
+        self._entries_revision += 1
+        self.entriesChanged.emit()
         self.updated.emit()
 
     @Slot(str, result=str)
@@ -214,6 +268,9 @@ class ScheduleEditor(QObject):
             entry.id = generate_id("entry")
 
         self.schedule.days.append(new_day)
+        self._emit_days_changed()
+        self._entries_revision += 1
+        self.entriesChanged.emit()
         self.updated.emit()
         return new_day.id
 
@@ -247,6 +304,7 @@ class ScheduleEditor(QObject):
         )
         day.entries.append(entry)
         day.entries.sort(key=lambda e: e.startTime)  # 排序
+        self._emit_entries_changed()
         self.updated.emit()
         return entry.id
 
@@ -283,6 +341,7 @@ class ScheduleEditor(QObject):
             if entry in day.entries:
                 day.entries.sort(key=lambda e: e.startTime)
                 break
+        self._emit_entries_changed()
         self.updated.emit()
 
     @Slot(str)
@@ -292,6 +351,7 @@ class ScheduleEditor(QObject):
             entry = next((e for e in day.entries if e.id == entry_id), None)
             if entry:
                 day.entries.remove(entry)
+                self._emit_entries_changed()
                 self.updated.emit()
                 return
 
@@ -334,6 +394,7 @@ class ScheduleEditor(QObject):
             title=title or None
         )
         self.schedule.overrides.append(override)
+        self.overridesChanged.emit()
         self.updated.emit()
         return True
 
@@ -345,6 +406,7 @@ class ScheduleEditor(QObject):
                     o.subjectId = subject_id
                 if title is not None:
                     o.title = title
+                self.overridesChanged.emit()
                 self.updated.emit()
                 return True
         return False
@@ -354,6 +416,7 @@ class ScheduleEditor(QObject):
         for override in self.schedule.overrides:
             if override.id == override_id:
                 self.schedule.overrides.remove(override)
+                self.overridesChanged.emit()
                 self.updated.emit()
                 return True
         return False
@@ -434,6 +497,33 @@ class ScheduleEditor(QObject):
             return False
 
         self.schedule.meta.startDate = date_str
+        self.metaChanged.emit()
+        self.updated.emit()
+        return True
+
+    @Slot(str, int, result=bool)
+    def setTimelineSettings(self, date_str: str, max_weeks: int) -> bool:
+        """一次性更新时间线设置，避免一次确认触发多次全局刷新。"""
+        try:
+            datetime.strptime(date_str, "%Y-%m-%d")
+        except ValueError:
+            logger.warning(f"Invalid date format: {date_str}")
+            return False
+
+        if not self.schedule or not self.schedule.meta or max_weeks < 1:
+            logger.warning("Invalid schedule meta data or max week cycle.")
+            return False
+
+        changed = (
+            self.schedule.meta.startDate != date_str
+            or self.schedule.meta.maxWeekCycle != max_weeks
+        )
+        if not changed:
+            return True
+
+        self.schedule.meta.startDate = date_str
+        self.schedule.meta.maxWeekCycle = max_weeks
+        self.metaChanged.emit()
         self.updated.emit()
         return True
 
@@ -464,6 +554,7 @@ class ScheduleEditor(QObject):
             return False
 
         self.schedule.meta.maxWeekCycle = max_weeks
+        self.metaChanged.emit()
         self.updated.emit()
         return True
 
@@ -475,7 +566,7 @@ class ScheduleEditor(QObject):
         return getattr(self.schedule.meta, "maxWeekCycle", 1)
 
     # 数据访问
-    @Property("QVariant", notify=updated)
+    @Property("QVariant", notify=metaChanged)
     def meta(self) -> dict:
         """获取课程表元数据"""
         if not self.schedule or not self.schedule.meta:
@@ -489,15 +580,22 @@ class ScheduleEditor(QObject):
             return []
         return [subject.model_dump() for subject in self.schedule.subjects]
 
-    @Property(list, notify=updated)
+    @Property(list, notify=daysChanged)
     def days(self) -> list[dict]:
         """获取所有日程"""
-        if not self.schedule:
-            return []
+        return self._days_data
 
-        return [day.model_dump() for day in self.schedule.days]
+    @Property(int, notify=entriesChanged)
+    def entriesRevision(self) -> int:
+        """条目变化版本，用于刷新依赖嵌套 entries 的 QML 绑定。"""
+        return self._entries_revision
 
-    @Property(list, notify=updated)
+    @Property(list, notify=entriesChanged)
+    def entriesData(self) -> list[dict]:
+        """获取包含最新条目的日程快照，不触发时间线列表刷新。"""
+        return self._entries_data
+
+    @Property(list, notify=overridesChanged)
     def overrides(self) -> list[Timetable]:
         """获取所有条目"""
         if not self.schedule:
@@ -525,6 +623,7 @@ class ScheduleEditor(QObject):
     @Slot()
     def markSaved(self):
         """标记为已保存"""
+        self._refresh_timer.stop()
         if self._dirty:
             self._dirty = False
             self.dirtyChanged.emit()

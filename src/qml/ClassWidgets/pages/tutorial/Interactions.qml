@@ -79,6 +79,32 @@ TutorialComponents.TutorialPage {
             }
         }
 
+        SettingExpander {
+            Layout.fillWidth: true
+            icon.name: "ic_fluent_tap_single_20_regular"
+            title: qsTr("Tap Action")
+            description: qsTr("Choose whether tapping a widget hides it, switches to mini mode, or opens a floating widget")
+            expanded: true
+
+            action: ComboBox {
+                id: tutorialTapActionSelector
+                Layout.preferredWidth: 180
+                model: ListModel {
+                    ListElement { text: qsTr("Hide Widgets"); value: "hide" }
+                    ListElement { text: qsTr("Switch to mini mode"); value: "mini_mode" }
+                    ListElement { text: qsTr("Floating Widget"); value: "floating_widget" }
+                }
+                textRole: "text"
+                valueRole: "value"
+                enabled: !Configs.isKeyLocked("interactions.tapped_action")
+                onCurrentValueChanged: if (focus) Configs.set("interactions.tapped_action", currentValue)
+                Component.onCompleted: {
+                    const action = Configs.data.interactions.tapped_action || "hide"
+                    currentIndex = Math.max(0, indexOfValue(action))
+                }
+            }
+        }
+
         SettingCard {
             Layout.fillWidth: true
             icon.name: "ic_fluent_tap_single_20_regular"

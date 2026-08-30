@@ -23,9 +23,10 @@ Item {
     // 根据列号找到 day
     function getDayByColumn(columnIndex) {
         var weekday = columnIndex + 1;
+        var days = AppCentral.scheduleEditor.entriesData;
 
-        for (let i = 0; i < AppCentral.scheduleEditor.days.length; i++) {
-            var day = AppCentral.scheduleEditor.days[i];
+        for (let i = 0; i < days.length; i++) {
+            var day = days[i];
             if (day.date) continue; // 跳过指定日期
 
             let validDay = !day.dayOfWeek || day.dayOfWeek.indexOf(weekday) !== -1;
@@ -99,9 +100,12 @@ Item {
         property var currentWeek: -1 // -1 表示全周
         property var selectedCell: ({ row: -1, column: -1 })
         property var currentEntry: null
+        property int entriesRevision: AppCentral.scheduleEditor.entriesRevision
 
         // 动态计算行数（最大 class 数量）
         property int maxRows: {
+            // Re-evaluate when an entry is added, removed, or moved between rows.
+            const revision = entriesRevision
             var maxLen = 0;
             for (var col = 0; col < 7; col++) {
                 var day = root.getDayByColumn(col);

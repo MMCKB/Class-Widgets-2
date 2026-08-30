@@ -155,6 +155,13 @@ class WidgetsWindow(ReleasableWindow, QObject):
         if widgets_loader:
             widgets_loader.geometryChanged.connect(self.schedule_mask_update)
             widgets_loader.contentGeometryChanged.connect(self.schedule_mask_update)
+
+            # 连接浮窗容器的几何变化信号
+            floating_container = obj.findChild(QObject, "floatingWidgetContainer")
+            if floating_container:
+                floating_container.geometryChanged.connect(self.schedule_mask_update)
+                logger.info("Floating widget container connected for mask updates")
+
             self.schedule_mask_update()
             self._qml_ready = True
             self.qmlReady.emit()
@@ -181,32 +188,43 @@ class WidgetsWindow(ReleasableWindow, QObject):
 
         menu_show = widgets_loader.property("menuVisible") or False
         edit_mode = widgets_loader.property("editMode") or False
-
         if menu_show or edit_mode:
             self.interactive_rect = QRegion()
             self.root_window.setMask(QRegion())
             return
 
-        # 小组件现位于 Flow 内部，Flow 是根容器的直接子项
+        # 小组件现位于 Flow 内部，Flow 是根容器的直接子项。浮窗模式切换时
+        # 仍需保留实际几何，才能让小组件完成自身的移出动画后再消失。
         widgets_flow = widgets_loader.findChild(QObject, "widgetsFlow")
-        if not widgets_flow:
-            return
+        if widgets_flow:
+            base_x = widgets_loader.x()
+            base_y = widgets_loader.y()
+            flow_x = widgets_flow.x()
+            flow_y = widgets_flow.y()
 
-        base_x = widgets_loader.x()
-        base_y = widgets_loader.y()
-        flow_x = widgets_flow.x()
-        flow_y = widgets_flow.y()
+            for w in widgets_flow.childItems():
+                if w.width() <= 0 or w.height() <= 0 or not w.isVisible():
+                    continue
+                rect = QRect(
+                    int(w.x() + flow_x + base_x),
+                    int(w.y() + flow_y + base_y),
+                    int(w.width()),
+                    int(w.height())
+                )
+                mask = mask.united(QRegion(rect))
 
-        for w in widgets_flow.childItems():
-            if w.width() <= 0 or w.height() <= 0 or not w.isVisible():
-                continue
-            rect = QRect(
-                int(w.x() + flow_x + base_x),
-                int(w.y() + flow_y + base_y),
-                int(w.width()),
-                int(w.height())
-            )
-            mask = mask.united(QRegion(rect))
+        # 浮窗区域加入 mask
+        floating_container = self.root_window.findChild(QObject, "floatingWidgetContainer")
+        # 非浮窗模式下容器不可见，因此不会扩大透明窗口的可交互区域。
+        if floating_container and floating_container.isVisible():
+            fw_x = int(floating_container.x())
+            fw_y = int(floating_container.y())
+            fw_scale = float(floating_container.property("scale") or 1.0)
+            fw_w = int(floating_container.width() * fw_scale)
+            fw_h = int(floating_container.height() * fw_scale)
+            if fw_w > 0 and fw_h > 0:
+                rect = QRect(fw_x, fw_y, fw_w, fw_h)
+                mask = mask.united(QRegion(rect))
 
 
         self.interactive_rect = mask

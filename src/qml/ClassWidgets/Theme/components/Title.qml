@@ -10,13 +10,20 @@ Text {
     readonly property bool miniMode: Configs.data.preferences.mini_mode
     property int px: miniMode? 20 : 28
 
-    // font.bold: true
-    font: {
-        var f = AppCentral.getQFont(Configs.data.preferences.font, Utils.fontFamily)
-        f.pixelSize = px
-        f.weight = Configs.data.preferences.font_weight || 600
-        return f
-    }
+    // font: {
+    //     var f = AppCentral.getQFont(Configs.data.preferences.font, Utils.fontFamily)
+    //     f.pixelSize = px
+    //     f.weight = Configs.data.preferences.font_weight || 600
+    //     return f
+    // }
+    property var baseFont: AppCentral.getQFont(
+        Configs.data.preferences.font,
+        Utils.fontFamily
+    )
+
+    font.family: baseFont.family
+    font.weight: Configs.data.preferences.font_weight || 600
+    font.pixelSize: px
 
     Behavior on px { NumberAnimation { duration: 400; easing.type: Easing.OutQuint } }
 }

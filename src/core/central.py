@@ -563,7 +563,7 @@ class AppCentral(QObject):  # Class Widgets 的中枢
         """设置runtime连接"""
         self.union_update_timer.tick.connect(self.update)
         self.union_update_timer.tick.connect(self.automation_manager.update)
-        self.schedule_manager.scheduleModified.connect(self.runtime.refresh)
+        self.schedule_manager.scheduleModified.connect(self.runtime.schedule_refresh)
         self._class_swap_manager.updated.connect(self.update)
 
         self.union_update_timer.start()

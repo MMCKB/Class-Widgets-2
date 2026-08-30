@@ -89,7 +89,7 @@ Item {
         RowLayout {
             id: headerRow
             Layout.fillWidth: true
-            visible: opacity > 0
+            visible: (subtitle.length > 1 || actions.length > 1 || widgetBase.text.length > 0) && opacity > 0
             opacity: !miniMode
             Behavior on opacity { NumberAnimation { duration: 100; easing.type: Easing.OutQuint } }
 
