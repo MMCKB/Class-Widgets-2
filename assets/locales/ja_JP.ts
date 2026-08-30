@@ -3151,6 +3151,19 @@ It&apos;s incompatible and may cause unexpected issues.</source>
     </message>
 </context>
 <context>
+    <name>SceneSwitcherDialog</name>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/SceneSwitcherDialog.qml" line="8"/>
+        <source>Switch Scene</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/SceneSwitcherDialog.qml" line="20"/>
+        <source>Select a scene to switch to</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Schedule</name>
     <message>
         <source>Preview</source>
@@ -3605,27 +3618,27 @@ It&apos;s incompatible and may cause unexpected issues.</source>
 <context>
     <name>Shortcuts</name>
     <message>
-        <location filename="../../src/core/central.py" line="153"/>
+        <location filename="../../src/core/central.py" line="154"/>
         <source>Settings</source>
         <translation type="unfinished">設定</translation>
     </message>
     <message>
-        <location filename="../../src/core/central.py" line="159"/>
+        <location filename="../../src/core/central.py" line="160"/>
         <source>Schedules</source>
         <translation type="unfinished">スケジュール</translation>
     </message>
     <message>
-        <location filename="../../src/core/central.py" line="165"/>
+        <location filename="../../src/core/central.py" line="166"/>
         <source>Plugin Plaza</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/core/central.py" line="171"/>
+        <location filename="../../src/core/central.py" line="172"/>
         <source>Reschedule Day</source>
         <translation type="unfinished">再スケジュール日</translation>
     </message>
     <message>
-        <location filename="../../src/core/central.py" line="177"/>
+        <location filename="../../src/core/central.py" line="178"/>
         <source>Class Swap</source>
         <translation type="unfinished">クラス交換</translation>
     </message>

@@ -3295,6 +3295,19 @@ It&apos;s incompatible and may cause unexpected issues.</source>
     </message>
 </context>
 <context>
+    <name>SceneSwitcherDialog</name>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/SceneSwitcherDialog.qml" line="8"/>
+        <source>Switch Scene</source>
+        <translation>切换场景</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/SceneSwitcherDialog.qml" line="20"/>
+        <source>Select a scene to switch to</source>
+        <translation>选择要切换到的场景</translation>
+    </message>
+</context>
+<context>
     <name>Schedule</name>
     <message>
         <source>Preview</source>
@@ -3753,27 +3766,27 @@ It&apos;s incompatible and may cause unexpected issues.</source>
 <context>
     <name>Shortcuts</name>
     <message>
-        <location filename="../../src/core/central.py" line="153"/>
+        <location filename="../../src/core/central.py" line="154"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../src/core/central.py" line="159"/>
+        <location filename="../../src/core/central.py" line="160"/>
         <source>Schedules</source>
         <translation>课程编辑</translation>
     </message>
     <message>
-        <location filename="../../src/core/central.py" line="165"/>
+        <location filename="../../src/core/central.py" line="166"/>
         <source>Plugin Plaza</source>
         <translation>插件广场</translation>
     </message>
     <message>
-        <location filename="../../src/core/central.py" line="171"/>
+        <location filename="../../src/core/central.py" line="172"/>
         <source>Reschedule Day</source>
         <translation>调休</translation>
     </message>
     <message>
-        <location filename="../../src/core/central.py" line="177"/>
+        <location filename="../../src/core/central.py" line="178"/>
         <source>Class Swap</source>
         <translation>换课</translation>
     </message>
@@ -5556,19 +5569,6 @@ then tap &quot;Edit Widget Screen&quot; in the menu to experience it.</source>
         <location filename="../../src/qml/widgets/upcomingActivities.qml" line="34"/>
         <source>Unset</source>
         <translation>未设置</translation>
-    </message>
-</context>
-<context>
-    <name>SceneSwitcherDialog</name>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/Components/dialogs/SceneSwitcherDialog.qml" line="8"/>
-        <source>Switch Scene</source>
-        <translation>切换场景</translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/Components/dialogs/SceneSwitcherDialog.qml" line="19"/>
-        <source>Select a scene to switch to</source>
-        <translation>选择要切换到的场景</translation>
     </message>
 </context>
 </TS>
