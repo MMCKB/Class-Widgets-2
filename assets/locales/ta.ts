@@ -412,7 +412,7 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>Configs</name>
     <message>
-        <location filename="../../src/core/config/model.py" line="219"/>
+        <location filename="../../src/core/config/model.py" line="223"/>
         <source>New Schedule 1</source>
         <translation>புதிய அட்டவணை 1</translation>
     </message>
@@ -930,42 +930,42 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>EntryDelegate</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="54"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="57"/>
         <source>Remove</source>
         <translation>அகற்று</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="213"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="223"/>
         <source>Class</source>
         <translation>வகுப்பு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="214"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="224"/>
         <source>Break</source>
         <translation>இடைவேளை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="215"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="225"/>
         <source>Activity</source>
         <translation>செய்கைப்பாடு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="216"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="226"/>
         <source>Unknown Type</source>
         <translation>தெரியாத வகை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="224"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="234"/>
         <source> minutes</source>
         <translation> நிமிடங்கள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="252"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="262"/>
         <source>Invalid Time Range</source>
         <translation>தவறான நேர வரம்பு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="253"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="263"/>
         <source>End time must be later than start time.</source>
         <translation>தொடக்க நேரத்தை விட முடிவு நேரம் தாமதமாக இருக்க வேண்டும்.</translation>
     </message>
@@ -1062,55 +1062,55 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>EntryListView</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="102"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="106"/>
         <source> PM</source>
         <translation> பி.எம்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="104"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="108"/>
         <source> AM</source>
         <translation> AM</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="177"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="187"/>
         <source>New Schedule</source>
         <translation>புதிய அட்டவணை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="153"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="182"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="163"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="192"/>
         <source>Class</source>
         <translation>வகுப்பு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="46"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="49"/>
         <source>No timeline selected</source>
         <translation>காலவரிசை எதுவும் தேர்ந்தெடுக்கப்படவில்லை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="52"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="55"/>
         <source>Please select a timeline first to add a new schedule.</source>
         <translation>புதிய அட்டவணையைச் சேர்க்க, முதலில் காலவரிசையைத் தேர்ந்தெடுக்கவும்.</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="161"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="188"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="171"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="198"/>
         <source>Break</source>
         <translation>இடைவேளை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="169"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="194"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="179"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="204"/>
         <source>Activity</source>
         <translation>செய்கைப்பாடு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="299"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="309"/>
         <source>Conflict with existing schedule</source>
         <translation>ஏற்கனவே உள்ள அட்டவணையுடன் முரண்பாடு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="301"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="311"/>
         <source>This time overlaps with an existing schedule (%1 – %2)</source>
         <translation>இந்த நேரம் ஏற்கனவே உள்ள அட்டவணையுடன் மேலெழுகிறது (% 1 - %2)</translation>
     </message>
@@ -1189,6 +1189,29 @@ Do you want to continue using them, or discard and restore the original schedule
         <location filename="../../src/qml/ClassWidgets/Components/plaza/FilterToolbar.qml" line="231"/>
         <source>Latest</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FloatingWidget</name>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Theme/components/FloatingWidget.qml" line="108"/>
+        <source>Class</source>
+        <translation type="unfinished">வகுப்பு</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Theme/components/FloatingWidget.qml" line="110"/>
+        <source>Activity</source>
+        <translation type="unfinished">செய்கைப்பாடு</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Theme/components/FloatingWidget.qml" line="112"/>
+        <source>Take a break</source>
+        <translation type="unfinished">ஓய்வு எடுங்கள்</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Theme/components/FloatingWidget.qml" line="113"/>
+        <source>Nothing right now</source>
+        <translation type="unfinished">இப்போது எதுவும் இல்லை</translation>
     </message>
 </context>
 <context>
@@ -1614,13 +1637,7 @@ Do you want to continue using them, or discard and restore the original schedule
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="29"/>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="30"/>
-        <source>Choose whether tapping a widget hides it or switches to mini mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="90"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="95"/>
         <source>Hover fade</source>
         <translation>மறைந்துவிடும்</translation>
     </message>
@@ -1629,7 +1646,7 @@ Do you want to continue using them, or discard and restore the original schedule
         <translation type="vanished">மறைக்க தட்டவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="91"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="96"/>
         <source>Hover to make the widget transparent and let clicks go through, move away to bring it back</source>
         <translation>விட்செட்டை வெளிப்படையானதாக மாற்ற வட்டமிடவும் மற்றும் கிளிக்குகள் செல்ல அனுமதிக்கவும், அதை மீண்டும் கொண்டு வர நகர்த்தவும்</translation>
     </message>
@@ -1638,37 +1655,49 @@ Do you want to continue using them, or discard and restore the original schedule
         <translation type="vanished">அதை மறைக்க விட்செட்டை சொடுக்கு செய்யவும், அதை மீண்டும் கொண்டு வர மீண்டும் சொடுக்கு செய்யவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="106"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="29"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="30"/>
+        <source>Choose whether tapping a widget hides it, switches to mini mode, or opens a floating widget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="61"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="55"/>
+        <source>Floating Widget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="111"/>
         <source>More hide behavior</source>
         <translation>மேலும் மறை நடத்தை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="108"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="113"/>
         <source>Choose whether widgets hide or switch to Mini Mode when triggered</source>
         <translation>தூண்டப்படும்போது விட்செட்டுகள் மறைக்க வேண்டுமா அல்லது மினி பயன்முறைக்கு மாற வேண்டுமா என்பதைத் தேர்வுசெய்யவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="114"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="119"/>
         <source>Hide Widgets</source>
         <translation>விட்செட்களை மறை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="115"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="120"/>
         <source>Switch to mini mode</source>
         <translation>மினி பயன்முறைக்கு மாறவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="129"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="134"/>
         <source>Hide when in class</source>
         <translation>வகுப்பில் இருக்கும்போது மறைக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="136"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="141"/>
         <source>Hide when a window is maximized</source>
         <translation>ஒரு சாளரம் பெரிதாக்கப்படும் போது மறை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="143"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="148"/>
         <source>Hide when a window enters fullscreen</source>
         <translation>ஒரு சாளரம் முழுத்திரையில் நுழையும் போது மறை</translation>
     </message>
@@ -1695,22 +1724,22 @@ Do you want to continue using them, or discard and restore the original schedule
         <translation type="unfinished">மினி பயன்முறை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="85"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="90"/>
         <source>Tap to Hide</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="86"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="91"/>
         <source>Click on a widget to hide it, click it again to bring it back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="98"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="103"/>
         <source>Hover Fade</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="99"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="104"/>
         <source>Hover to make widgets transparent and let clicks pass through</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1874,27 +1903,27 @@ Do you want to continue using them, or discard and restore the original schedule
         <translation>பிழைத்திருத்த அறிவிப்பு</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/runtime.py" line="68"/>
+        <location filename="../../src/core/schedule/runtime.py" line="73"/>
         <source>Class Notifications</source>
         <translation>வகுப்பு அறிவிப்புகள்</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/runtime.py" line="77"/>
+        <location filename="../../src/core/schedule/runtime.py" line="82"/>
         <source>Activity Notifications</source>
         <translation>செயல்பாட்டு அறிவிப்புகள்</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/runtime.py" line="86"/>
+        <location filename="../../src/core/schedule/runtime.py" line="91"/>
         <source>Break Notifications</source>
         <translation>அறிவிப்புகளை உடைக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/runtime.py" line="95"/>
+        <location filename="../../src/core/schedule/runtime.py" line="100"/>
         <source>Free Time Notifications</source>
         <translation>இலவச நேர அறிவிப்புகள்</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/runtime.py" line="104"/>
+        <location filename="../../src/core/schedule/runtime.py" line="109"/>
         <source>Preparation Bell</source>
         <translation>தயாரிப்பு மணி</translation>
     </message>
@@ -3242,83 +3271,83 @@ It&apos;s incompatible and may cause unexpected issues.</source>
 <context>
     <name>ScheduleRuntime</name>
     <message>
-        <location filename="../../src/core/schedule/runtime.py" line="293"/>
+        <location filename="../../src/core/schedule/runtime.py" line="310"/>
         <source>Class Started</source>
         <translation>வகுப்பு துவங்கியது</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/runtime.py" line="310"/>
+        <location filename="../../src/core/schedule/runtime.py" line="327"/>
         <source>Activity Started</source>
         <translation>செயல்பாடு தொடங்கியது</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/runtime.py" line="319"/>
+        <location filename="../../src/core/schedule/runtime.py" line="336"/>
         <source>Intermission</source>
         <translation>இடைவேளை</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/runtime.py" line="335"/>
-        <location filename="../../src/core/schedule/runtime.py" line="345"/>
-        <location filename="../../src/core/schedule/runtime.py" line="371"/>
-        <location filename="../../src/core/schedule/runtime.py" line="381"/>
+        <location filename="../../src/core/schedule/runtime.py" line="352"/>
+        <location filename="../../src/core/schedule/runtime.py" line="362"/>
+        <location filename="../../src/core/schedule/runtime.py" line="388"/>
+        <location filename="../../src/core/schedule/runtime.py" line="398"/>
         <source>Next: {}</source>
         <translation>அடுத்து: {}</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/runtime.py" line="339"/>
-        <location filename="../../src/core/schedule/runtime.py" line="375"/>
+        <location filename="../../src/core/schedule/runtime.py" line="356"/>
+        <location filename="../../src/core/schedule/runtime.py" line="392"/>
         <source>Next: {} at {}</source>
         <translation>அடுத்து: {} மணிக்கு {}</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/runtime.py" line="341"/>
-        <location filename="../../src/core/schedule/runtime.py" line="377"/>
+        <location filename="../../src/core/schedule/runtime.py" line="358"/>
+        <location filename="../../src/core/schedule/runtime.py" line="394"/>
         <source>Next: {} (Off-site)</source>
         <translation>அடுத்து: {} (ஆஃப்-சைட்)</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/runtime.py" line="355"/>
+        <location filename="../../src/core/schedule/runtime.py" line="372"/>
         <source>Recess</source>
         <translation>இடைவேளை</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/runtime.py" line="390"/>
+        <location filename="../../src/core/schedule/runtime.py" line="407"/>
         <source>Enjoy your break</source>
         <translation>உங்கள் இடைவேளையை அனுபவிக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/runtime.py" line="392"/>
+        <location filename="../../src/core/schedule/runtime.py" line="409"/>
         <source>Free Time</source>
         <translation>இலவச நேரம்</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/runtime.py" line="397"/>
+        <location filename="../../src/core/schedule/runtime.py" line="414"/>
         <source>Status Changed</source>
         <translation>நிலை மாற்றப்பட்டது</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/runtime.py" line="397"/>
+        <location filename="../../src/core/schedule/runtime.py" line="414"/>
         <source>Current status: {}</source>
         <translation>தற்போதைய நிலை: {}</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/runtime.py" line="451"/>
-        <location filename="../../src/core/schedule/runtime.py" line="461"/>
+        <location filename="../../src/core/schedule/runtime.py" line="468"/>
+        <location filename="../../src/core/schedule/runtime.py" line="478"/>
         <source>Coming up: {}</source>
         <translation>வரவிருக்கிறது: {}</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/runtime.py" line="455"/>
+        <location filename="../../src/core/schedule/runtime.py" line="472"/>
         <source>Coming up: {} at {}</source>
         <translation>வரவிருக்கிறது: {} மணிக்கு {}</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/runtime.py" line="457"/>
+        <location filename="../../src/core/schedule/runtime.py" line="474"/>
         <source>Coming up: {} (Off-site)</source>
         <translation>வரவிருக்கிறது: {} (ஆஃப்-சைட்)</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/runtime.py" line="469"/>
+        <location filename="../../src/core/schedule/runtime.py" line="486"/>
         <source>Preparation Bell</source>
         <translation>தயாரிப்பு மணி</translation>
     </message>
@@ -4044,32 +4073,32 @@ If it takes place in another location, such as a sport field, lab, or another cl
         <translation type="unfinished">அதிகபட்ச வார சுழற்சி:</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="118"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="116"/>
         <source>Failed</source>
         <translation type="unfinished">தோல்வியடைந்தது</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="119"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="117"/>
         <source>Failed to set start date or max week cycle. Please report this issue to the community or the developer.</source>
         <translation type="unfinished">தொடக்க தேதி அல்லது அதிகபட்ச வார சுழற்சியை அமைக்க முடியவில்லை. இந்தச் சிக்கலைச் சமூகம் அல்லது டெவலப்பரிடம் புகாரளிக்கவும்.</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="130"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="128"/>
         <source>Select Default Duration</source>
         <translation type="unfinished">இயல்புநிலை கால அளவைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="139"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="137"/>
         <source>Class</source>
         <translation type="unfinished">வகுப்பு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="153"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="151"/>
         <source>Break</source>
         <translation type="unfinished">இடைவேளை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="166"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="164"/>
         <source>Activity</source>
         <translation type="unfinished">செய்கைப்பாடு</translation>
     </message>
@@ -4941,22 +4970,22 @@ then tap &quot;Edit Widget Screen&quot; in the menu to experience it.</source>
 <context>
     <name>WidgetsContainer</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="258"/>
+        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="267"/>
         <source>Edit </source>
         <translation>திருத்தவும் </translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="273"/>
+        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="282"/>
         <source>Delete</source>
         <translation>நீக்கு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="282"/>
+        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="291"/>
         <source>Edit Widgets Screen</source>
         <translation>விட்செட்கள் திரையைத் திருத்து</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="356"/>
+        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="365"/>
         <source>Add</source>
         <translation>கூட்டு</translation>
     </message>
@@ -4969,22 +4998,22 @@ then tap &quot;Edit Widget Screen&quot; in the menu to experience it.</source>
         <translation>தற்போதைய செயல்பாடு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/widgets/currentActivity.qml" line="86"/>
+        <location filename="../../src/qml/widgets/currentActivity.qml" line="77"/>
         <source>Class</source>
         <translation>வகுப்பு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/widgets/currentActivity.qml" line="88"/>
+        <location filename="../../src/qml/widgets/currentActivity.qml" line="79"/>
         <source>Activity</source>
         <translation>செய்கைப்பாடு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/widgets/currentActivity.qml" line="90"/>
+        <location filename="../../src/qml/widgets/currentActivity.qml" line="81"/>
         <source>Take a break</source>
         <translation>ஓய்வு எடுங்கள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/widgets/currentActivity.qml" line="91"/>
+        <location filename="../../src/qml/widgets/currentActivity.qml" line="82"/>
         <source>Nothing right now</source>
         <translation>இப்போது எதுவும் இல்லை</translation>
     </message>
