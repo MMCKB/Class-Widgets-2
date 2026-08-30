@@ -186,7 +186,7 @@ jobs:
           file_pattern: "assets/locales/*.ts"
           commit_user_name: "github-actions[bot]"
           commit_user_email: "41898282+github-actions[bot]@users.noreply.github.com"
-          commit_author: "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com"
+          commit_author: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
 
   compile-translations:
     name: 编译翻译文件
@@ -247,7 +247,7 @@ jobs:
           file_pattern: "assets/locales/*.qm"
           commit_user_name: "github-actions[bot]"
           commit_user_email: "41898282+github-actions[bot]@users.noreply.github.com"
-          commit_author: "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com"
+          commit_author: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
 
   summary:
     name: 执行摘要
