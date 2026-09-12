@@ -5,22 +5,20 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional, TYPE_CHECKING
 
-from PySide6.QtCore import Slot, QObject, Signal, Property, QUrl, QThread, QCoreApplication
+from PySide6.QtCore import Slot, QObject, Signal, Property, QUrl, QCoreApplication
 from PySide6.QtGui import QDesktopServices
 from PySide6.QtWidgets import QApplication, QFileDialog
 from loguru import logger
 
-from src.core.directories import PLUGINS_PATH
+from src.core.directories import PLUGIN_CACHE_PATH, PLUGINS_PATH
 from src.core.plugin import CW2Plugin, PluginAPI
-from src.core.plugin.archive import PluginArchiveInstaller, PluginInstallResult
+from src.core.plugin.archive import PluginArchiveInstaller
 from src.core.plugin.errors import plugin_install_error_message
 from src.core.plugin.loader import PluginLoader, check_api_version
 from src.core.plugin.models import PluginMeta, PluginConflict
-from src.core.plugin.worker import PluginImportWorker
 from src.core.plugin.workers import (
     PlazaDownloadWorker,
     PlazaUpdateWorker,
-    PluginInstallWorker,
     create_plugin_download_directory,
     remove_plugin_download_directory,
 )
@@ -50,6 +48,7 @@ class PluginManager(QObject):
     plazaUpdateCheckCompleted = Signal(bool, object)
     pluginInstallCancelled = Signal(str)
     pluginInstallSettled = Signal()
+    pluginPendingOperationsChanged = Signal()
     plazaTransferSucceeded = Signal(str, str, str)
     plazaTransferFailed = Signal(str, str, str)
     plazaTransferCancelled = Signal(str)
@@ -70,8 +69,6 @@ class PluginManager(QObject):
 
         self.external_path: Path = PLUGINS_PATH
         self.archive_installer = PluginArchiveInstaller(self.external_path)
-        self._install_thread: QThread | None = None
-        self._install_worker: QThread | None = None
         self._download_thread: PlazaDownloadWorker | None = None
         self._download_dir: Path | None = None
         self._download_cleanup_pending = False
@@ -164,9 +161,6 @@ class PluginManager(QObject):
         if download_thread and download_thread.isRunning():
             download_thread.cancel()
             download_thread.wait(500)
-        if self._install_thread and self._install_thread.isRunning():
-            self._install_thread.quit()
-            self._install_thread.wait(500)
         if not download_thread or not download_thread.isRunning():
             remove_plugin_download_directory(self._download_dir)
             self._download_dir = None
@@ -180,7 +174,6 @@ class PluginManager(QObject):
             except Exception as e:
                 logger.error(f"Failed to unload plugin {pid}: {e}")
             self.api.ui.unregister_plugin_shortcuts(pid)
-            self.api.automation.unregister_plugin_projects(pid)
             # 尝试从 sys.modules 移除对应模块（使用标准模块前缀 cw_plugin_{id}）
             mod_name = f"cw_plugin_{pid}"
             if mod_name in sys.modules:
@@ -196,63 +189,138 @@ class PluginManager(QObject):
             self.pluginInstallStatusChanged.emit(status)
 
     def _install_task_in_progress(self) -> bool:
-        return bool(
-            (self._download_thread and self._download_thread.isRunning())
-            or (self._install_thread and self._install_thread.isRunning())
-        )
+        return bool(self._download_thread and self._download_thread.isRunning())
 
     def _install_is_active_or_paused(self) -> bool:
         return self._install_status in {"Downloading", "Paused", "Installing"} or self._install_task_in_progress()
 
+    @staticmethod
+    def _operation_plugin_id(operation: dict) -> str:
+        return str(operation.get("plugin_id", "")).strip()
+
+    def _pending_operations(self) -> list[dict]:
+        operations = getattr(self.app_central.configs.plugins, "pending_operations", [])
+        return [item for item in operations if isinstance(item, dict)]
+
+    def _has_pending_operation(self, plugin_id: str) -> bool:
+        return any(self._operation_plugin_id(item) == plugin_id for item in self._pending_operations())
+
+    def _save_pending_operations(self, operations: list[dict]) -> None:
+        self.app_central.configs.plugins.pending_operations = operations
+        self.app_central.configs.save(silent=True)
+        self.pluginPendingOperationsChanged.emit()
+
+    def _queue_pending_operation(self, operation: dict) -> None:
+        """Keep only the newest deferred operation for each plugin ID."""
+        plugin_id = self._operation_plugin_id(operation)
+        operations = []
+        for item in self._pending_operations():
+            if self._operation_plugin_id(item) != plugin_id:
+                operations.append(item)
+                continue
+            old_archive = item.get("archive_path")
+            if (
+                old_archive
+                and item.get("type") == "install"
+                and Path(str(old_archive)) != Path(str(operation.get("archive_path", "")))
+            ):
+                Path(str(old_archive)).unlink(missing_ok=True)
+        operations.append(operation)
+        self._save_pending_operations(operations)
+
+    def _cache_archive(self, archive_path: Path, plugin_id: str) -> Path:
+        if not archive_path.is_file():
+            raise ValueError(f"Plugin archive does not exist: {archive_path}")
+        PLUGIN_CACHE_PATH.mkdir(parents=True, exist_ok=True)
+        destination = PLUGIN_CACHE_PATH / f"{plugin_id}-{archive_path.name}"
+        shutil.copy2(archive_path, destination)
+        return destination
+
+    def _queue_install(
+        self,
+        archive_path: Path,
+        *,
+        plugin_id: str,
+        version: str | None = None,
+        enable_after_install: bool = False,
+    ) -> bool:
+        try:
+            archive = self._cache_archive(archive_path, plugin_id)
+            info = self.archive_installer.inspect(archive)
+            if info.plugin_id != plugin_id:
+                raise ValueError(f"Archive contains '{info.plugin_id}', expected '{plugin_id}'.")
+            if version and info.version != version:
+                raise ValueError(f"Archive version '{info.version}' does not match '{version}'.")
+            self._queue_pending_operation({
+                "type": "install",
+                "plugin_id": info.plugin_id,
+                "archive_path": str(archive),
+                "version": info.version,
+                "enable_after_install": enable_after_install,
+            })
+            self.app_central.markRestartRequired()
+            return True
+        except Exception as error:
+            archive = locals().get("archive")
+            if isinstance(archive, Path):
+                archive.unlink(missing_ok=True)
+            self._fail_install(str(error))
+            return False
+
+    def _queue_uninstall(self, plugin_id: str) -> bool:
+        self._queue_pending_operation({"type": "uninstall", "plugin_id": plugin_id})
+        self.app_central.markRestartRequired()
+        return True
+
+    @Property("QVariant", notify=pluginPendingOperationsChanged)
+    def pendingPluginOperations(self) -> list[dict]:
+        return self._pending_operations()
+
+    def apply_pending_operations(self) -> None:
+        """Apply deferred file changes before external plugins are scanned."""
+        operations = self._pending_operations()
+        if not operations:
+            return
+        remaining: list[dict] = []
+        for operation in operations:
+            plugin_id = self._operation_plugin_id(operation)
+            try:
+                operation_type = operation.get("type")
+                if not plugin_id or operation_type not in {"install", "uninstall"}:
+                    raise ValueError("Invalid pending plugin operation.")
+                if operation_type == "install":
+                    self.archive_installer.install(
+                        str(operation.get("archive_path", "")),
+                        expected_plugin_id=plugin_id,
+                        expected_version=str(operation.get("version", "")) or None,
+                        replace=True,
+                    )
+                    archive_path = Path(str(operation.get("archive_path", "")))
+                    archive_path.unlink(missing_ok=True)
+                    if archive_path.parent == PLUGIN_CACHE_PATH:
+                        try:
+                            archive_path.parent.rmdir()
+                        except OSError:
+                            pass
+                    if operation.get("enable_after_install", False):
+                        self.enabled_plugins.add(plugin_id)
+                else:
+                    target = self.external_path / plugin_id
+                    if target.exists():
+                        shutil.rmtree(target)
+                    self.enabled_plugins.discard(plugin_id)
+                logger.info(f"Applied pending plugin {operation_type}: {plugin_id}")
+            except Exception as error:
+                logger.exception(f"Failed to apply pending plugin operation for {plugin_id}: {error}")
+                remaining.append(operation)
+                self._install_error = plugin_install_error_message(str(error))
+        self.app_central.configs.plugins.enabled = list(self.enabled_plugins)
+        self._save_pending_operations(remaining)
+        if remaining:
+            self._set_install_status("Error")
+
     def _plugin_meta(self, plugin_id: str) -> PluginMeta | None:
         return next((meta for meta in self.metas if meta.get("id") == plugin_id), None)
-
-    def _unload_plugin_for_replacement(self, plugin_id: str) -> None:
-        plugin = self._plugins.pop(plugin_id, None)
-        if plugin:
-            try:
-                plugin.on_unload()
-            except Exception as error:
-                logger.warning(f"Failed to unload plugin {plugin_id} before replacement: {error}")
-        self.api.ui.unregister_plugin_shortcuts(plugin_id)
-        self.api.automation.unregister_plugin_projects(plugin_id)
-        sys.modules.pop(f"cw_plugin_{plugin_id}", None)
-
-    def _complete_install(
-        self,
-        result: PluginInstallResult,
-        *,
-        track_plaza: bool = False,
-    ) -> None:
-        if result.replaced:
-            self._unload_plugin_for_replacement(result.plugin_id)
-        self._plaza_update_state.pop(result.plugin_id, None)
-        self.pluginUpdateStatesChanged.emit()
-        self.scan()
-        self.pluginListChanged.emit()
-        if track_plaza:
-            self.plazaPluginsChanged.emit()
-            meta = self._plugin_meta(result.plugin_id)
-            name = str(meta.get("name", result.plugin_id)) if meta else result.plugin_id
-            self._plaza_activity.complete(result.plugin_id, result.version)
-            self._plaza_notifications.transfer_succeeded(
-                name,
-                result.version,
-                self._install_kind,
-            )
-            self.plazaTransferSucceeded.emit(
-                result.plugin_id,
-                result.version,
-                self._install_kind,
-            )
-        self._install_progress = 100.0
-        self.pluginInstallProgressChanged.emit(100.0)
-        self._set_install_status("Installed")
-        self.pluginInstallSucceeded.emit(result.plugin_id, result.version)
-        self._install_tracks_plaza = False
-        self._install_kind = ""
-        self._remove_download_directory()
-        self.check_plaza_updates(background=False)
 
     def _fail_install(self, error: str) -> None:
         logger.error(f"Plugin installation failed: {error}")
@@ -280,41 +348,6 @@ class PluginManager(QObject):
         remove_plugin_download_directory(self._download_dir)
         self._download_dir = None
         self._download_cleanup_pending = False
-
-    def _start_install_worker(
-        self,
-        archive_path: Path,
-        *,
-        expected_plugin_id: str | None = None,
-        expected_version: str | None = None,
-        track_plaza: bool = False,
-    ) -> bool:
-        self._set_install_status("Installing")
-        if track_plaza:
-            self._plaza_activity.set_installing(self._install_plugin_id)
-        self._install_worker = PluginInstallWorker(
-            archive_path,
-            self.archive_installer,
-            expected_plugin_id=expected_plugin_id,
-            expected_version=expected_version,
-        )
-        self._install_thread = self._install_worker
-        self._install_worker.completed.connect(
-            lambda result: self._complete_install(result, track_plaza=track_plaza)
-        )
-        self._install_worker.failed.connect(self._fail_install)
-        self._install_worker.finished.connect(self._on_install_thread_finished)
-        self._install_worker.start()
-        return True
-
-    def _on_install_thread_finished(self) -> None:
-        thread = self._install_thread
-        self._install_thread = None
-        self._install_worker = None
-        if thread:
-            thread.deleteLater()
-        self._remove_download_directory()
-        self._emit_install_settled_if_idle()
 
     def _on_download_thread_finished(self) -> None:
         thread = self._download_thread
@@ -356,12 +389,23 @@ class PluginManager(QObject):
             )
 
     def _on_plaza_download_completed(self, archive_path: str, plugin: dict) -> None:
-        self._start_install_worker(
-            Path(archive_path),
-            expected_plugin_id=self._install_plugin_id,
-            expected_version=plugin.get("version"),
-            track_plaza=self._install_tracks_plaza,
-        )
+        plugin_id = self._install_plugin_id
+        version = str(plugin.get("version", "")) or None
+        if not self._queue_install(Path(archive_path), plugin_id=plugin_id, version=version):
+            return
+        self._install_progress = 100.0
+        self.pluginInstallProgressChanged.emit(100.0)
+        self._set_install_status("PendingRestart")
+        if self._install_tracks_plaza:
+            meta = self._plugin_meta(plugin_id)
+            name = str(meta.get("name", plugin_id)) if meta else plugin_id
+            self._plaza_activity.complete(plugin_id, version or "")
+            self._plaza_notifications.transfer_succeeded(name, version or "", self._install_kind)
+            self.plazaTransferSucceeded.emit(plugin_id, version or "", self._install_kind)
+        self.pluginInstallSucceeded.emit(plugin_id, version or "")
+        self._install_tracks_plaza = False
+        self._install_kind = ""
+        self._download_cleanup_pending = True
 
     def _on_plaza_plugin_resolved(self, plugin: dict) -> None:
         if not self._install_tracks_plaza or not isinstance(plugin, dict):
@@ -589,7 +633,7 @@ class PluginManager(QObject):
         if not meta or meta.get("_type") != "external":
             return False
         base_url = self._plaza_base_url()
-        if not base_url or self._install_is_active_or_paused():
+        if not base_url or self._install_is_active_or_paused() or self._has_pending_operation(plugin_id):
             return False
         return self._start_plaza_install(plugin_id, kind="update")
 
@@ -668,6 +712,7 @@ class PluginManager(QObject):
             self.enabled_plugins.discard(pid)
         self.app_central.configs.plugins.enabled = list(self.enabled_plugins)
         self.pluginListChanged.emit()
+        self.app_central.markRestartRequired()
 
     @Slot(str, result=bool)
     def openPluginFolder(self, pid: str) -> bool:
@@ -710,37 +755,12 @@ class PluginManager(QObject):
             return False
 
         try:
-            # 终止插件运行
-            if pid in self._plugins:
-                try:
-                    self._plugins[pid].on_unload()
-                except Exception as e:
-                    logger.error(f"Error while unloading plugin {pid}: {e}")
-                self._plugins.pop(pid, None)
-            self.api.ui.unregister_plugin_shortcuts(pid)
-
-            # 尝试清理模块
-            mod_name = f"cw_plugin_{pid}"
-            if mod_name in sys.modules:
-                try:
-                    del sys.modules[mod_name]
-                except Exception:
-                    pass
-
-            # 删除插件目录
-            plugin_dir = Path(meta["_path"])
-            if plugin_dir.exists():
-                shutil.rmtree(plugin_dir)
-                logger.info(f"Uninstalled plugin {pid}, removed {plugin_dir}")
-
-            # 移除 enabled
+            # Deletion is intentionally deferred; loaded Python/QML resources may hold files.
             self.enabled_plugins.discard(pid)
             self.app_central.configs.plugins.enabled = list(self.enabled_plugins)
+            self._queue_uninstall(pid)
             if self._plaza_update_state.pop(pid, None) is not None:
                 self.pluginUpdateStatesChanged.emit()
-
-            # 重新扫描插件列表
-            self.scan()
             self.pluginListChanged.emit()
             return True
         except Exception as e:
@@ -765,18 +785,6 @@ class PluginManager(QObject):
             "meta": archive_info.manifest,
         }]
 
-    def _finish_import(self, result: PluginInstallResult) -> None:
-        if result.replaced:
-            self._unload_plugin_for_replacement(result.plugin_id)
-        self._plaza_update_state.pop(result.plugin_id, None)
-        self.pluginUpdateStatesChanged.emit()
-        self.scan()
-        self.pluginListChanged.emit()
-        self._install_progress = 100.0
-        self.pluginInstallProgressChanged.emit(100.0)
-        self._set_install_status("Installed")
-        self.pluginImportSucceeded.emit()
-
     @Slot(str, result="QVariant")
     def checkPluginConflicts(self, zip_path: str) -> list[PluginConflict]:
         return self._safe_conflicts(zip_path)
@@ -785,18 +793,22 @@ class PluginManager(QObject):
     def importPluginWithPath(self, zip_path: str) -> bool:
         if not zip_path or self._install_task_in_progress():
             return False
-        worker = PluginImportWorker(zip_path, self.external_path)
-        self._install_worker = worker  # type: ignore[assignment]
-        self._install_thread = worker
-        self._install_tracks_plaza = False
-        self._install_kind = ""
         self._install_error = ""
-        self._set_install_status("Installing")
-        worker.completed.connect(self._finish_import)
-        worker.error.connect(self._on_import_error)
-        worker.finished.connect(self._on_install_thread_finished)
-        worker.start()
-        return True
+        try:
+            info = self.archive_installer.inspect(zip_path)
+        except Exception as error:
+            self._on_import_error(str(error))
+            return False
+        if self._has_pending_operation(info.plugin_id):
+            self._on_import_error("A pending operation already exists for this plugin. Restart to apply it first.")
+            return False
+        queued = self._queue_install(Path(zip_path), plugin_id=info.plugin_id, version=info.version)
+        if queued:
+            self._set_install_status("PendingRestart")
+            self.pluginImportSucceeded.emit()
+        else:
+            self.pluginImportFailed.emit(self._install_error)
+        return queued
 
     def _on_import_error(self, message: str) -> None:
         self._fail_install(message)
@@ -855,7 +867,7 @@ class PluginManager(QObject):
 
     @Slot(str, result=bool)
     def installFromPlaza(self, plugin_id: str) -> bool:
-        if not plugin_id or self._install_is_active_or_paused():
+        if not plugin_id or self._install_is_active_or_paused() or self._has_pending_operation(plugin_id):
             return False
         return self._start_plaza_install(plugin_id, kind="install")
 

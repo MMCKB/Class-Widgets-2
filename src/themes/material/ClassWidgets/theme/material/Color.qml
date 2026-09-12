@@ -13,7 +13,7 @@ QtObject { // 直接使用 QtObject，不要用 Item
 
     // 只要 seedColor 变了，就强制重构
     onSeedColorChanged: {
-        console.log("Color Singleton: Seed color changed to", seedColor)
+        // console.log("Color Singleton: Seed color changed to", seedColor)
         _rebuild()
     }
 
@@ -26,7 +26,7 @@ QtObject { // 直接使用 QtObject，不要用 Item
             if (typeof Utils !== "undefined") {
                 var latestColor = Theme.getThemeColor();
                 if (latestColor !== root.seedColor) {
-                    console.log("Timer detected color change:", root.seedColor, "->", latestColor);
+                    // console.log("Timer detected color change:", root.seedColor, "->", latestColor);
                     root.seedColor = latestColor;
                     // seedColor 改变会自动触发下面的 onSeedColorChanged -> _rebuild
                 }

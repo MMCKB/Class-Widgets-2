@@ -24,7 +24,8 @@ Rectangle {
         anchors.centerIn: parent
         opacity: 0
         layer.enabled: true
-        layer.textureSize: Qt.size(width * scaleFactor * 4, 
+        layer.effect: null
+        layer.textureSize: Qt.size(width * scaleFactor * 4,
                                height * scaleFactor * 4)
     }
 
@@ -50,6 +51,7 @@ Rectangle {
         opacity: 0
         font: oldDigit.font
         layer.enabled: true
+        layer.effect: null
         layer.textureSize: Qt.size(width * scaleFactor * 4, 
                                height * scaleFactor * 4)
     }

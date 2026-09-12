@@ -18,6 +18,9 @@ Item {
     property real springDamping: 18
     property real stopVelocity: 6
     property bool animationReady: false
+    property var dragSamples: []
+    readonly property int maxDragSamples: 20
+    readonly property int sampleWindowMs: 100
 
     property real contentWidth: floatingLoader.item
         ? (floatingLoader.item.implicitWidth || floatingLoader.item.width || 0)
@@ -268,9 +271,10 @@ Item {
         transformOrigin: Item.TopLeft
 
         onStatusChanged: {
-            if (status === Loader.Error)
+            if (status === Loader.Error) {
                 console.error("Failed to load FloatingWidget")
-            else if (status === Loader.Ready) {
+                AppCentral.reportThemeLoadFailure("FloatingWidget.qml")
+            } else if (status === Loader.Ready) {
                 root.ensurePosition()
                 root.reconcilePosition()
                 if (root.floatingMode)
@@ -302,8 +306,7 @@ Item {
                 lastTranslationX = 0
                 lastTranslationY = 0
                 lastTranslationTime = Date.now()
-                sampledVelocityX = 0
-                sampledVelocityY = 0
+                root.dragSamples = []
                 dragged = false
                 suppressTap = false
                 return
@@ -316,8 +319,21 @@ Item {
             if (suppressTap)
                 suppressTapTimer.restart()
             if (dragged) {
-                root.velocityX = sampledVelocityX
-                root.velocityY = sampledVelocityY
+                var now = Date.now()
+                var cutoff = now - root.sampleWindowMs
+                var samples = root.dragSamples
+                while (samples.length > 0 && samples[0].t < cutoff)
+                    samples.shift()
+                if (samples.length >= 2) {
+                    var first = samples[0]
+                    var last = samples[samples.length - 1]
+                    var dt = Math.max(1, last.t - first.t)
+                    root.velocityX = (last.x - first.x) * 1000 / dt
+                    root.velocityY = (last.y - first.y) * 1000 / dt
+                } else {
+                    root.velocityX = 0
+                    root.velocityY = 0
+                }
                 root.startInertia()
             }
         }
@@ -327,7 +343,6 @@ Item {
                 return
 
             var now = Date.now()
-            var elapsed = Math.max(1, now - lastTranslationTime)
             lastTranslationX = translation.x
             lastTranslationY = translation.y
             lastTranslationTime = now
@@ -340,10 +355,10 @@ Item {
             var rawY = startY + translation.y
             var positionX = root.draggedPosition(rawX, minimumX, maximumX)
             var positionY = root.draggedPosition(rawY, minimumY, maximumY)
-            var sampledX = (positionX - root.x) * 1000 / elapsed
-            var sampledY = (positionY - root.y) * 1000 / elapsed
-            sampledVelocityX = sampledVelocityX * 0.65 + sampledX * 0.35
-            sampledVelocityY = sampledVelocityY * 0.65 + sampledY * 0.35
+            var samples = root.dragSamples
+            samples.push({ t: now, x: positionX, y: positionY })
+            if (samples.length > root.maxDragSamples)
+                samples.shift()
             root.x = positionX
             root.y = positionY
             dragged = dragged || Math.abs(translation.x) > 8 || Math.abs(translation.y) > 8

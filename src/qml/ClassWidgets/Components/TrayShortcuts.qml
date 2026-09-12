@@ -47,6 +47,14 @@ ColumnLayout {
 
             ToolTip { text: root.editMode ? qsTr("Done") : qsTr("Edit"); visible: parent.hovered }
         }
+        ToolButton {
+            flat: true
+            icon.name: "ic_fluent_chevron_right_20_regular"
+            visible: !root.editMode
+            enabled: UtilsBackend.shortcuts.length > 0
+            onClicked: allShortcutsDialog.open()
+            ToolTip { text: qsTr("All Shortcuts"); visible: parent.hovered }
+        }
     }
 
     EmptyState {
@@ -177,6 +185,62 @@ ColumnLayout {
     DelegateModel {
         id: visualShortcutModel
         model: UtilsBackend.shortcuts
+    }
+
+    Dialog {
+        id: allShortcutsDialog
+        title: qsTr("All Shortcuts")
+        modal: true
+        width: Math.min(root.panelWidth - 28, 420)
+        height: 460
+        standardButtons: Dialog.Close
+
+        GridView {
+            id: allShortcutsGrid
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            clip: true
+            cellWidth: allShortcutsGrid.width / 3
+            cellHeight: 84
+            model: UtilsBackend.allShortcuts
+
+            delegate: Item {
+                width: allShortcutsGrid.cellWidth - 6
+                height: allShortcutsGrid.cellHeight - 6
+
+                ColumnLayout {
+                    anchors.fill: parent
+                    Clip {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        radius: 6
+
+                        Icon {
+                            anchors.centerIn: parent
+                            name: modelData.iconIsSource ? "" : modelData.icon ? modelData.icon : "ic_fluent_open_20_regular"
+                            source: modelData.iconIsSource ? modelData.icon : ""
+                            size: 22
+                        }
+
+                        onClicked: {
+                            if (UtilsBackend.executeShortcut(modelData.id)) {
+                                allShortcutsDialog.close()
+                                root.shortcutTriggered()
+                            }
+                        }
+                    }
+                    Text {
+                        Layout.fillWidth: true
+                        horizontalAlignment: Text.AlignHCenter
+                        typography: Typography.Caption
+                        text: modelData.name
+                        elide: Text.ElideRight
+                    }
+                }
+            }
+
+            ScrollBar.vertical: ScrollBar { }
+        }
     }
 
     Dialog {

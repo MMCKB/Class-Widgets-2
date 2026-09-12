@@ -26,7 +26,7 @@ Licensed under the MIT license</source>
 MIT உரிமத்தின் கீழ் உரிமம் பெற்றது</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="91"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="92"/>
         <source>To view this repository</source>
         <translation>இந்தக் களஞ்சியத்தைப் பார்க்க</translation>
     </message>
@@ -39,37 +39,37 @@ MIT உரிமத்தின் கீழ் உரிமம் பெற்�
         <translation type="vanished">GitHub இல் சிக்கலை உருவாக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="129"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="130"/>
         <source>Dependencies &amp; references</source>
         <translation>சார்புகள் மற்றும் குறிப்புகள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="132"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="133"/>
         <source>Qt &amp; Qt Quick</source>
         <translation>கியுடி மற்றும் கியுடி விரைவு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="136"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="137"/>
         <source>Fluent Design System</source>
         <translation>சரளமான வடிவமைப்பு அமைப்பு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="140"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="141"/>
         <source>RinUI</source>
         <translation>ரினுய்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="144"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="145"/>
         <source>Loguru</source>
         <translation>உள்நுழையவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="148"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="149"/>
         <source>Pydantic</source>
         <translation>பிடான்டிக்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="154"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="155"/>
         <source>License</source>
         <translation>உரிமம்</translation>
     </message>
@@ -82,84 +82,88 @@ MIT உரிமத்தின் கீழ் உரிமம் பெற்�
         <translation type="vanished">GPL-3 உரிமம்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="115"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="116"/>
         <source>File a bug or request new feature</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="155"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="156"/>
         <source>This project is licensed under the MIT license</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="158"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="159"/>
         <source>MIT License</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="172"/>
         <source>Advances</source>
-        <translation>முன்னேற்றங்கள்</translation>
+        <translation type="vanished">முன்னேற்றங்கள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="178"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="173"/>
+        <source>Diagnostics &amp; maintenance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="179"/>
         <source>Log Storage Disabled</source>
         <translation>பதிவுச் சேமிப்பகம் முடக்கப்பட்டது</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="179"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="180"/>
         <source>When enabled, the app will &lt;b&gt;not&lt;/b&gt; save logs.</source>
         <translation>இயக்கப்பட்டால், பயன்பாடு பதிவுகளை &lt;b&gt;இல்லை&lt;/b&gt; சேமிக்கும்.</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="188"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="189"/>
         <source>Clear Logs</source>
         <translation>பதிவுகளை அழிக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="192"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="193"/>
         <source>Clear</source>
         <translation>தெளிவு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="197"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="198"/>
         <source>Cleared</source>
         <translation>அழிக்கப்பட்டது</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="198"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="199"/>
         <source>All logs have been cleared about </source>
         <translation>அனைத்து பதிவுகளும் அழிக்கப்பட்டன </translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="204"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="205"/>
         <source>Failed</source>
         <translation>தோல்வியடைந்தது</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="205"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="206"/>
         <source>Failed to clear logs.</source>
         <translation>பதிவுகளை அழிக்க முடியவில்லை.</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="218"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="219"/>
         <source>Debug Mode</source>
         <translation>பிழைத்திருத்த முறை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="219"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="220"/>
         <source>Enable Debug Mode to access core widget information, and debugging tools 
 * Requires restart</source>
         <translation>முக்கிய விட்செட் செய்தி மற்றும் பிழைத்திருத்த கருவிகளை அணுக பிழைத்திருத்த பயன்முறையை இயக்கவும் 
 * மறுதொடக்கம் தேவை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="235"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="236"/>
         <source>Show Tutorials again</source>
         <translation>டுடோரியல்களை மீண்டும் காட்டு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="238"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="239"/>
         <source>Restart</source>
         <translation>மறுதொடக்கம்</translation>
     </message>
@@ -194,12 +198,12 @@ MIT உரிமத்தின் கீழ் உரிமம் பெற்�
         <translation>விட்செட்களைச் சேர்க்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/dialogs/AddWidgetsDialog.qml" line="110"/>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/AddWidgetsDialog.qml" line="141"/>
         <source>No Widget Selected</source>
         <translation>விட்செட் எதுவும் தேர்ந்தெடுக்கப்படவில்லை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/dialogs/AddWidgetsDialog.qml" line="176"/>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/AddWidgetsDialog.qml" line="220"/>
         <source>Add</source>
         <translation>கூட்டு</translation>
     </message>
@@ -244,598 +248,6 @@ MIT உரிமத்தின் கீழ் உரிமம் பெற்�
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/tutorial/Appearance.qml" line="99"/>
         <source>Set how rounded widget corners appear</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Automation</name>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="8"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="55"/>
-        <source>自动化</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="62"/>
-        <source>自动化配置文件保存在本机，默认未启用。每个配置文件可以包含多条“当……时，执行……”规则；运行程序动作只会启动你明确配置的本地可执行文件和参数。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="484"/>
-        <source>测试通知不会执行程序动作。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="142"/>
-        <source>自动化配置文件</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="143"/>
-        <source>可创建多个相互独立的配置文件；新建文件默认关闭。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="171"/>
-        <source>新建</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="173"/>
-        <source>新自动化配置</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="179"/>
-        <source>删除</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="192"/>
-        <source>尚未创建自动化配置文件。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="201"/>
-        <source>自动化配置</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="202"/>
-        <source>关闭配置文件后，文件中的全部规则均不会执行。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="210"/>
-        <source>启用此自动化配置文件</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="218"/>
-        <source>配置文件名称</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="338"/>
-        <source>秒</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="231"/>
-        <source>自动化规则</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="69"/>
-        <source>插件自动化项目</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="70"/>
-        <source>由已启用插件提供；是否启用由你单独控制。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="114"/>
-        <source>插件：%1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="122"/>
-        <source>设置</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="127"/>
-        <source>启用</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="232"/>
-        <source>每条规则均可单独关闭，可配置多个触发条件对应的动作。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="239"/>
-        <source>添加自动化</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="271"/>
-        <source>自动化名称</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="281"/>
-        <source>删除规则</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="290"/>
-        <source>当</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="311"/>
-        <source>进程名，例如 PowerPoint.exe</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="324"/>
-        <source>冷却时间</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="345"/>
-        <source>执行以下动作：</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="350"/>
-        <source>添加动作</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="385"/>
-        <source>删除动作</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="396"/>
-        <source>提醒标题</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="409"/>
-        <source>提醒内容</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="428"/>
-        <source>显示时长</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="442"/>
-        <source>毫秒</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="450"/>
-        <source>要运行的程序路径</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="463"/>
-        <source>程序参数；支持带引号的路径</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="483"/>
-        <source>状态与测试</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="498"/>
-        <source>发送测试提醒</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="500"/>
-        <source>自动化测试</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Automation.qml" line="500"/>
-        <source>这是一条自动化测试通知。</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>AutomationProfilesService</name>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="216"/>
-        <source>尚未启动自动化服务</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="218"/>
-        <source>自动化</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="247"/>
-        <source>应用启动时</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="248"/>
-        <source>应用退出时</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="249"/>
-        <source>进程启动时</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="250"/>
-        <source>进程运行时</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="251"/>
-        <source>进程退出时</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="252"/>
-        <source>上课时</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="253"/>
-        <source>课间时</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="254"/>
-        <source>放学时</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="255"/>
-        <source>中午放学时</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="262"/>
-        <source>显示提醒</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="263"/>
-        <source>运行程序</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="276"/>
-        <source>自动化服务已启动；默认配置文件均为关闭状态</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="284"/>
-        <source>自动化服务已停止</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="297"/>
-        <source>已创建自动化配置文件“{0}”；默认未启用</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="306"/>
-        <source>已删除自动化配置文件“{0}”</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="316"/>
-        <source>已{0}自动化配置文件“{1}”</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="317"/>
-        <location filename="../../src/core/automations/user_profiles.py" line="587"/>
-        <source>启用</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="317"/>
-        <location filename="../../src/core/automations/user_profiles.py" line="587"/>
-        <source>停用</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="329"/>
-        <source>已保存自动化配置文件“{0}”</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="336"/>
-        <source>新自动化</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="381"/>
-        <source>自动化规则无效：{0}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="433"/>
-        <source>自动化动作无效：{0}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="586"/>
-        <source>已{0}插件自动化项目“{1}”</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="603"/>
-        <source>无法打开插件自动化项目设置</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="610"/>
-        <source>自动化测试</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="611"/>
-        <source>这是一条自动化测试通知。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="737"/>
-        <location filename="../../src/core/automations/user_profiles.py" line="751"/>
-        <source>进程正在运行</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="749"/>
-        <source>进程启动</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="753"/>
-        <source>进程退出</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/automations/user_profiles.py" line="796"/>
-        <source>已执行自动化“{0}”（{1}；{2} 个动作）</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CentralControl</name>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="9"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="17"/>
-        <source>集控</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="23"/>
-        <source>集控地址</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="24"/>
-        <source>填写 GitHub Pages 上的集控清单地址（manifest.json）；留空时不会拉取任何集控内容。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="41"/>
-        <source>拉取方式</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="42"/>
-        <source>手动模式仅在点击检查按钮时拉取；自动模式会在启动后和指定间隔自动拉取。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="50"/>
-        <source>自动拉取集控内容</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="62"/>
-        <source>检查间隔</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="80"/>
-        <source>分钟</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="92"/>
-        <source>远程电源命令</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="100"/>
-        <source>允许接收远程电源命令</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="110"/>
-        <source>接收集控内容</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="127"/>
-        <source>已自动切换的集控课程表：%1（策略版本：%2）</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="195"/>
-        <source>检查并同步集控内容</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="136"/>
-        <source>本次已处理 %1 条一次性公告命令。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="93"/>
-        <source>仅在本机明确启用后，才接受集控下发的重启、关机、休眠或睡眠命令；拉取到有效命令后会立即执行。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="111"/>
-        <source>下载并校验多个课程表；仅恰好一份课表声明 yes.id=1 时自动切换，否则只保存为可选项。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="142"/>
-        <source>已同步的集控课程表</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="170"/>
-        <source>标识：%1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="177"/>
-        <source>应用</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="187"/>
-        <source>yes.id 匹配结果：%1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/CentralControl.qml" line="194"/>
-        <source>正在检查…</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CentralControlScheduleService</name>
-    <message>
-        <location filename="../../src/core/central_control.py" line="78"/>
-        <source>尚未检查集控内容</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central_control.py" line="88"/>
-        <source>集控公告</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central_control.py" line="175"/>
-        <source>未找到可应用的集控课程表</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central_control.py" line="179"/>
-        <source>无法切换到集控课程表“{0}”</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central_control.py" line="182"/>
-        <source>已手动切换到集控课程表“{0}”</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central_control.py" line="193"/>
-        <source>请先填写集控地址</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central_control.py" line="196"/>
-        <source>集控地址必须以 http:// 或 https:// 开头</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central_control.py" line="201"/>
-        <source>正在检查集控内容…</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central_control.py" line="217"/>
-        <source>集控内容接收失败：{0}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central_control.py" line="227"/>
-        <source>集控内容应用失败：{0}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central_control.py" line="235"/>
-        <source>已同步 {0} 份集控课程表，并按唯一 yes.id=1 参数切换到“{1}”（策略版本：{2}）</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central_control.py" line="246"/>
-        <source>；已执行集控{0}命令</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central_control.py" line="443"/>
-        <source>没有课表声明 yes.id=1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central_control.py" line="448"/>
-        <source>有 {0} 份课表声明 yes.id=1，已拒绝自动切换</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central_control.py" line="457"/>
-        <source>唯一课表声明 yes.id=1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central_control.py" line="563"/>
-        <source>重启</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central_control.py" line="564"/>
-        <source>关机</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central_control.py" line="565"/>
-        <source>休眠</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central_control.py" line="566"/>
-        <source>睡眠</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central_control.py" line="567"/>
-        <source>电源</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central_control.py" line="240"/>
-        <source>已同步 {0} 份集控课程表；当前课程表未自动切换（策略版本：{1}；{2}）</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/central_control.py" line="244"/>
-        <source>；已处理 {0} 条公告命令</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1004,7 +416,7 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>Configs</name>
     <message>
-        <location filename="../../src/core/config/model.py" line="245"/>
+        <location filename="../../src/core/config/model.py" line="230"/>
         <source>New Schedule 1</source>
         <translation>புதிய அட்டவணை 1</translation>
     </message>
@@ -1012,259 +424,220 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>Dashboard</name>
     <message>
-        <location filename="../../src/qml/Debugger/contents/Dashboard.qml" line="21"/>
-        <source>仪表盘</source>
+        <location filename="../../src/qml/Debugger/contents/Dashboard.qml" line="39"/>
+        <source>Search logs...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/Debugger/contents/Dashboard.qml" line="173"/>
-        <source>运行时变量</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Dashboard.qml" line="185"/>
-        <source>重新加载课程表文件</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Dashboard.qml" line="192"/>
-        <source>课程表运行时</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Dashboard.qml" line="200"/>
-        <source>当前时间</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Dashboard.qml" line="201"/>
-        <source>当前日期</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Dashboard.qml" line="202"/>
-        <source>当前星期</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Dashboard.qml" line="203"/>
-        <source>当前周数</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Dashboard.qml" line="204"/>
-        <source>周期周数</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Dashboard.qml" line="205"/>
-        <source>课表元数据</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Dashboard.qml" line="206"/>
-        <source>当天条目</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Dashboard.qml" line="207"/>
-        <source>当前条目</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Dashboard.qml" line="208"/>
-        <source>后续条目</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Dashboard.qml" line="209"/>
-        <source>剩余时间</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Dashboard.qml" line="210"/>
-        <source>当前状态</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Dashboard.qml" line="211"/>
-        <source>当前学科</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Dashboard.qml" line="212"/>
-        <source>当前标题</source>
+        <location filename="../../src/qml/Debugger/contents/Dashboard.qml" line="178"/>
+        <source>No logs match filter</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>DayEditor</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="10"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="11"/>
         <source>Edit Timeline</source>
         <translation>காலவரிசையைத் திருத்தவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="10"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="11"/>
         <source>New Timeline</source>
         <translation>புதிய காலவரிசை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="31"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="23"/>
+        <source>Week {value} of every %1 weeks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="26"/>
+        <source>Week {value}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="36"/>
+        <source>1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="36"/>
+        <source>2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="37"/>
+        <source>%1</source>
+        <translation type="unfinished">% 1</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="76"/>
         <source>(auto)</source>
         <translation>(தானாக)</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="96"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="142"/>
         <source>By Week</source>
         <translation>வாரத்தின்படி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="97"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="143"/>
         <source>By Date</source>
         <translation>தேதியின்படி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="101"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="147"/>
         <source>ID</source>
         <translation>ஐடி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="108"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="154"/>
         <source>Date</source>
         <translation>திகதி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="123"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="171"/>
         <source>Days of Week</source>
         <translation>வாரத்தின் நாட்கள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="130"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="178"/>
         <source>Mon</source>
         <translation>தி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="130"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="178"/>
         <source>Tue</source>
         <translation>செவ்வாய்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="130"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="178"/>
         <source>Wed</source>
         <translation>அறிவன்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="131"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="179"/>
         <source>Thu</source>
         <translation>வியாழன்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="131"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="179"/>
         <source>Fri</source>
         <translation>வெள்ளி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="131"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="179"/>
         <source>Sat</source>
         <translation>காரி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="131"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="179"/>
         <source>Sun</source>
         <translation>சூரியன்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="147"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="192"/>
+        <source>Week</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="197"/>
         <source>Every Week</source>
         <translation>ஒவ்வொரு வாரமும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="148"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="198"/>
+        <source>Repeat on a Cycle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="199"/>
+        <source>One Specific Week</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Specific Round</source>
-        <translation>குறிப்பிட்ட சுற்று</translation>
+        <translation type="vanished">குறிப்பிட்ட சுற்று</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="149"/>
         <source>Custom</source>
-        <translation>தனிப்பயன்</translation>
+        <translation type="vanished">தனிப்பயன்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="155"/>
         <source>Week of Cycle</source>
-        <translation>சுழற்சியின் வாரம்</translation>
+        <translation type="vanished">சுழற்சியின் வாரம்</translation>
     </message>
 </context>
 <context>
     <name>DayListView</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="24"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="48"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="26"/>
         <source>%1</source>
         <translation>% 1</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="32"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="34"/>
         <source>Weekdays</source>
         <translation>வார நாட்கள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="34"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="36"/>
         <source>Weekends</source>
         <translation>வார இறுதி நாட்கள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="41"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="43"/>
         <source>Unknown</source>
         <translation>தெரியவில்லை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="52"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="55"/>
         <source>Every Week</source>
         <translation>ஒவ்வொரு வாரமும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="53"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="56"/>
         <source>week %1 of the cycle</source>
         <translation>சுழற்சியின் வாரம்% 1</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="54"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="57"/>
         <source>Weeks %1</source>
         <translation>வாரங்கள்% 1</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="76"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="79"/>
         <source>Mon</source>
         <translation>தி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="76"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="79"/>
         <source>Tue</source>
         <translation>செவ்வாய்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="76"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="79"/>
         <source>Wed</source>
         <translation>அறிவன்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="77"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="80"/>
         <source>Thu</source>
         <translation>வியாழன்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="77"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="80"/>
         <source>Fri</source>
         <translation>வெள்ளி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="77"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="80"/>
         <source>Sat</source>
         <translation>காரி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="77"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="80"/>
         <source>Sun</source>
         <translation>சூரியன்</translation>
     </message>
@@ -1325,32 +698,32 @@ Do you want to continue using them, or discard and restore the original schedule
         <translation type="vanished">செய்கைப்பாடு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="101"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="104"/>
         <source>No timelines yet</source>
         <translation>இதுவரை காலக்கெடு இல்லை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="107"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="110"/>
         <source>No timelines yet. Click &quot;New Timeline&quot; to get started.</source>
         <translation>இதுவரை காலக்கெடு இல்லை. தொடங்குவதற்கு &quot;புதிய காலவரிசை&quot; என்பதைக் சொடுக்கு செய்யவும்.</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="153"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="156"/>
         <source>Edit</source>
         <translation>தொகு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="158"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="161"/>
         <source>Remove</source>
         <translation>அகற்று</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="183"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="186"/>
         <source>New Timeline</source>
         <translation>புதிய காலவரிசை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="187"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="190"/>
         <source>Duplicate</source>
         <translation>நகல்</translation>
     </message>
@@ -1358,229 +731,121 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>Downloads</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="30"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="31"/>
         <source>Link copied</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="38"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="39"/>
         <source>%1 B</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="40"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="41"/>
         <source>%1 KB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="41"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="42"/>
         <source>%1 MB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="45"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="46"/>
         <source>%1/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="97"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="108"/>
         <source>Paused</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="99"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="110"/>
         <source>Installing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="102"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="112"/>
+        <source>Downloaded. Restart to apply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="115"/>
         <source>Downloaded: %1 / %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="109"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="122"/>
         <source>Downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="129"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="142"/>
         <source>Updates and downloads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="139"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="152"/>
         <source>Check for updates</source>
         <translation type="unfinished">புதுப்பிப்புகளை சரிபார்க்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="178"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="192"/>
         <source>Resume</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="178"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="192"/>
         <source>Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="202"/>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="250"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="222"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="271"/>
         <source>Unknown author</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="204"/>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="255"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="224"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="278"/>
         <source>v%1 -&gt; v%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="207"/>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="262"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="228"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="288"/>
         <source>Update</source>
         <translation type="unfinished">புதுப்பிப்பு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="235"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="256"/>
         <source>Installed Plugin Plaza plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="253"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="274"/>
+        <source>Update downloaded. Restart to apply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="276"/>
         <source>Update check unavailable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="256"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="279"/>
         <source>Updated at %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="256"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="279"/>
         <source>Unknown</source>
         <translation type="unfinished">தெரியவில்லை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="275"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="306"/>
         <source>No installed Plugin Plaza plugins</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>EditSchedule</name>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="10"/>
-        <source>ClassWidgets 调试器</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="49"/>
-        <source>编辑课程表</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="53"/>
-        <source>课表元数据</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="64"/>
-        <source>版本</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="71"/>
-        <source>最大周循环长度</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="79"/>
-        <source>开始日期</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="90"/>
-        <source>课程表</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="93"/>
-        <source>添加日期</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="116"/>
-        <source>添加</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="176"/>
-        <source>课程</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="177"/>
-        <source>课间</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="178"/>
-        <source>活动</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="179"/>
-        <source>空闲</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="180"/>
-        <source>准备</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="186"/>
-        <source>星期一</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="186"/>
-        <source>星期二</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="186"/>
-        <source>星期三</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="186"/>
-        <source>星期四</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="186"/>
-        <source>星期五</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="186"/>
-        <source>星期六</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="186"/>
-        <source>星期日</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="208"/>
-        <source>未知</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/EditSchedule.qml" line="224"/>
-        <source>保存</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1679,42 +944,42 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>EntryDelegate</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="54"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="51"/>
         <source>Remove</source>
         <translation>அகற்று</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="213"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="234"/>
         <source>Class</source>
         <translation>வகுப்பு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="214"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="235"/>
         <source>Break</source>
         <translation>இடைவேளை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="215"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="236"/>
         <source>Activity</source>
         <translation>செய்கைப்பாடு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="216"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="237"/>
         <source>Unknown Type</source>
         <translation>தெரியாத வகை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="224"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="245"/>
         <source> minutes</source>
         <translation> நிமிடங்கள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="252"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="273"/>
         <source>Invalid Time Range</source>
         <translation>தவறான நேர வரம்பு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="253"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="274"/>
         <source>End time must be later than start time.</source>
         <translation>தொடக்க நேரத்தை விட முடிவு நேரம் தாமதமாக இருக்க வேண்டும்.</translation>
     </message>
@@ -1722,12 +987,12 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>EntryDetailView</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="82"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="79"/>
         <source>Invalid Time Range</source>
         <translation>தவறான நேர வரம்பு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="83"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="80"/>
         <source>End time must be later than start time.</source>
         <translation>தொடக்க நேரத்தை விட முடிவு நேரம் தாமதமாக இருக்க வேண்டும்.</translation>
     </message>
@@ -1736,20 +1001,20 @@ Do you want to continue using them, or discard and restore the original schedule
         <translation type="vanished">திருத்தவும் </translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="156"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="249"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="147"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="238"/>
         <source>Class</source>
         <translation>வகுப்பு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="162"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="251"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="153"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="240"/>
         <source>Break</source>
         <translation>இடைவேளை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="168"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="253"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="159"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="242"/>
         <source>Activity</source>
         <translation>செய்கைப்பாடு</translation>
     </message>
@@ -1758,52 +1023,52 @@ Do you want to continue using them, or discard and restore the original schedule
         <translation type="vanished">தெரியாத வகை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="175"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="166"/>
         <source>ID</source>
         <translation>ஐடி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="186"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="177"/>
         <source>Default Subject</source>
         <translation>இயல்புநிலை பொருள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="192"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="183"/>
         <source>Select Subject</source>
         <translation>பாடத்தைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="221"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="212"/>
         <source>Set Subject</source>
         <translation>பொருள் அமைக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="238"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="228"/>
         <source>Title</source>
         <translation>தலைப்பு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="255"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="244"/>
         <source>Type a title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="263"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="252"/>
         <source>Start Time</source>
         <translation>தொடக்க நேரம்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="276"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="264"/>
         <source>End Time</source>
         <translation>முடிவு நேரம்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="299"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="286"/>
         <source>OK</source>
         <translation type="unfinished">சரி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="305"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="295"/>
         <source>Remove</source>
         <translation>அகற்று</translation>
     </message>
@@ -1811,55 +1076,55 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>EntryListView</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="102"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="106"/>
         <source> PM</source>
         <translation> பி.எம்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="104"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="108"/>
         <source> AM</source>
         <translation> AM</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="177"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="187"/>
         <source>New Schedule</source>
         <translation>புதிய அட்டவணை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="153"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="182"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="163"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="192"/>
         <source>Class</source>
         <translation>வகுப்பு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="46"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="49"/>
         <source>No timeline selected</source>
         <translation>காலவரிசை எதுவும் தேர்ந்தெடுக்கப்படவில்லை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="52"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="55"/>
         <source>Please select a timeline first to add a new schedule.</source>
         <translation>புதிய அட்டவணையைச் சேர்க்க, முதலில் காலவரிசையைத் தேர்ந்தெடுக்கவும்.</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="161"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="188"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="171"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="198"/>
         <source>Break</source>
         <translation>இடைவேளை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="169"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="194"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="179"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="204"/>
         <source>Activity</source>
         <translation>செய்கைப்பாடு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="299"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="309"/>
         <source>Conflict with existing schedule</source>
         <translation>ஏற்கனவே உள்ள அட்டவணையுடன் முரண்பாடு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="301"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="311"/>
         <source>This time overlaps with an existing schedule (%1 – %2)</source>
         <translation>இந்த நேரம் ஏற்கனவே உள்ள அட்டவணையுடன் மேலெழுகிறது (% 1 - %2)</translation>
     </message>
@@ -1874,48 +1139,6 @@ Do you want to continue using them, or discard and restore the original schedule
     <message>
         <location filename="../../src/qml/ClassWidgets/Components/plaza/ErrorState.qml" line="10"/>
         <source>Retry</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ExamMode</name>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/ExamMode.qml" line="17"/>
-        <source>考试模式</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/ExamMode.qml" line="55"/>
-        <source> 年 </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/ExamMode.qml" line="56"/>
-        <source> 月 </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/ExamMode.qml" line="57"/>
-        <source> 日</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/ExamMode.qml" line="69"/>
-        <source>退出考试模式</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ExamModeService</name>
-    <message>
-        <location filename="../../src/core/exam_mode.py" line="32"/>
-        <location filename="../../src/core/exam_mode.py" line="60"/>
-        <source>考试模式</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/exam_mode.py" line="61"/>
-        <source>正在进入考试模式…</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1985,24 +1208,34 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>FloatingWidget</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Theme/components/FloatingWidget.qml" line="108"/>
+        <location filename="../../src/qml/ClassWidgets/Theme/components/FloatingWidget.qml" line="160"/>
         <source>Class</source>
         <translation type="unfinished">வகுப்பு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Theme/components/FloatingWidget.qml" line="110"/>
+        <location filename="../../src/qml/ClassWidgets/Theme/components/FloatingWidget.qml" line="162"/>
         <source>Activity</source>
         <translation type="unfinished">செய்கைப்பாடு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Theme/components/FloatingWidget.qml" line="112"/>
+        <location filename="../../src/qml/ClassWidgets/Theme/components/FloatingWidget.qml" line="164"/>
         <source>Take a break</source>
         <translation type="unfinished">ஓய்வு எடுங்கள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Theme/components/FloatingWidget.qml" line="113"/>
+        <location filename="../../src/qml/ClassWidgets/Theme/components/FloatingWidget.qml" line="165"/>
         <source>Nothing right now</source>
         <translation type="unfinished">இப்போது எதுவும் இல்லை</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Theme/components/FloatingWidget.qml" line="179"/>
+        <source>&lt; </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Theme/components/FloatingWidget.qml" line="190"/>
+        <source> min</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2240,6 +1473,10 @@ Do you want to continue using them, or discard and restore the original schedule
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Home.qml" line="326"/>
+        <source>Set up your schedule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Home.qml" line="329"/>
         <source>Open schedule editor</source>
         <translation type="unfinished"></translation>
@@ -2304,285 +1541,241 @@ Do you want to continue using them, or discard and restore the original schedule
         <translation>பொது</translation>
     </message>
     <message>
-        <source>Time</source>
-        <translation type="obsolete">நேரம்</translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="19"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="18"/>
         <source>Locale</source>
         <translation>மொழி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="24"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="23"/>
         <source>Translation notice / 翻译提示</source>
         <translation>மொழிபெயர்ப்பு அறிவிப்பு / மொழிபெயர்ப்பு குறிப்புகள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="25"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="24"/>
         <source>Some translations may be auto-generated and could be inaccurate. Help us improve them on &lt;a href=&apos;https://hosted.weblate.org/projects/class-widgets/cw2/&apos;&gt;Weblate&lt;/a&gt;. &lt;br&gt;部分翻译可能由自动翻译生成，存在不准确之处。欢迎在 &lt;a href=&apos;https://hosted.weblate.org/projects/class-widgets/cw2/&apos;&gt;Weblate&lt;/a&gt; 上参与改进</source>
         <translation>சில மொழிபெயர்ப்புகள் தானாக உருவாக்கப்படலாம் மற்றும் துல்லியமற்றதாக இருக்கலாம். &lt;a href=&apos;https://hosted.weblate.org/projects/class-widgets/cw2/&apos;&gt;Weblate&lt;/a&gt; இல் அவற்றை மேம்படுத்த எங்களுக்கு உதவுங்கள். &lt;br&gt;சில மொழிபெயர்ப்புகள் தானாக உருவாக்கப்படலாம் மற்றும் துல்லியமற்றதாக இருக்கலாம். &lt;a href=&apos;https://hosted.weblate.org/projects/class-widgets/cw2/&apos;&gt;Weblate&lt;/a&gt; இல் மேம்பாடுகளுக்கு பங்களிக்க தயங்க வேண்டாம்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="34"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="33"/>
         <source>Language</source>
         <translation>மொழி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="35"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="34"/>
         <source>Set the language of Class Widgets</source>
         <translation>வகுப்பு விட்செட்களின் மொழியை அமைக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="43"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="42"/>
         <source>Use System Language</source>
         <translation>கணினி மொழியைப் பயன்படுத்தவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="69"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="68"/>
         <source>Customize</source>
         <translation>தனிப்பயனாக்கு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="74"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="73"/>
         <source>App Theme</source>
         <translation>பயன்பாட்டு கருப்பொருள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="75"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="74"/>
         <source>Select which app theme to display</source>
         <translation>எந்த ஆப்ச் கருப்பொருள் காட்ட வேண்டும் என்பதைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="82"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="81"/>
         <source>Light</source>
         <translation>ஒளி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="83"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="82"/>
         <source>Dark</source>
         <translation>இருள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="84"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="83"/>
         <source>Use system setting</source>
         <translation>கணினி அமைப்பைப் பயன்படுத்தவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="96"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="95"/>
         <source>Window Layer</source>
         <translation>சாளர அடுக்கு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="97"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="96"/>
         <source>Let your widgets floating on top, or tuck them neatly behind other windows</source>
         <translation>உங்கள் விட்செட்டுகளை மேலே மிதக்க அனுமதிக்கவும் அல்லது மற்ற சன்னல்களுக்குப் பின்னால் அவற்றை நேர்த்தியாக ஒட்டவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="102"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="101"/>
         <source>Pin on Top</source>
         <translation>மேலே பின்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="105"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="104"/>
         <source>Send to Back</source>
         <translation>பின்னுக்கு அனுப்பு</translation>
     </message>
     <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="124"/>
+        <source>Countdown Precision</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="125"/>
+        <source>Choose how precisely the remaining time is displayed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="132"/>
+        <source>To the Second</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="133"/>
+        <source>To the Minute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="155"/>
         <source>Mini Mode</source>
         <translation>மினி பயன்முறை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="126"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="156"/>
         <source>Use a more compact layout for smaller widgets</source>
         <translation>சிறிய விட்செட்டுகளுக்கு மிகவும் கச்சிதமான அமைப்பைப் பயன்படுத்தவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="145"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="175"/>
         <source>Actions</source>
         <translation>செயல்கள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="150"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="180"/>
         <source>Run at Startup</source>
         <translation>தொடக்கத்தில் இயக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="151"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="181"/>
         <source>Run Class Widgets on startup</source>
         <translation>தொடக்கத்தில் வகுப்பு விட்செட்களை இயக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="173"/>
-        <source>启动动画</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="174"/>
-        <source>启动 Class Widgets 时，在屏幕中央显示紧凑的动画</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="192"/>
-        <source>启动动画媒体</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="193"/>
-        <source>选择本地图片，或不超过 10 秒的视频</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="208"/>
-        <source>未选择本地媒体</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="214"/>
-        <source>选择媒体</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="222"/>
-        <source>清除</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="246"/>
-        <source>强制播放完视频</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="247"/>
-        <source>开启后会忽略默认展示时长，直到所选视频播放结束。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="263"/>
-        <source>显示 ClassWidgets 信息</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="265"/>
-        <source>在自定义启动媒体上显示图标、软件名称和版本信息</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="266"/>
-        <source>未选择本地图片或视频时，始终显示此信息</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="283"/>
-        <source>预览启动动画</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="284"/>
-        <source>弹出独立的启动动画预览窗口；不会隐藏、暂停或重新加载当前小组件。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="288"/>
-        <source>正在预览…</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="288"/>
-        <source>预览</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation type="obsolete">தெளிவு</translation>
     </message>
 </context>
 <context>
     <name>Interactions</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="10"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="11"/>
         <source>Interactions &amp; Actions</source>
         <translation>தொடர்புகள் மற்றும் செயல்கள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="18"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="22"/>
         <source>Widgets</source>
         <translation>நிரல்பலகை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="23"/>
-        <source>Hover fade</source>
-        <translation>மறைந்துவிடும்</translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="66"/>
-        <source>Tap to hide</source>
-        <translation>மறைக்க தட்டவும்</translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="24"/>
-        <source>Hover to make the widget transparent and let clicks go through, move away to bring it back</source>
-        <translation>விட்செட்டை வெளிப்படையானதாக மாற்ற வட்டமிடவும் மற்றும் கிளிக்குகள் செல்ல அனுமதிக்கவும், அதை மீண்டும் கொண்டு வர நகர்த்தவும்</translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="67"/>
-        <source>Click on the widget to hide it, click it again to bring it back</source>
-        <translation>அதை மறைக்க விட்செட்டை சொடுக்கு செய்யவும், அதை மீண்டும் கொண்டு வர மீண்டும் சொடுக்கு செய்யவும்</translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="80"/>
-        <source>More hide behavior</source>
-        <translation>மேலும் மறை நடத்தை</translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="82"/>
-        <source>Choose whether widgets hide or switch to Mini Mode when triggered</source>
-        <translation>தூண்டப்படும்போது விட்செட்டுகள் மறைக்க வேண்டுமா அல்லது மினி பயன்முறைக்கு மாற வேண்டுமா என்பதைத் தேர்வுசெய்யவும்</translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="48"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="88"/>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="93"/>
-        <source>Hide Widgets</source>
-        <translation>விட்செட்களை மறை</translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="40"/>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="85"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="28"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="29"/>
         <source>Tap Action</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="41"/>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="86"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="96"/>
+        <source>Hover fade</source>
+        <translation>மறைந்துவிடும்</translation>
+    </message>
+    <message>
+        <source>Tap to hide</source>
+        <translation type="vanished">மறைக்க தட்டவும்</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="97"/>
+        <source>Hover to make the widget transparent and let clicks go through, move away to bring it back</source>
+        <translation>விட்செட்டை வெளிப்படையானதாக மாற்ற வட்டமிடவும் மற்றும் கிளிக்குகள் செல்ல அனுமதிக்கவும், அதை மீண்டும் கொண்டு வர நகர்த்தவும்</translation>
+    </message>
+    <message>
+        <source>Click on the widget to hide it, click it again to bring it back</source>
+        <translation type="vanished">அதை மறைக்க விட்செட்டை சொடுக்கு செய்யவும், அதை மீண்டும் கொண்டு வர மீண்டும் சொடுக்கு செய்யவும்</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="29"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="30"/>
         <source>Choose whether tapping a widget hides it, switches to mini mode, or opens a floating widget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="49"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="89"/>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="94"/>
-        <source>Switch to mini mode</source>
-        <translation>மினி பயன்முறைக்கு மாறவும்</translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="50"/>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="95"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="62"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="62"/>
         <source>Floating Widget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="106"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="116"/>
+        <source>Automations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="111"/>
+        <source>More hide behavior</source>
+        <translation>மேலும் மறை நடத்தை</translation>
+    </message>
+    <message>
+        <source>Choose whether widgets hide or switch to Mini Mode when triggered</source>
+        <translation type="vanished">தூண்டப்படும்போது விட்செட்டுகள் மறைக்க வேண்டுமா அல்லது மினி பயன்முறைக்கு மாற வேண்டுமா என்பதைத் தேர்வுசெய்யவும்</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="112"/>
+        <source>Choose whether widgets hide, switch to Mini Mode, or open a floating widget when triggered</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="121"/>
+        <source>Automatic hide behavior</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="123"/>
+        <source>Choose what happens when an automatic hide rule is triggered</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="129"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="117"/>
+        <source>Hide Widgets</source>
+        <translation>விட்செட்களை மறை</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="130"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="118"/>
+        <source>Switch to mini mode</source>
+        <translation>மினி பயன்முறைக்கு மாறவும்</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="131"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="119"/>
+        <source>Floating widget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="145"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="132"/>
         <source>Hide when in class</source>
         <translation>வகுப்பில் இருக்கும்போது மறைக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="113"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="152"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="139"/>
         <source>Hide when a window is maximized</source>
         <translation>ஒரு சாளரம் பெரிதாக்கப்படும் போது மறை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="120"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="159"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="146"/>
         <source>Hide when a window enters fullscreen</source>
         <translation>ஒரு சாளரம் முழுத்திரையில் நுழையும் போது மறை</translation>
     </message>
@@ -2597,42 +1790,24 @@ Do you want to continue using them, or discard and restore the original schedule
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="29"/>
-        <source>Hide Behavior</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="30"/>
-        <source>Choose whether widgets disappear or become compact</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="45"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="52"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="52"/>
         <source>Hide</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="50"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="57"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="57"/>
         <source>Mini Mode</source>
         <translation type="unfinished">மினி பயன்முறை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="111"/>
-        <source>Tap to Hide</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="112"/>
-        <source>Click on a widget to hide it, click it again to bring it back</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="124"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="97"/>
         <source>Hover Fade</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="125"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="98"/>
         <source>Hover to make widgets transparent and let clicks pass through</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2661,153 +1836,129 @@ Do you want to continue using them, or discard and restore the original schedule
     </message>
 </context>
 <context>
-    <name>MainWindow</name>
-    <message>
-        <location filename="../../src/qml/Debugger/MainWindow.qml" line="9"/>
-        <location filename="../../src/qml/Debugger/MainWindow.qml" line="46"/>
-        <source>ClassWidgets 调试器</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/MainWindow.qml" line="53"/>
-        <source>当前时间：</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/MainWindow.qml" line="62"/>
-        <source>当前日期：</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/MainWindow.qml" line="63"/>
-        <source>（时间信息来自 ClassWidgets → AppCentral.scheduleRuntime）</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>Notification</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="13"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="14"/>
         <source>Notification</source>
         <translation>அறிவிப்பு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="20"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="21"/>
         <source>General</source>
         <translation>பொது</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="27"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="358"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="28"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="369"/>
         <source>Enable notifications</source>
         <translation>அறிவிப்புகளை இயக்கு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="28"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="29"/>
         <source>Turn on or off all notifications from the application</source>
         <translation>பயன்பாட்டிலிருந்து அனைத்து அறிவிப்புகளையும் இயக்கவும் அல்லது முடக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="39"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="44"/>
         <source>Ringtone</source>
         <translation>ரிங்டோன்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="40"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="45"/>
         <source>Configure sounds for different types of notifications</source>
         <translation>பல்வேறு வகையான அறிவிப்புகளுக்கு ஒலிகளை உள்ளமைக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="55"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="60"/>
         <source>Information</source>
         <translation>தகவல்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="56"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="61"/>
         <source>Notification sounds for general information</source>
         <translation>பொதுவான தகவலுக்கான அறிவிப்பு ஒலிகள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="65"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="104"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="143"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="182"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="70"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="110"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="150"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="190"/>
         <source>Default sound</source>
         <translation>இயல்பு ஒலி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="78"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="116"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="155"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="194"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="84"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="123"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="163"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="203"/>
         <source>Play sound</source>
         <translation>ஒலியை இயக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="85"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="124"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="163"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="202"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="91"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="131"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="171"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="211"/>
         <source>Select sound</source>
         <translation>ஒலியைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="94"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="100"/>
         <source>Announcement</source>
         <translation>அறிவிப்பு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="95"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="101"/>
         <source>Notification sounds for class and break announcements</source>
         <translation>வகுப்பு மற்றும் இடைவேளை அறிவிப்புகளுக்கான அறிவிப்பு ஒலிகள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="133"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="140"/>
         <source>Warning</source>
         <translation>எச்சரிக்கை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="134"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="141"/>
         <source>Notification sounds for warnings and important alerts</source>
         <translation>எச்சரிக்கைகள் மற்றும் முக்கியமான விழிப்பூட்டல்களுக்கான அறிவிப்பு ஒலிகள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="172"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="180"/>
         <source>System</source>
         <translation>மண்டலம்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="173"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="181"/>
         <source>Notification sounds for system messages and updates</source>
         <translation>கணினி செய்திகள் மற்றும் புதுப்பிப்புகளுக்கான அறிவிப்பு ஒலிகள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="213"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="223"/>
         <source>Default duration (ms)</source>
         <translation>இயல்பு கால அளவு (மிவி)</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="214"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="224"/>
         <source>Customize the notification duration (ms)</source>
         <translation>அறிவிப்பு காலத்தைத் தனிப்பயனாக்குக (மிசி)</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="238"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="249"/>
         <source>Providers</source>
         <translation>வழங்குபவர்கள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="359"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="370"/>
         <source>Turn on or off notifications from this provider</source>
         <translation>இந்த வழங்குநரிடமிருந்து அறிவிப்புகளை இயக்கவும் அல்லது முடக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="384"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="395"/>
         <source>Use Dynamic Notification</source>
         <translation>மாறும் அறிவிப்பைப் பயன்படுத்தவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="407"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="418"/>
         <source>Use System Notification</source>
         <translation>கணினி அறிவிப்பைப் பயன்படுத்தவும்</translation>
     </message>
@@ -2815,7 +1966,7 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>NotificationProviders</name>
     <message>
-        <location filename="../../src/core/utils/backend.py" line="57"/>
+        <location filename="../../src/core/utils/backend.py" line="62"/>
         <source>Debug Notification</source>
         <translation>பிழைத்திருத்த அறிவிப்பு</translation>
     </message>
@@ -2853,32 +2004,39 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>Overview</name>
     <message>
+        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="48"/>
         <source>Debug</source>
-        <translation type="vanished">பிழைத்திருத்தம்</translation>
+        <translation>பிழைத்திருத்தம்</translation>
     </message>
     <message>
+        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="49"/>
         <source>Debug message</source>
-        <translation type="vanished">பிழைத்திருத்த செய்தி</translation>
+        <translation>பிழைத்திருத்த செய்தி</translation>
     </message>
     <message>
+        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="85"/>
         <source>App Theme</source>
-        <translation type="vanished">பயன்பாட்டு கருப்பொருள்</translation>
+        <translation>பயன்பாட்டு கருப்பொருள்</translation>
     </message>
     <message>
+        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="86"/>
         <source>Select which app theme to display</source>
-        <translation type="vanished">எந்த ஆப்ச் கருப்பொருள் காட்ட வேண்டும் என்பதைத் தேர்ந்தெடுக்கவும்</translation>
+        <translation>எந்த ஆப்ச் கருப்பொருள் காட்ட வேண்டும் என்பதைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
+        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="92"/>
         <source>Light</source>
-        <translation type="vanished">ஒளி</translation>
+        <translation>ஒளி</translation>
     </message>
     <message>
+        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="93"/>
         <source>Dark</source>
-        <translation type="vanished">இருள்</translation>
+        <translation>இருள்</translation>
     </message>
     <message>
+        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="94"/>
         <source>Use system setting</source>
-        <translation type="vanished">கணினி அமைப்பைப் பயன்படுத்தவும்</translation>
+        <translation>கணினி அமைப்பைப் பயன்படுத்தவும்</translation>
     </message>
     <message>
         <source>No Logs</source>
@@ -2887,122 +2045,6 @@ Do you want to continue using them, or discard and restore the original schedule
     <message>
         <source>Do not save logs to local storage.</source>
         <translation type="vanished">உள்ளக சேமிப்பகத்தில் பதிவுகளைச் சேமிக்க வேண்டாம்.</translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="10"/>
-        <source>概览</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="16"/>
-        <source>通知</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="17"/>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="50"/>
-        <source>调试</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="21"/>
-        <source>发送测试通知</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="29"/>
-        <source>信息</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="29"/>
-        <source>公告</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="29"/>
-        <source>警告</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="29"/>
-        <source>系统</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="34"/>
-        <source>标题</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="39"/>
-        <source>内容</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="44"/>
-        <source>发送</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="51"/>
-        <source>调试通知</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="55"/>
-        <source>测试通知已发送</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="57"/>
-        <source>调试通知提供者不可用</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="83"/>
-        <source>应用概览</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="87"/>
-        <source>版本</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="97"/>
-        <source>应用主题</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="98"/>
-        <source>选择要显示的应用主题</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="104"/>
-        <source>浅色</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="105"/>
-        <source>深色</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="106"/>
-        <source>跟随系统设置</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="118"/>
-        <source>不保存日志</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/Debugger/contents/Overview.qml" line="119"/>
-        <source>不将日志保存到本地存储。</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3035,33 +2077,33 @@ Do you want to continue using them, or discard and restore the original schedule
         <translation type="vanished">எச்சரிக்கை</translation>
     </message>
     <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="30"/>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="35"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="40"/>
         <source>Accent Color</source>
         <translation>உச்சரிப்பு நிறம்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="41"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="36"/>
         <source>Pick the color which app highlighted color</source>
         <translation>ஆப்ச் ஐலைட் செய்த வண்ணத்தைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="63"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="58"/>
         <source>Themes</source>
         <translation>தீம்கள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="143"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="138"/>
         <source>Built-in</source>
         <translation>உள்ளமைக்கப்பட்ட</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="219"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="215"/>
         <source>Incompatible Theme</source>
         <translation>பொருந்தாத கருப்பொருள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="224"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="220"/>
         <source>This theme requires the app version %1, but current app version is %2. 
 
 Applying an incompatible theme may cause serious errors, crashes, or unexpected behavior.</source>
@@ -3070,17 +2112,17 @@ Applying an incompatible theme may cause serious errors, crashes, or unexpected 
 பொருந்தாத தீமினைப் பயன்படுத்துவதால் கடுமையான பிழைகள், செயலிழப்புகள் அல்லது எதிர்பாராத நடத்தை ஏற்படலாம்.</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="235"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="231"/>
         <source>Cancel</source>
         <translation>ரத்துசெய்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="242"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="238"/>
         <source>Apply anyway</source>
         <translation>எப்படியும் விண்ணப்பிக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="172"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="167"/>
         <source>No description</source>
         <translation>விளக்கம் இல்லை</translation>
     </message>
@@ -3093,7 +2135,7 @@ If translations are missing after a theme change, please restart</source>
 தீம் மாற்றத்திற்குப் பிறகு மொழிபெயர்ப்புகள் இல்லை என்றால், மீண்டும் தொடங்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="150"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="145"/>
         <source>Incompatible</source>
         <translation>பொருந்தாதது</translation>
     </message>
@@ -3101,22 +2143,22 @@ If translations are missing after a theme change, please restart</source>
 <context>
     <name>PlazaStatusCard</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/plaza/PlazaStatusCard.qml" line="183"/>
+        <location filename="../../src/qml/ClassWidgets/Components/plaza/PlazaStatusCard.qml" line="195"/>
         <source>More options</source>
         <translation type="unfinished">மேலும் விருப்பங்கள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/plaza/PlazaStatusCard.qml" line="191"/>
+        <location filename="../../src/qml/ClassWidgets/Components/plaza/PlazaStatusCard.qml" line="203"/>
         <source>Open in Plugin Plaza</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/plaza/PlazaStatusCard.qml" line="196"/>
+        <location filename="../../src/qml/ClassWidgets/Components/plaza/PlazaStatusCard.qml" line="208"/>
         <source>Copy link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/plaza/PlazaStatusCard.qml" line="205"/>
+        <location filename="../../src/qml/ClassWidgets/Components/plaza/PlazaStatusCard.qml" line="217"/>
         <source>Cancel download</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3124,199 +2166,214 @@ If translations are missing after a theme change, please restart</source>
 <context>
     <name>Plugin</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="125"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="144"/>
         <source>%1 B</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="127"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="146"/>
         <source>%1 KB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="128"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="147"/>
         <source>%1 MB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="183"/>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="743"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="202"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="794"/>
         <source>No data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="231"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="250"/>
         <source>Failed to parse plugin information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="237"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="256"/>
         <source>Failed to load plugin information: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="253"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="272"/>
         <source>No description</source>
         <translation type="unfinished">விளக்கம் இல்லை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="253"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="272"/>
         <source>This plugin does not provide README content.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="410"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="429"/>
         <source>Load failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="476"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="495"/>
         <source>Loading plugin...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="483"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="502"/>
         <source>Unknown author</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="516"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="535"/>
         <source>%1 Ratings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="572"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="591"/>
         <source>Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="574"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="593"/>
         <source>Resume</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="576"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="595"/>
         <source>Installing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="578"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="597"/>
+        <source>Restart to apply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="599"/>
         <source>Installed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="579"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="600"/>
         <source>Get</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="607"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="630"/>
         <source>Paused</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="609"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="632"/>
         <source>Downloaded: %1 / %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="612"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="635"/>
         <source>Downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="630"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="646"/>
+        <source>Enable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="646"/>
+        <source>Disable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="681"/>
         <source>Open in Web</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="636"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="687"/>
         <source>Copy link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="642"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="693"/>
         <source>Link copied</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="653"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="704"/>
         <source>Cancel download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="674"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="725"/>
         <source>More options</source>
         <translation type="unfinished">மேலும் விருப்பங்கள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="691"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="742"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="724"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="775"/>
         <source>Other information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="738"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="789"/>
         <source>Plugin ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="739"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="790"/>
         <source>Version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="739"/>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="740"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="790"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="791"/>
         <source>Unknown</source>
         <translation type="unfinished">தெரியவில்லை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="740"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="791"/>
         <source>API version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="741"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="792"/>
         <source>Branch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="742"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="793"/>
         <source>Last updated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="743"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="794"/>
         <source>Repository</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="767"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="818"/>
         <source>Ratings and reviews</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="783"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="834"/>
         <source>See all (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="791"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="842"/>
         <source>Write a review</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="814"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="866"/>
         <source>Discover more</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="855"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="907"/>
         <source>No recommendations</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3394,12 +2451,12 @@ If translations are missing after a theme change, please restart</source>
 <context>
     <name>PluginManager</name>
     <message>
-        <location filename="../../src/core/plugin/manager.py" line="123"/>
+        <location filename="../../src/core/plugin/manager.py" line="120"/>
         <source>Incompatible</source>
         <translation>பொருந்தாதது</translation>
     </message>
     <message>
-        <location filename="../../src/core/plugin/manager.py" line="127"/>
+        <location filename="../../src/core/plugin/manager.py" line="124"/>
         <source>{count} incompatible plugin(s) have been loaded, which may cause unknown issues.</source>
         <translation>{count} பொருந்தாத செருகுநிரல்கள் (கள்) ஏற்றப்பட்டுள்ளன, இது அறியப்படாத சிக்கல்களை ஏற்படுத்தக்கூடும்.</translation>
     </message>
@@ -3458,77 +2515,76 @@ If translations are missing after a theme change, please restart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="164"/>
         <source>Refresh</source>
-        <translation>புதுப்பிப்பு</translation>
+        <translation type="vanished">புதுப்பிப்பு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="189"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="182"/>
         <source>Downloaded: %1 / %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="192"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="185"/>
         <source>Downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="206"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="202"/>
         <source>Error</source>
         <translation>பிழை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="227"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="223"/>
         <source>Plugin updated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="227"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="223"/>
         <source>Plugin installed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="230"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="226"/>
         <source>%1 v%2 is ready to use.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="237"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="233"/>
         <source>Plugin update failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="237"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="233"/>
         <source>Plugin installation failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="248"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="244"/>
         <source>Download cancelled</source>
         <translation type="unfinished">பதிவிறக்கம் ரத்து செய்யப்பட்டது</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="249"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="245"/>
         <source>The download for %1 was cancelled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="262"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="258"/>
         <source>Home</source>
         <translation>வீடு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="267"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="263"/>
         <source>Plugins</source>
         <translation>செருகுநிரல்கள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="272"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="268"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="277"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/PluginPlaza.qml" line="273"/>
         <source>Downloads</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3659,37 +2715,37 @@ Do you want to %3 this plugin?</source>
         <translation>செருகுநிரல்கள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugins.qml" line="36"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugins.qml" line="39"/>
         <source>Invalid server response.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugins.qml" line="63"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugins.qml" line="83"/>
         <source>The plaza rejected the request.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugins.qml" line="77"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugins.qml" line="98"/>
         <source>Unable to load plugins: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugins.qml" line="141"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugins.qml" line="199"/>
         <source>Could not load plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugins.qml" line="150"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugins.qml" line="208"/>
         <source>No plugins found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugins.qml" line="151"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugins.qml" line="209"/>
         <source>Try another category.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugins.qml" line="151"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugins.qml" line="209"/>
         <source>The plaza is empty right now.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3704,9 +2760,8 @@ Do you want to %3 this plugin?</source>
         <translation>செய்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Plugins.qml" line="28"/>
         <source>The plugin has been uninstalled successfully. Restart to take effect.</source>
-        <translation>செருகுநிரல் வெற்றிகரமாக நிறுவல் நீக்கப்பட்டது. நடைமுறைக்கு வர மீண்டும் தொடங்கவும்.</translation>
+        <translation type="vanished">செருகுநிரல் வெற்றிகரமாக நிறுவல் நீக்கப்பட்டது. நடைமுறைக்கு வர மீண்டும் தொடங்கவும்.</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Plugins.qml" line="37"/>
@@ -3752,9 +2807,8 @@ It&apos;s incompatible and may cause unexpected issues.</source>
 இது இணக்கமற்றது மற்றும் எதிர்பாராத சிக்கல்களை ஏற்படுத்தலாம்.</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Plugins.qml" line="191"/>
         <source>The plugin has been imported successfully.</source>
-        <translation>செருகுநிரல் வெற்றிகரமாக இறக்குமதி செய்யப்பட்டது.</translation>
+        <translation type="vanished">செருகுநிரல் வெற்றிகரமாக இறக்குமதி செய்யப்பட்டது.</translation>
     </message>
     <message>
         <source>The plugin system is still under development. </source>
@@ -3774,9 +2828,8 @@ It&apos;s incompatible and may cause unexpected issues.</source>
         <translation>இறக்குமதி தோல்வி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Plugins.qml" line="108"/>
         <source>Importing</source>
-        <translation>இறக்குமதி செய்கிறது</translation>
+        <translation type="vanished">இறக்குமதி செய்கிறது</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Plugins.qml" line="17"/>
@@ -3789,9 +2842,23 @@ It&apos;s incompatible and may cause unexpected issues.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Plugins.qml" line="109"/>
         <source>Importing the selected plugin. Please wait...</source>
-        <translation>தேர்ந்தெடுக்கப்பட்ட செருகுநிரலை இறக்குமதி செய்கிறது. தயவுசெய்து காத்திருங்கள்...</translation>
+        <translation type="vanished">தேர்ந்தெடுக்கப்பட்ட செருகுநிரலை இறக்குமதி செய்கிறது. தயவுசெய்து காத்திருங்கள்...</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/Plugins.qml" line="28"/>
+        <source>The plugin uninstall has been queued. Restart to apply it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/Plugins.qml" line="108"/>
+        <source>Import queued</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/Plugins.qml" line="109"/>
+        <source>The plugin will be installed after restart.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Plugins.qml" line="123"/>
@@ -3816,6 +2883,11 @@ It&apos;s incompatible and may cause unexpected issues.</source>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Plugins.qml" line="152"/>
         <source>Automatically install plugin updates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/Plugins.qml" line="191"/>
+        <source>The plugin import has been queued. Restart to apply it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3886,103 +2958,103 @@ It&apos;s incompatible and may cause unexpected issues.</source>
         <translation>உள்ளமைக்கப்பட்ட விட்செட்டுகள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="21"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="31"/>
         <source>Recommended plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="22"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="32"/>
         <source>Pick certified plugins from Plugin Plaza to install with your first setup.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="28"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="38"/>
         <source>Installing plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="30"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="40"/>
         <source>Finish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="32"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="42"/>
         <source>Skip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="33"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="43"/>
         <source>Finish &amp; Install</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="39"/>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="475"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="49"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="503"/>
         <source>Retry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="170"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="188"/>
         <source>%1 selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="171"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="189"/>
         <source>No plugins selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="173"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="191"/>
         <source>%1/%2 plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="196"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="214"/>
         <source>Installation failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="271"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="295"/>
         <source>Unable to start installation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="312"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="340"/>
         <source>Installation cancelled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="369"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="397"/>
         <source>Select all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="378"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="406"/>
         <source>Clear selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="462"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="490"/>
         <source>Could not load recommendations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="463"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="491"/>
         <source>No recommendations available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="466"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="494"/>
         <source>You can browse Plugin Plaza after setup.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="489"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="520"/>
         <source>Some plugins were not installed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="490"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Plugins.qml" line="521"/>
         <source>%1 installed, %2 failed. Retry the failed plugins or continue without them.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4028,13 +3100,6 @@ It&apos;s incompatible and may cause unexpected issues.</source>
         <location filename="../../src/qml/ClassWidgets/pages/tutorial/Preferences.qml" line="70"/>
         <source>Allow reminders, schedule updates, and plugin messages</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>RGB</name>
-    <message>
-        <source>Preview</source>
-        <translation type="obsolete">முன்னோட்டம்</translation>
     </message>
 </context>
 <context>
@@ -4084,108 +3149,6 @@ It&apos;s incompatible and may cause unexpected issues.</source>
         <location filename="../../src/qml/ClassWidgets/Components/editor/SaveFlyout.qml" line="64"/>
         <source>Failed to save schedule, see log for details</source>
         <translation>அட்டவணையைச் சேமிக்க முடியவில்லை, விவரங்களுக்கு பதிவைப் பார்க்கவும்</translation>
-    </message>
-</context>
-<context>
-    <name>SceneModeService</name>
-    <message>
-        <location filename="../../src/core/scene_modes.py" line="79"/>
-        <source>考试模式</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SceneModes</name>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="8"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="53"/>
-        <source>场景模式</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="60"/>
-        <source>将当前的界面外观、小组件位置与交互偏好保存为场景。考试模式也是可改名、可删除的场景预设；应用它会先显示进入提示，再打开沉浸式时钟。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="66"/>
-        <source>保存当前设置</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="67"/>
-        <source>创建场景时会保存当前主题、缩放、透明度、圆角、位置、图层、迷你模式和悬停淡出设置。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="75"/>
-        <source>例如：上课展示、午休、演示</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="81"/>
-        <source>创建场景</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="96"/>
-        <source>已保存的场景</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="97"/>
-        <source>场景仅保存在本机；你可以随时应用、更新或删除。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="122"/>
-        <source>删除</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="136"/>
-        <source>尚未创建场景。请先保存当前设置。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="145"/>
-        <source>场景</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="147"/>
-        <source>应用后会先提示正在进入考试模式，再打开全屏沉浸式时钟。该场景可以改名或删除。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="149"/>
-        <source>当前已应用此场景。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="150"/>
-        <source>选择应用后会立即切换到此场景保存的设置。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="159"/>
-        <source>场景名称</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="174"/>
-        <source>进入考试模式</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="175"/>
-        <source>应用此场景</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/SceneModes.qml" line="182"/>
-        <source>用当前设置更新</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4364,32 +3327,32 @@ It&apos;s incompatible and may cause unexpected issues.</source>
 <context>
     <name>ScheduleFlyout</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFlyout.qml" line="40"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFlyout.qml" line="47"/>
         <source>Edit</source>
         <translation>தொகு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFlyout.qml" line="58"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFlyout.qml" line="65"/>
         <source>Subject</source>
         <translation>பொருள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFlyout.qml" line="64"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFlyout.qml" line="71"/>
         <source>Select Subject</source>
         <translation>பாடத்தைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFlyout.qml" line="104"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFlyout.qml" line="111"/>
         <source>Title</source>
         <translation>தலைப்பு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFlyout.qml" line="124"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFlyout.qml" line="131"/>
         <source>Set</source>
         <translation>கணம்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFlyout.qml" line="148"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFlyout.qml" line="155"/>
         <source>Clear</source>
         <translation>தெளிவு</translation>
     </message>
@@ -4486,82 +3449,82 @@ It&apos;s incompatible and may cause unexpected issues.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="57"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="62"/>
         <source>Invalid server response.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="91"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="116"/>
         <source>The plaza rejected the request.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="104"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="131"/>
         <source>Unable to search plugins: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="255"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="305"/>
         <source>Suggested plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="286"/>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="293"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="355"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="362"/>
         <source>Relevance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="287"/>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="295"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="356"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="364"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="288"/>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="296"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="357"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="365"/>
         <source>Rating</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="289"/>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="297"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="358"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="366"/>
         <source>Downloads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="290"/>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="294"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="359"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="363"/>
         <source>Latest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="305"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="330"/>
         <source>All</source>
         <translation type="unfinished">அனைத்தும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="339"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="393"/>
         <source>Could not search plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="352"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="406"/>
         <source>Search the plaza</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="353"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="407"/>
         <source>No suggested keywords are available.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="360"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="414"/>
         <source>No plugins found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="361"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Search.qml" line="415"/>
         <source>Try another search or category.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4574,72 +3537,57 @@ It&apos;s incompatible and may cause unexpected issues.</source>
         <translation>அமைப்புகள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="24"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="32"/>
         <source>Home</source>
         <translation>வீடு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="30"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="38"/>
         <source>General</source>
         <translation>பொது</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="35"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="46"/>
         <source>Widgets</source>
         <translation>நிரல்பலகை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="40"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="51"/>
         <source>Interactions</source>
         <translation>தொடர்புகள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="45"/>
-        <source>场景模式</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="52"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="56"/>
         <source>Personalization</source>
         <translation>தனிப்பயனாக்கம்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="57"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="61"/>
         <source>Notification &amp; Time</source>
         <translation>அறிவிப்பு &amp; நேரம்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="61"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="65"/>
         <source>Notification</source>
         <translation>அறிவிப்பு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="66"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="70"/>
         <source>Time</source>
         <translation>நேரம்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="73"/>
-        <source>集控</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="78"/>
-        <source>自动化</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="83"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="77"/>
         <source>Plugins</source>
         <translation>செருகுநிரல்கள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="90"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="84"/>
         <source>About</source>
         <translation>பற்றி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="96"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="90"/>
         <source>Update</source>
         <translation>புதுப்பிப்பு</translation>
     </message>
@@ -4647,72 +3595,29 @@ It&apos;s incompatible and may cause unexpected issues.</source>
 <context>
     <name>Shortcuts</name>
     <message>
-        <location filename="../../src/core/central.py" line="168"/>
+        <location filename="../../src/core/central.py" line="146"/>
         <source>Settings</source>
         <translation type="unfinished">அமைப்புகள்</translation>
     </message>
     <message>
-        <location filename="../../src/core/central.py" line="174"/>
+        <location filename="../../src/core/central.py" line="152"/>
         <source>Schedules</source>
         <translation type="unfinished">அட்டவணைகள்</translation>
     </message>
     <message>
-        <location filename="../../src/core/central.py" line="180"/>
+        <location filename="../../src/core/central.py" line="158"/>
         <source>Plugin Plaza</source>
         <translation type="unfinished">செருகுநிரல் பிளாசா</translation>
     </message>
     <message>
-        <location filename="../../src/core/central.py" line="186"/>
+        <location filename="../../src/core/central.py" line="164"/>
         <source>Reschedule Day</source>
         <translation type="unfinished">மறு அட்டவணை நாள்</translation>
     </message>
     <message>
-        <location filename="../../src/core/central.py" line="192"/>
+        <location filename="../../src/core/central.py" line="170"/>
         <source>Class Swap</source>
         <translation type="unfinished">வகுப்பு இடமாற்று</translation>
-    </message>
-</context>
-<context>
-    <name>StartupAnimation</name>
-    <message>
-        <location filename="../../src/core/startup_animation.py" line="94"/>
-        <source>选择启动动画媒体</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/startup_animation.py" line="99"/>
-        <source>支持的媒体 (*.png *.jpg *.jpeg *.bmp *.webp *.gif *.mp4 *.webm *.mov *.m4v *.avi)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/startup_animation.py" line="113"/>
-        <source>所选媒体文件不存在。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/startup_animation.py" line="118"/>
-        <source>无法读取所选图片。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/startup_animation.py" line="125"/>
-        <source>无法读取所选视频。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/startup_animation.py" line="127"/>
-        <source>启动动画视频不得超过 10 秒。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/startup_animation.py" line="132"/>
-        <source>不支持的媒体格式。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/StartupAnimation.qml" line="19"/>
-        <source>启动动画预览</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5118,8 +4023,47 @@ If it takes place in another location, such as a sport field, lab, or another cl
 <context>
     <name>TagShowcase</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/plaza/TagShowcase.qml" line="34"/>
+        <location filename="../../src/qml/ClassWidgets/Components/plaza/TagShowcase.qml" line="35"/>
         <source>View all %1 plugins</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Text</name>
+    <message>
+        <location filename="../../src/qml/widgets/Text.qml" line="20"/>
+        <source>Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/widgets/Text.qml" line="52"/>
+        <location filename="../../src/qml/widgets/Text.qml" line="58"/>
+        <source>Enter Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/widgets/settings/Text.qml" line="12"/>
+        <source>Marquee Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/widgets/settings/Text.qml" line="13"/>
+        <source>If enabled, the text will scroll from left to right, if the widget is not wide enough.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/widgets/settings/Text.qml" line="29"/>
+        <source>Maximum Width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/widgets/settings/Text.qml" line="30"/>
+        <source>Set the maximum width of the widget to display</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/widgets/settings/Text.qml" line="50"/>
+        <source>Custom Text</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5182,137 +4126,69 @@ If it takes place in another location, such as a sport field, lab, or another cl
     </message>
 </context>
 <context>
+    <name>ThemeLoadErrorDialog</name>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ThemeLoadErrorDialog.qml" line="38"/>
+        <source>Theme could not be loaded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ThemeLoadErrorDialog.qml" line="56"/>
+        <source>The selected theme could not be loaded.
+Class Widgets has restored the default theme.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ThemeLoadErrorDialog.qml" line="57"/>
+        <source>The selected theme could not be loaded, and the default theme is unavailable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Time</name>
     <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="13"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="20"/>
         <source>Time</source>
-        <translation type="vanished">நேரம்</translation>
+        <translation>நேரம்</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="26"/>
+        <source>Time Offset (Seconds)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="35"/>
+        <source>Seconds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="49"/>
+        <source>Preparation Bell</source>
+        <translation type="unfinished">தயாரிப்பு மணி</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="55"/>
+        <source>Advance Time (Minutes)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="56"/>
+        <source>Minutes before class starts to ring the preparation bell</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Time Offset (minutes)</source>
         <translation type="vanished">நேர ஆஃப்செட் (நிமிடங்கள்)</translation>
     </message>
     <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="27"/>
         <source>Adjust schedule time to match your school&apos;s broadcast; Increase the offset to compensate for early bells, decrease to compensate for late bells</source>
-        <translation type="vanished">உங்கள் பள்ளியின் ஒலிபரப்புடன் பொருந்த, அட்டவணை நேரத்தைச் சரிசெய்யவும்; ஆரம்ப மணிகளுக்கு ஈடுசெய்ய ஆஃப்செட்டை அதிகரிக்கவும், தாமதமான மணிகளுக்கு ஈடுசெய்ய குறைக்கவும்</translation>
+        <translation>உங்கள் பள்ளியின் ஒலிபரப்புடன் பொருந்த, அட்டவணை நேரத்தைச் சரிசெய்யவும்; ஆரம்ப மணிகளுக்கு ஈடுசெய்ய ஆஃப்செட்டை அதிகரிக்கவும், தாமதமான மணிகளுக்கு ஈடுசெய்ய குறைக்கவும்</translation>
     </message>
     <message>
         <source>minutes</source>
         <translation type="vanished">நிமிடங்கள்</translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="11"/>
-        <source>时间</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="31"/>
-        <source>精确时间</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="36"/>
-        <source>使用精确时间</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="38"/>
-        <source>当前正在使用已同步的 NTP 时间</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="39"/>
-        <source>启用后优先使用 NTP 时间；同步失败时自动使用系统时间</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="59"/>
-        <source>NTP 服务器</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="60"/>
-        <source>选择预设服务器，或在下方填写自定义服务器地址</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="104"/>
-        <source>自定义 NTP 服务器</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="105"/>
-        <source>填写域名或 IP 地址，例如 time.example.com</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="111"/>
-        <source>NTP 服务器地址</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="134"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="149"/>
-        <source>同步时间</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="135"/>
-        <source>立即从所选 NTP 服务器校时；失败后不会影响系统时间的使用</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="149"/>
-        <source>正在同步…</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="158"/>
-        <source>时间偏移</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="164"/>
-        <source>时间偏移（秒）</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="165"/>
-        <source>仅调整课程判断、倒计时与提醒时间；不会改变 NTP/系统真实时间或时间小组件显示</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="171"/>
-        <source>秒</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>TimeService</name>
-    <message>
-        <location filename="../../src/core/time_service.py" line="38"/>
-        <location filename="../../src/core/time_service.py" line="133"/>
-        <source>正在使用系统时间</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/time_service.py" line="102"/>
-        <source>未指定 NTP 服务器，正在使用系统时间</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/time_service.py" line="109"/>
-        <source>正在与 {0} 同步…</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/time_service.py" line="151"/>
-        <source>已与 {0} 同步</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/core/time_service.py" line="155"/>
-        <source>NTP 同步失败，正在使用系统时间</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5433,7 +4309,7 @@ If it takes place in another location, such as a sport field, lab, or another cl
         <translation type="vanished">குறுக்குவழிகள்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/TrayPanel.qml" line="189"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/TrayPanel.qml" line="168"/>
         <source>Reschedule Day</source>
         <translation>மறு அட்டவணை நாள்</translation>
     </message>
@@ -5447,27 +4323,27 @@ If it takes place in another location, such as a sport field, lab, or another cl
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/TrayPanel.qml" line="100"/>
-        <source>切换场景</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/TrayPanel.qml" line="121"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/TrayPanel.qml" line="87"/>
         <source>Switch your schedule</source>
         <translation>உங்கள் அட்டவணையை மாற்றவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/TrayPanel.qml" line="169"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/TrayPanel.qml" line="135"/>
         <source>Debugger</source>
         <translation>பிழைத்திருத்தி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/TrayPanel.qml" line="176"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/TrayPanel.qml" line="147"/>
         <source>Restart</source>
         <translation>மறுதொடக்கம்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/TrayPanel.qml" line="183"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/TrayPanel.qml" line="155"/>
+        <source>Restart required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Windows/TrayPanel.qml" line="162"/>
         <source>Exit</source>
         <translation>வெளியேறு</translation>
     </message>
@@ -5481,7 +4357,7 @@ If it takes place in another location, such as a sport field, lab, or another cl
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/Components/TrayShortcuts.qml" line="38"/>
-        <location filename="../../src/qml/ClassWidgets/Components/TrayShortcuts.qml" line="236"/>
+        <location filename="../../src/qml/ClassWidgets/Components/TrayShortcuts.qml" line="315"/>
         <source>Add</source>
         <translation type="unfinished">கூட்டு</translation>
     </message>
@@ -5497,21 +4373,27 @@ If it takes place in another location, such as a sport field, lab, or another cl
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/Components/TrayShortcuts.qml" line="56"/>
+        <location filename="../../src/qml/ClassWidgets/Components/TrayShortcuts.qml" line="207"/>
+        <source>All Shortcuts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/TrayShortcuts.qml" line="64"/>
         <source>No shortcuts yet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/TrayShortcuts.qml" line="57"/>
+        <location filename="../../src/qml/ClassWidgets/Components/TrayShortcuts.qml" line="65"/>
         <source>Click &quot;+&quot; to add shortcuts.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/TrayShortcuts.qml" line="150"/>
+        <location filename="../../src/qml/ClassWidgets/Components/TrayShortcuts.qml" line="173"/>
         <source>Remove</source>
         <translation type="unfinished">அகற்று</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/TrayShortcuts.qml" line="185"/>
+        <location filename="../../src/qml/ClassWidgets/Components/TrayShortcuts.qml" line="264"/>
         <source>Add Shortcuts</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5773,16 +4655,6 @@ If it takes place in another location, such as a sport field, lab, or another cl
         <translation>புதுப்பிப்புகளைப் பதிவிறக்குவதற்கு கண்ணாடி மூலத்தைத் தேர்வுசெய்யவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Update.qml" line="292"/>
-        <source>显示更新摘要</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Update.qml" line="293"/>
-        <source>更新安装完成后，在下次启动时打开更新摘要窗口</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Update.qml" line="246"/>
         <source>Select Mirror</source>
         <translation>கண்ணாடியைத் தேர்ந்தெடுக்கவும்</translation>
@@ -5800,42 +4672,27 @@ If it takes place in another location, such as a sport field, lab, or another cl
 * மறுதொடக்கம் தேவை</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Update.qml" line="305"/>
-        <source>GitHub Releases 更新源</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Update.qml" line="306"/>
-        <source>填写 GitHub 仓库的 Releases 页面地址。保存后仅检查此源，不再使用默认更新服务器。</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Update.qml" line="322"/>
-        <source>清除自定义更新源</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Update.qml" line="349"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/Update.qml" line="297"/>
         <source>Advanced</source>
         <translation>மேம்பட்ட</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Update.qml" line="355"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/Update.qml" line="303"/>
         <source>Updater Server URL</source>
         <translation>புதுப்பிப்பு சேவையக முகவரி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Update.qml" line="356"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/Update.qml" line="304"/>
         <source>Set a custom URL to use for the updater server</source>
         <translation>புதுப்பிப்பு சேவையகத்தைப் பயன்படுத்த தனிப்பயன் முகவரி ஐ அமைக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Update.qml" line="371"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/Update.qml" line="319"/>
         <source>Reset to default</source>
         <translation>இயல்புநிலைக்கு மீட்டமைக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/Update.qml" line="379"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/Update.qml" line="327"/>
         <source>https://example.com/releases.json/</source>
         <translation>https://example.com/releases.json/</translation>
     </message>
@@ -5865,22 +4722,22 @@ Go to &quot;Settings&quot; → &quot;Update&quot; for more details.</source>
         <translation>புதுப்பிப்பு முடிந்தது ヾ(≧▽≦*)o</translation>
     </message>
     <message>
-        <location filename="../../src/core/updater/bridge.py" line="171"/>
+        <location filename="../../src/core/updater/bridge.py" line="163"/>
         <source>Update Downloaded</source>
         <translation>புதுப்பிப்பு பதிவிறக்கப்பட்டது</translation>
     </message>
     <message>
-        <location filename="../../src/core/updater/bridge.py" line="176"/>
+        <location filename="../../src/core/updater/bridge.py" line="168"/>
         <source>Ready to install anytime. Go to &quot;Settings&quot; → &quot;Update&quot; to proceed with installation.</source>
         <translation>எந்த நேரத்திலும் நிறுவ தயாராக உள்ளது. நிறுவலைத் தொடர, &quot;அமைப்புகள்&quot; → &quot;புதுப்பிப்பு&quot; என்பதற்குச் செல்லவும்.</translation>
     </message>
     <message>
-        <location filename="../../src/core/updater/bridge.py" line="213"/>
+        <location filename="../../src/core/updater/bridge.py" line="205"/>
         <source>Applying Update Soon</source>
         <translation>புதுப்பிப்பை விரைவில் பயன்படுத்துகிறது</translation>
     </message>
     <message>
-        <location filename="../../src/core/updater/bridge.py" line="217"/>
+        <location filename="../../src/core/updater/bridge.py" line="209"/>
         <source>The update may take several seconds to complete. (●&apos;◡&apos;●)</source>
         <translation>புதுப்பிப்பு முடிவதற்கு சில வினாடிகள் ஆகலாம். (●&apos;◡&apos;●)</translation>
     </message>
@@ -6168,87 +5025,95 @@ then tap &quot;Edit Widget Screen&quot; in the menu to experience it.</source>
         <translation>எழுத்துருவின் தடிமன் அமைக்கவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="203"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="204"/>
         <source>Thin</source>
         <translation>மெல்லிய</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="204"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="205"/>
         <source>Extra Light</source>
         <translation>கூடுதல் ஒளி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="205"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="206"/>
         <source>Light</source>
         <translation>ஒளி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="206"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="207"/>
         <source>Regular</source>
         <translation>வழக்கமான</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="207"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="208"/>
         <source>Medium</source>
         <translation>சராசரி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="208"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="209"/>
         <source>Semi Bold</source>
         <translation>அரை தடித்த</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="209"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="210"/>
         <source>Bold</source>
         <translation>தடிமான</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="210"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="211"/>
         <source>Extra Bold</source>
         <translation>கூடுதல் தடித்த</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="211"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="212"/>
         <source>Black</source>
         <translation>கருப்பு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="212"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="213"/>
         <source>Custom</source>
         <translation>தனிப்பயன்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="245"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="247"/>
         <source>Preview</source>
         <translation>முன்னோட்டம்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="248"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="250"/>
         <source>The quick brown fox jumps over the lazy dog</source>
         <translation>விரைவான பழுப்பு நரி சோம்பேறி நாய் மீது குதிக்கிறது</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="266"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="268"/>
+        <source>Widget placement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="275"/>
+        <source>Display and position</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Window</source>
-        <translation>சாளரம்</translation>
+        <translation type="vanished">சாளரம்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="272"/>
         <source>Display</source>
-        <translation>காட்சி</translation>
+        <translation type="vanished">காட்சி</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="273"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="276"/>
         <source>Set which screen to display widgets on, and adjust their position</source>
         <translation>எந்தத் திரையில் விட்செட்களைக் காண்பிக்க வேண்டும் என்பதை அமைத்து, அவற்றின் நிலையைச் சரிசெய்யவும்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="388"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="392"/>
         <source>X-axis offset</source>
         <translation>எக்ச்-அச்சு ஆஃப்செட்</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="403"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="407"/>
         <source>Y-axis offset</source>
         <translation>ஒய்-அச்சு ஆஃப்செட்</translation>
     </message>
@@ -6277,26 +5142,31 @@ then tap &quot;Edit Widget Screen&quot; in the menu to experience it.</source>
         <source>Dynamic Notification</source>
         <translation>மாறும் அறிவிப்பு</translation>
     </message>
+    <message>
+        <location filename="../../src/plugins/cw_widgets/widgets.py" line="69"/>
+        <source>Text</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WidgetsContainer</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="235"/>
+        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="292"/>
         <source>Edit </source>
         <translation>திருத்தவும் </translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="250"/>
+        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="308"/>
         <source>Delete</source>
         <translation>நீக்கு</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="259"/>
+        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="317"/>
         <source>Edit Widgets Screen</source>
         <translation>விட்செட்கள் திரையைத் திருத்து</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="333"/>
+        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="391"/>
         <source>Add</source>
         <translation>கூட்டு</translation>
     </message>
@@ -6348,6 +5218,11 @@ then tap &quot;Edit Widget Screen&quot; in the menu to experience it.</source>
         <location filename="../../src/qml/widgets/eventCountdown.qml" line="12"/>
         <source>Remaining</source>
         <translation>மீதமுள்ளவை</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/widgets/eventCountdown.qml" line="51"/>
+        <source> min</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

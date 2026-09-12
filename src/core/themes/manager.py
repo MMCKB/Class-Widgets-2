@@ -130,6 +130,36 @@ class ThemeManager(QObject):
         self._cooldown.start()
         return True
 
+    @Slot(str, result=bool)
+    def rollback_to_default(self, failed_theme_id: str = "") -> bool:
+        """Switch to the built-in default theme after a load failure."""
+        if failed_theme_id and failed_theme_id != self._currentTheme:
+            logger.info(
+                "Ignoring rollback for stale theme failure: {} (current: {})",
+                failed_theme_id,
+                self._currentTheme,
+            )
+            return self._currentTheme == DEFAULT_THEME_ID
+
+        if not self._is_theme_valid(DEFAULT_THEME_ID):
+            logger.critical("Default theme '{}' is not available", DEFAULT_THEME_ID)
+            return False
+
+        if not self.isThemePathValid(DEFAULT_THEME_ID):
+            logger.critical("Default theme '{}' path is invalid", DEFAULT_THEME_ID)
+            return False
+
+        self._pending = None
+        if self._currentTheme == DEFAULT_THEME_ID:
+            # A component failure can happen while the default theme is
+            # already selected. Emit again so the window can rebuild after
+            # clearing its QML component cache.
+            self.themeChanged.emit()
+            return True
+
+        self._apply(DEFAULT_THEME_ID)
+        return self._currentTheme == DEFAULT_THEME_ID
+
     def scan(self) -> None:
         self._themes = self.loader.scan_themes(THEMES_PATH)
         self._currentTheme = self._app_central.configs.preferences.current_theme

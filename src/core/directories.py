@@ -37,6 +37,7 @@ CONFIGS_PATH = DATA_PATH / "configs"
 SCHEDULES_PATH = CONFIGS_PATH / "schedules"
 THEMES_PATH = DATA_PATH / "themes"
 PLUGINS_PATH = DATA_PATH / "plugins"
+PLUGIN_CACHE_PATH = CONFIGS_PATH / "plugin-cache"
 LOGS_PATH = DATA_PATH / "logs"
 
 PATHS = [

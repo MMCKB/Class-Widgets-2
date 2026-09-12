@@ -11,7 +11,7 @@ Widget {
         AppCentral.translator.language
         return qsTr("Remaining")
     }
-    property var countdown: AppCentral.scheduleRuntime.remainingTime || { "minutes": 0, "seconds": 0 }
+    property var countdown: AppCentral.scheduleRuntime.remainingTime || { "minute": 0, "second": 0 }
 
     // 统一布局，用 RowLayout 并根据 miniMode 控制内部排列
     RowLayout {
@@ -32,6 +32,7 @@ Widget {
 
         // 左侧：文字 + 时间
         ColumnLayout {
+            id: countdownLayout
             spacing: 2
             Layout.alignment: Qt.AlignVCenter
 
@@ -41,15 +42,28 @@ Widget {
                 Layout.alignment: Qt.AlignHCenter
 
                 AnimatedDigits {
+                    id: fuzzyMinute
+                    visible: Configs.data.preferences.countdown_precision === "minute"
+                    value: String(Math.ceil((countdown.minute * 60 + countdown.second) / 60))
+                }
+                Title {
+                    visible: Configs.data.preferences.countdown_precision === "minute"
+                    text: qsTr(" min")
+                }
+
+                AnimatedDigits {
                     id: minute
+                    visible: Configs.data.preferences.countdown_precision !== "minute"
                     value: countdown.minute || "00"
                 }
                 Title {
+                    visible: Configs.data.preferences.countdown_precision !== "minute"
                     Layout.bottomMargin: font.pixelSize * 0.1
                     text: ":"
                 }
                 AnimatedDigits {
                     id: second
+                    visible: Configs.data.preferences.countdown_precision !== "minute"
                     value: (countdown.second + "").padStart(2, "0") || "00"
                 }
             }
@@ -58,8 +72,9 @@ Widget {
             ProgressBar {
                 id: progressBar
                 Layout.alignment: Qt.AlignHCenter
-                Layout.preferredWidth: 82
-                Layout.preferredHeight: 4
+                Layout.preferredWidth: Configs.data.preferences.countdown_precision === "minute" ?
+                    (countdownLayout.implicitWidth - 16) : 82
+                // Layout.preferredHeight: 4
                 value: AppCentral.scheduleRuntime.progress
                 visible: !miniMode
                 primaryColor: {

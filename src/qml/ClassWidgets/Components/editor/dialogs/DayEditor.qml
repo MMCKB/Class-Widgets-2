@@ -164,7 +164,7 @@ Dialog {
 
         onAccepted: {
             var dayOfWeekValue = []
-            var date = undefined
+            var date = ""
             var weeks = undefined
 
             if (daySegmented.currentIndex === 0) {

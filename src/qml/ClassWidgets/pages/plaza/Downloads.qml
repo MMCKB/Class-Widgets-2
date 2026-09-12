@@ -10,7 +10,8 @@ FluentPage {
     wrapperWidth: width - 42 * 2
 
     readonly property bool taskActive: PluginManager.plazaInstallActive
-    readonly property bool hasUpdatesOrDownloads: taskActive || updateItems().length > 0
+    readonly property bool pendingTask: PluginManager.installStatus === "PendingRestart"
+    readonly property bool hasUpdatesOrDownloads: taskActive || pendingTask || updateItems().length > 0
 
     Component.onCompleted: PluginManager.checkPlazaUpdates()
 
@@ -45,11 +46,21 @@ FluentPage {
         return qsTr("%1/s").arg(formatBytes(bytesPerSecond))
     }
 
+    function hasPendingOperation(pluginId) {
+        var operations = PluginManager.pendingPluginOperations || []
+        for (var i = 0; i < operations.length; ++i) {
+            if (operations[i].plugin_id === pluginId)
+                return true
+        }
+        return false
+    }
+
     function updateItems() {
         var result = []
         var items = PluginManager.plazaPlugins || []
         for (var i = 0; i < items.length; ++i) {
-            if (items[i].update_available)
+            // A pending operation is represented by the pending card below.
+            if (items[i].update_available && !root.hasPendingOperation(items[i].id))
                 result.push(items[i])
         }
         result.sort(function(left, right) {
@@ -97,6 +108,8 @@ FluentPage {
             return qsTr("Paused")
         case "Installing":
             return qsTr("Installing")
+        case "PendingRestart":
+            return qsTr("Downloaded. Restart to apply")
         case "Downloading":
             if (PluginManager.installTotalBytes > 0) {
                 var details = qsTr("Downloaded: %1 / %2")
@@ -160,7 +173,7 @@ FluentPage {
                 spacing: 4
 
                 PlazaStatusCard {
-                    visible: root.taskActive
+                    visible: root.taskActive || root.pendingTask
                     pluginName: root.currentPlugin().name || PluginManager.installPluginId
                     pluginAuthor: root.currentPlugin().author || ""
                     pluginIcon: root.plazaIconUrl(
@@ -168,10 +181,11 @@ FluentPage {
                                     root.currentPlugin().icon
                                 )
                     middleText: root.activeStatusText()
-                    showProgress: true
+                    showProgress: root.taskActive
                     progressValue: PluginManager.installProgress / 100
                     progressIndeterminate: PluginManager.installStatus === "Installing"
-                    primaryActionVisible: PluginManager.installStatus !== "Installing"
+                    primaryActionVisible: PluginManager.installStatus === "Downloading"
+                                          || PluginManager.installStatus === "Paused"
                     primaryActionEnabled: PluginManager.installStatus === "Downloading"
                                           || PluginManager.installStatus === "Paused"
                     primaryActionText: PluginManager.installStatus === "Paused"
@@ -179,6 +193,9 @@ FluentPage {
                     primaryActionIcon: PluginManager.installStatus === "Paused"
                                        ? "ic_fluent_play_20_regular"
                                        : "ic_fluent_pause_20_regular"
+                    enableSwitchVisible: false
+                    // enableSwitchVisible: PluginManager.installPluginId !== ""
+                    pluginEnabled: PluginManager.isPluginEnabled(PluginManager.installPluginId)
                     cancelVisible: PluginManager.installStatus === "Downloading"
                                    || PluginManager.installStatus === "Paused"
 
@@ -191,6 +208,9 @@ FluentPage {
                     onOpenStoreRequested: root.openPlugin(PluginManager.installPluginId)
                     onCopyLinkRequested: root.copyStoreUrl(PluginManager.installPluginId)
                     onCancelRequested: PluginManager.cancelPluginInstall()
+                    onEnableToggled: function(checked) {
+                        PluginManager.setPluginEnabled(PluginManager.installPluginId, checked)
+                    }
                 }
 
                 Repeater {
@@ -204,6 +224,7 @@ FluentPage {
                         middleText: qsTr("v%1 -> v%2").arg(modelData.version).arg(modelData.latest_version)
                         primaryActionVisible: true
                         primaryActionEnabled: !PluginManager.plazaInstallActive
+                                                  && !root.hasPendingOperation(modelData.id)
                         primaryActionText: qsTr("Update")
                         primaryActionIcon: "ic_fluent_arrow_sync_20_regular"
 
@@ -249,16 +270,21 @@ FluentPage {
                     pluginName: modelData.name || modelData.id
                     pluginAuthor: modelData.author || qsTr("Unknown author")
                     pluginIcon: modelData.icon || ""
-                    middleText: modelData.update_error
+                    middleText: root.hasPendingOperation(modelData.id)
+                                ? qsTr("Update downloaded. Restart to apply")
+                                : modelData.update_error
                                 ? qsTr("Update check unavailable")
                                 : modelData.update_available
                                   ? qsTr("v%1 -> v%2").arg(modelData.version).arg(modelData.latest_version)
                                   : qsTr("Updated at %1").arg(modelData.local_updated_at || qsTr("Unknown"))
-                    middleTextColor: modelData.update_error
+                    middleTextColor: root.hasPendingOperation(modelData.id)
+                                ? Colors.proxy.textColor
+                                : modelData.update_error
                                      ? Colors.proxy.systemCriticalColor
                                      : Colors.proxy.textColor
                     primaryActionVisible: modelData.update_available
                     primaryActionEnabled: !PluginManager.plazaInstallActive
+                                              && !root.hasPendingOperation(modelData.id)
                     primaryActionText: qsTr("Update")
                     primaryActionIcon: "ic_fluent_arrow_sync_20_regular"
 

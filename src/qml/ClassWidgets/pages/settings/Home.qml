@@ -323,7 +323,7 @@ FluentPage {
                 ClipItem {
                     Layout.fillWidth: true
                     iconName: "ic_fluent_calendar_edit_20_regular"
-                    title: qsTr("Open schedule editor")
+                    title: qsTr("Set up your schedule")
                     showArrow: false
                     content: Button {
                         text: qsTr("Open schedule editor")

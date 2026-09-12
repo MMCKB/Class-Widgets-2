@@ -11,15 +11,15 @@ function generateTheme(seedHex, dark) {
     var argb = MaterialUtils.MaterialCore.argbFromHex(seedHex)
     var hct = MaterialUtils.MaterialCore.Hct.fromInt(argb)
     
-    console.log("MD3 Theme generation - seedHex:", seedHex, "dark:", dark)
-    console.log("  Source ARGB:", argb)
-    console.log("  Source HCT - hue:", hct.hue, "chroma:", hct.chroma, "tone:", hct.tone)
+    // console.log("MD3 Theme generation - seedHex:", seedHex, "dark:", dark)
+    // console.log("  Source ARGB:", argb)
+    // console.log("  Source HCT - hue:", hct.hue, "chroma:", hct.chroma, "tone:", hct.tone)
     
     var scheme = new MaterialUtils.MaterialCore.SchemeTonalSpot(hct, dark, 0)
 
-    console.log("  Primary Palette - hue:", scheme.primaryPalette.hue, "chroma:", scheme.primaryPalette.chroma)
-    console.log("  Primary tone (dark):", dark ? 80 : 40)
-    console.log("  Primary ARGB:", scheme.primary)
+    // console.log("  Primary Palette - hue:", scheme.primaryPalette.hue, "chroma:", scheme.primaryPalette.chroma)
+    // console.log("  Primary tone (dark):", dark ? 80 : 40)
+    // console.log("  Primary ARGB:", scheme.primary)
 
     var result = {
         // Surface colors

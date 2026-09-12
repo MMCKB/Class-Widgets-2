@@ -64,6 +64,18 @@ class Plugin(CW2Plugin):
                     "full_name": True
                 }
             },
+            {
+                "widget_id": "classwidgets.customText",
+                "name": QCoreApplication.translate("Widgets", "Text"),
+                "qml_path": Path(QML_PATH / "widgets" / "Text.qml").as_posix(),
+                "backend_obj": self,
+                "settings_qml": Path(QML_PATH / "widgets" / "settings" / "Text.qml").as_posix(),
+                "default_settings": {
+                    "marquee": False,
+                    "max_width": 150,
+                    "text": ""
+                }
+            },
         ]
 
     def on_load(self):

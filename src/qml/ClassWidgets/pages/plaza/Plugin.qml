@@ -38,6 +38,23 @@ FluentPage {
         }
         return false
     }
+    readonly property bool pluginPending: {
+        var operations = PluginManager.pendingPluginOperations || []
+        for (var i = 0; i < operations.length; ++i) {
+            if (operations[i].plugin_id === pluginId)
+                return true
+        }
+        return false
+    }
+    readonly property bool pluginPendingInstall: {
+        var operations = PluginManager.pendingPluginOperations || []
+        for (var i = 0; i < operations.length; ++i) {
+            if (operations[i].plugin_id === pluginId && operations[i].type === "install")
+                return true
+        }
+        return false
+    }
+    readonly property bool pluginAvailableForToggle: pluginInstalled || pluginPendingInstall
 
     // 评论对话框
     property bool commentsDialogOpen: false
@@ -70,8 +87,10 @@ FluentPage {
             loadPlugin()
     }
     onPluginIdChanged: {
-        if (pluginId)
+        if (pluginId) {
             loadPlugin()
+            enableSwitch.refresh()
+        }
     }
 
     function loadPlugin() {
@@ -571,9 +590,11 @@ FluentPage {
                             text: transferStatus === "Downloading"
                                   ? qsTr("Pause")
                                   : transferStatus === "Paused"
-                                    ? qsTr("Resume")
+                                      ? qsTr("Resume")
                                     : transferStatus === "Installing"
                                       ? qsTr("Installing")
+                                      : transferStatus === "PendingRestart" || root.pluginPending
+                                        ? qsTr("Restart to apply")
                                       : root.pluginInstalled
                                         ? qsTr("Installed")
                                       : qsTr("Get")
@@ -581,6 +602,7 @@ FluentPage {
                                      && (transferStatus === "Downloading"
                                          || transferStatus === "Paused"
                                          || (!root.pluginInstalled
+                                             && !root.pluginPending
                                              && !PluginManager.plazaInstallActive))
                             onClicked: {
                                 if (transferStatus === "Downloading")
@@ -590,6 +612,7 @@ FluentPage {
                                 else
                                     PluginManager.installFromPlaza(root.pluginId)
                             }
+                            visible: !root.pluginAvailableForToggle
                         }
 
                         ProgressBar {
@@ -610,6 +633,34 @@ FluentPage {
                                           .arg(root.formatBytes(PluginManager.installDownloadedBytes))
                                           .arg(root.formatBytes(PluginManager.installTotalBytes))
                                         : qsTr("Downloading")
+                            }
+                        }
+
+                        ToggleButton {
+                            id: enableSwitch
+                            Layout.preferredWidth: 128
+                            Layout.preferredHeight: 38
+                            visible: root.pluginAvailableForToggle
+                            highlighted: !checked
+                            icon.name: !checked ? "ic_fluent_checkmark_20_regular" : "ic_fluent_dismiss_20_regular"
+                            text: !checked ? qsTr("Enable") : qsTr("Disable")
+                            onToggled: PluginManager.setPluginEnabled(root.pluginId, checked)
+
+                            function refresh() {
+                                checked = PluginManager.isPluginEnabled(root.pluginId)
+                            }
+
+                            Component.onCompleted: refresh()
+
+                            Connections {
+                                target: PluginManager
+                                // 安装完成或外部启用/禁用后同步开关状态
+                                function onPluginListChanged() {
+                                    enableSwitch.refresh()
+                                }
+                                function onPluginPendingOperationsChanged() {
+                                    enableSwitch.refresh()
+                                }
                             }
                         }
 
@@ -789,7 +840,8 @@ FluentPage {
                                 flat: true
                                 icon.name: "ic_fluent_star_edit_20_regular"
                                 text: qsTr("Write a review").arg(root.totalWithComment)
-                                onClicked: root.commentsDialogOpen = true
+                                // onClicked: root.commentsDialogOpen = true
+                                onClicked: root.openUrl(root.storePageUrl())
                                 highlighted: true
                             }
                         }

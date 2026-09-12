@@ -26,7 +26,14 @@ Flyout {
 
     onEntryChanged: {
         currentSubjectId = entry && entry.subjectId ? entry.subjectId : "";
-        currentTitle = entry && entry.title ? entry.title : "";
+        currentTitle = "";
+    }
+
+    onOpened: {
+        const ctx = getContext();
+        currentTitle = ctx && entry
+            ? AppCentral.scheduleEditor.getOverrideTitle(entry.id, ctx.weeks, ctx.dayOfWeek[0])
+            : "";
     }
 
     ColumnLayout {

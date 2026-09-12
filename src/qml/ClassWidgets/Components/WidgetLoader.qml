@@ -17,12 +17,22 @@ Loader {
             if (item && model.settings) {
                 item.settings = model.settings
             }
+            if (item && item.hasOwnProperty('instanceId')) {
+                item.instanceId = model.instanceId
+            }
+            if (item && item.hasOwnProperty('widget_id')) {
+                item.widget_id = model.widget_id
+            }
             if (item && item.hasOwnProperty('editMode')) {
                 item.editMode = widgetsContainer.editMode
             }
             anim.start()
         } else if (status === Loader.Error) {
             console.error("Unable to load widget:", model.typeId, widgetSource)
+            // A themed component can fail while the Loader source itself is
+            // a widget/plugin URL, so the source path cannot identify this
+            // as a theme failure.
+            AppCentral.reportThemeLoadFailure(widgetSource)
         }
     }
 
@@ -31,6 +41,12 @@ Loader {
         function onModelChanged() {
             if (loader.item && model.settings) {
                 loader.item.settings = model.settings
+            }
+            if (loader.item && loader.item.hasOwnProperty('instanceId')) {
+                loader.item.instanceId = model.instanceId
+            }
+            if (loader.item && loader.item.hasOwnProperty('widget_id')) {
+                loader.item.widget_id = model.widget_id
             }
         }
     }

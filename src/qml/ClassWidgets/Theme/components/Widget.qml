@@ -1,52 +1,106 @@
 import QtQuick
-import QtQuick.Controls
-import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 import RinUI
-import ClassWidgets.Theme 1.0
 import ClassWidgets.Easing
 
 
-Item {
-    id: widgetBase
-    // 最小宽度 = 内容 + 边距，默认可以被拉伸
-    readonly property bool miniMode: Configs.data.preferences.mini_mode
-    readonly property bool hide: Configs.data.interactions.hide.state
-    property bool editMode: false
-    property bool lightingEffect: Configs.data.preferences.lighting_effect || true
+BaseWidget {
+    id: root
 
-    implicitWidth: Math.max(headerRow.implicitWidth, contentArea.childrenRect.width) + 48
-    height: miniMode ? 56 : 100
-    opacity: widgetHoverHandler.hovered? 0.8 : 1
-
-    // colors
-    property color backgroundColor: Theme.isDark()
+    cornerRadius: Configs.data.preferences.widget_corner_radius
+    backgroundColor: Theme.isDark()
         ? Qt.alpha("#1E1D22", 0.65)
         : Qt.alpha("#FBFAFF", 0.7)
-    property color borderColor: Theme.isDark()
+    borderColor: Theme.isDark()
         ? Qt.alpha("#fff", 0.4)
         : Qt.alpha("#fff", 1)
+    opacity: hoverHandler.hovered ? 0.8 : 1
 
-    // backend
-    property var backend: null
-    property var settings: null
+    backgroundArea: Item {
+        anchors.fill: parent
 
-    // properties
-    property alias text: subtitleLabel.text
-    property alias subtitle: subtitleArea.children
-    property alias actions: actionButtons.children
-    property alias backgroundArea: backgroundArea.children
-    default property alias content: contentArea.data
-    property real padding: miniMode ? 16 : 24
-    property real cornerRadius: Configs.data.preferences.widget_corner_radius
+        Rectangle {
+            anchors.fill: parent
+            radius: root.cornerRadius
+            color: root.backgroundColor
+            opacity: Configs.data.preferences.opacity
+        }
 
-    // 背景
-    readonly property real borderWidth: 1
+        Item {
+            anchors.fill: parent
+            opacity: Configs.data.preferences.opacity
 
-    // 动画
+            Rectangle {
+                id: outerBorderSource
+                anchors.fill: parent
+                radius: root.cornerRadius
+                layer.enabled: true
+                layer.effect: LinearGradient {
+                    start: Qt.point(0, 0)
+                    end: Qt.point(0, height)
+                    gradient: Gradient {
+                        GradientStop { position: 0.00; color: Qt.alpha("#8d8d8d", 0.75) }
+                        GradientStop { position: 1.00; color: Qt.alpha("#272727", 0.40) }
+                    }
+                }
+            }
+
+            layer.enabled: true
+            layer.effect: OpacityMask {
+                maskSource: Rectangle {
+                    width: outerBorderSource.width
+                    height: outerBorderSource.height
+                    radius: outerBorderSource.radius
+                    color: "transparent"
+                    border.width: 1
+                }
+            }
+            z: 99
+        }
+
+        Item {
+            anchors.fill: parent
+            anchors.margins: 1
+
+            Rectangle {
+                id: borderRect
+                anchors.fill: parent
+                radius: Math.max(root.cornerRadius - 1, 0)
+                layer.enabled: true
+                layer.effect: LinearGradient {
+                    start: Qt.point(0, 0)
+                    end: Qt.point(width, height)
+                    gradient: Gradient {
+                        GradientStop { position: 0; color: root.borderColor }
+                        GradientStop { position: 0.5; color: Qt.alpha("#fff", 0) }
+                        GradientStop { position: 0.6; color: Qt.alpha("#fff", 0) }
+                        GradientStop { position: 1; color: root.borderColor }
+                    }
+                }
+            }
+
+            layer.enabled: true
+            layer.effect: OpacityMask {
+                maskSource: Rectangle {
+                    width: borderRect.width
+                    height: borderRect.height
+                    radius: borderRect.radius
+                    color: "transparent"
+                    border.width: root.borderWidth
+                }
+            }
+            opacity: Configs.data.preferences.opacity * 1.2
+            z: 99
+        }
+    }
+
+    HoverHandler {
+        id: hoverHandler
+    }
+
     Behavior on implicitWidth {
         NumberAnimation {
-            duration: 400;
+            duration: 400
             easing.type: Easing.Bezier
             easing.bezierCurve: BezierCurve.liquidBack
         }
@@ -54,124 +108,11 @@ Item {
 
     Behavior on height {
         NumberAnimation {
-            duration: 400;
+            duration: 400
             easing.type: Easing.Bezier
             easing.bezierCurve: BezierCurve.liquidBack
         }
     }
-
-    // 渐变边框
-    Item {
-        anchors.fill: parent
-        Rectangle {
-            id: borderRect
-            anchors.fill: parent
-            radius: background.radius
-            layer.enabled: true
-            layer.effect: LinearGradient {
-                start: Qt.point(0, 0)
-                end: Qt.point(width, height)
-                gradient: Gradient {
-                    GradientStop { position: 0; color: borderColor }
-                    GradientStop { position: 0.5; color: Qt.alpha("#fff", 0) }
-                    GradientStop { position: 0.6; color: Qt.alpha("#fff", 0) }
-                    GradientStop { position: 1; color: borderColor }
-                }
-            }
-        }
-        // Rectangle {
-        //     id: borderRect2
-        //     anchors.fill: parent
-        //     radius: background.radius
-        //     layer.enabled: true
-        //     layer.effect: LinearGradient {
-        //         start: Qt.point(0, 0)
-        //         end: Qt.point(width, height)
-        //         gradient: Gradient {
-        //             GradientStop { position: 0; color: Qt.alpha("#000", 0.5) }
-        //             GradientStop { position: 0.5; color: Qt.alpha("#000", 0) }
-        //             GradientStop { position: 0.6; color: Qt.alpha("#000", 0) }
-        //             GradientStop { position: 1; color: Qt.alpha("#000", 0.5) }
-        //         }
-        //     }
-        // }
-        layer.enabled: true
-        layer.effect: OpacityMask {
-            maskSource: Rectangle {
-                width: borderRect.width
-                height: borderRect.height
-                radius: borderRect.radius
-                color: "transparent"
-                border.width: borderWidth
-            }
-        }
-        opacity: Configs.data.preferences.opacity * 2
-        z: 1
-    }
-
-    // 内部背景矩形
-    Rectangle {
-        id: background
-        anchors.fill: parent
-        radius: Math.min(width, height, widgetBase.cornerRadius)
-        color: backgroundColor
-        opacity: Configs.data.preferences.opacity
-    }
-
-    // 背景布局
-    Item {
-        id: backgroundArea
-        anchors.fill: parent
-    }
-
-    // 主布局
-    ColumnLayout {
-        id: mainLayout
-        anchors.fill: parent
-        anchors.topMargin: miniMode ? 12 : 16
-        anchors.bottomMargin: miniMode ? 10 : 18
-        anchors.leftMargin: padding
-        anchors.rightMargin: padding
-        spacing: 8
-
-        // 顶部 subtitle + actions
-        RowLayout {
-            id: headerRow
-            Layout.fillWidth: true
-            visible: (subtitle.length > 1 || actions.length > 1 || widgetBase.text.length > 0) && opacity > 0
-            opacity: !miniMode
-            Behavior on opacity { NumberAnimation { duration: 100; easing.type: Easing.OutQuint } }
-
-            RowLayout {
-                id: subtitleArea
-                Layout.fillHeight: true
-
-                Subtitle {
-                    id: subtitleLabel
-                }
-            }
-
-            Item { id: actionsSeparator; Layout.fillWidth: actionButtons.children.length > 0 }
-
-            RowLayout {
-                id: actionButtons
-                Layout.fillHeight: true
-            }
-        }
-
-        // 内容区
-        Item {
-            id: contentArea
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-        }
-    }
-
-    HoverHandler {
-        id: widgetHoverHandler
-    }
-
-    // 动画
 
     Behavior on backgroundColor {
         ColorAnimation {
@@ -179,6 +120,7 @@ Item {
             easing.type: Easing.OutQuint
         }
     }
+
     Behavior on borderColor {
         ColorAnimation {
             duration: 250

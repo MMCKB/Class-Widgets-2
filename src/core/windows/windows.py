@@ -2,7 +2,7 @@ from loguru import logger
 from pathlib import Path
 from typing import Union
 
-from PySide6.QtCore import QCoreApplication, QObject, Signal
+from PySide6.QtCore import QCoreApplication, QObject, Property, Signal, Slot
 
 from RinUI import RinUIWindow
 from src.core.directories import CW_PATH, DEFAULT_THEME
@@ -204,3 +204,63 @@ class ClassSwapRestoreDialog(ReleasableWindow):
             / "dialogs"
             / "ClassSwapRestoreDialog.qml"
         )
+
+
+class ThemeLoadErrorDialog(ReleasableWindow, QObject):
+    failedThemeIdChanged = Signal(str)
+    recoveredChanged = Signal(bool)
+
+    def __init__(self, parent):
+        super().__init__(parent)
+        self._failed_theme_id = ""
+        self._recovered = True
+        self._show_when_ready = False
+        self.engine.rootContext().setContextProperty("ThemeLoadErrorDialog", self)
+        self.engine.objectCreated.connect(self._on_object_created)
+        self.engine.warnings.connect(self._on_qml_warnings)
+        self.load(
+            CW_PATH
+            / "Components"
+            / "dialogs"
+            / "ThemeLoadErrorDialog.qml"
+        )
+        logger.info("Theme load error dialog QML requested")
+
+    @Property(str, notify=failedThemeIdChanged)
+    def failedThemeId(self) -> str:
+        return self._failed_theme_id
+
+    @Property(bool, notify=recoveredChanged)
+    def recovered(self) -> bool:
+        return self._recovered
+
+    @Slot(str, bool)
+    def set_error_details(self, failed_theme_id: str, recovered: bool) -> None:
+        self._failed_theme_id = failed_theme_id
+        self._recovered = recovered
+        self.failedThemeIdChanged.emit(failed_theme_id)
+        self.recoveredChanged.emit(recovered)
+
+    def show_when_ready(self) -> None:
+        self._show_when_ready = True
+        self._show_root_window()
+
+    def _on_object_created(self, obj, url) -> None:
+        if obj is not None:
+            logger.info("Theme load error dialog root object created")
+            self._show_root_window()
+
+    def _on_qml_warnings(self, warnings) -> None:
+        for warning in warnings:
+            logger.error(
+                "Theme load error dialog QML warning: {}",
+                warning.description(),
+            )
+
+    def _show_root_window(self) -> None:
+        if not self._show_when_ready or not self.root_window:
+            return
+        logger.info("Showing theme load error dialog window")
+        self.root_window.show()
+        self.root_window.raise_()
+        self.root_window.requestActivate()

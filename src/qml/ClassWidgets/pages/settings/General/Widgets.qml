@@ -263,13 +263,13 @@ FluentPage {
         spacing: 4
         Text {
             typography: Typography.BodyStrong
-            text: qsTr("Window")
+            text: qsTr("Widget placement")
         }
 
         SettingExpander {
             Layout.fillWidth: true
             icon.name: "ic_fluent_laptop_20_regular"
-            title: qsTr("Display")
+            title: qsTr("Display and position")
             description: qsTr("Set which screen to display widgets on, and adjust their position")
 
             action: ComboBox {

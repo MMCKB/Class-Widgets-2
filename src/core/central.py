@@ -12,6 +12,8 @@ from loguru import logger
 
 from src.core import CONFIGS_PATH, QML_PATH
 from src.core.directories import PathManager, ASSETS_PATH, LOGS_PATH
+from src.core.platform import PlatformIntegration
+from src.core.theme_recovery import ThemeRecoveryController
 
 if TYPE_CHECKING:
     from src.core.notification.manager import NotificationManager, NotificationService
@@ -85,6 +87,7 @@ class AppCentral(QObject):  # Class Widgets 的中枢
     widgetRegistered = Signal(str)  # 新增：widget注册信号
     retranslate = Signal()  # 新增：翻译信号
     trayShortcutRequested = Signal(str)
+    restartRequiredChanged = Signal(bool)  # 新增：需要重启以应用更改
 
     def __init__(self) -> None:  # 初始化
         super().__init__()
@@ -94,7 +97,6 @@ class AppCentral(QObject):  # Class Widgets 的中枢
             raise RuntimeError("AppCentral is a singleton. Use AppCentral.instance() instead.")
         AppCentral._instance = self
 
-        self._check_single_instance()
         self._startup_state = StartupState.CREATED
         self._startup_swap_restore_pending: bool = False
         self._startup_swap_restore_scheduled: bool = False
@@ -105,7 +107,12 @@ class AppCentral(QObject):  # Class Widgets 的中枢
         self._update_summary_scheduled: bool = False
         self._cleanup_started = False
         self._restart_requested = False
+        self._restart_required = False  # 是否有待应用的重启（UI 提示用）
         self._initialize_cores()
+        self.platform = PlatformIntegration(self.app_instance)
+        self.instance_guard = self.platform.instance_guard
+        self.multi_instances = self.platform.multi_instances
+        self.platform.initialize()
         self.startup_animation.finished.connect(self._on_startup_animation_finished)
         self._initialize_app_icon()
         self._initialize_windows_appid()
@@ -115,16 +122,6 @@ class AppCentral(QObject):  # Class Widgets 的中枢
         self._initialize_ui_components()
         self.app_instance.aboutToQuit.connect(self.cleanup)
         logger.info("AppCentral initialization completed")
-
-    def _check_single_instance(self) -> None:
-        """确保单实例运行"""
-        self.instance_guard: SingleInstanceGuard = SingleInstanceGuard()
-        if not self.instance_guard.try_acquire():
-            lock_info = self.instance_guard.get_lock_info()
-            logger.error(f"Another instance is already running: {lock_info}")
-            self.multi_instances = True
-            return 
-        self.multi_instances: bool = False
 
     @classmethod
     def instance(cls) -> AppCentral:
@@ -238,6 +235,12 @@ class AppCentral(QObject):  # Class Widgets 的中枢
         """初始化启动必需的UI组件"""
         self.widgets_window: WidgetsWindow = WidgetsWindow(self)
         self.widgets_window.qmlReady.connect(self._on_widgets_qml_ready)
+        self.theme_recovery = ThemeRecoveryController(
+            self.theme_manager,
+            self.window_manager,
+            self,
+        )
+        self.widgets_window.themeLoadFailed.connect(self.theme_recovery.handle_failure)
         if self.multi_instances:
             self.window_manager.ensure("single_instance")
 
@@ -371,6 +374,11 @@ class AppCentral(QObject):  # Class Widgets 的中枢
         self._update_summary_pending = False
         self.window_manager.open_whatsnew()
 
+    @Slot(str)
+    def reportThemeLoadFailure(self, source: str = "") -> None:
+        """Keep the existing QML entry point while delegating recovery."""
+        self.theme_recovery.report_component_failure(source)
+
     def resolve_class_swap_restore(self, *, discard: bool) -> None:
         if discard:
             self._class_swap_manager.discardTodaySwaps()
@@ -487,6 +495,19 @@ class AppCentral(QObject):  # Class Widgets 的中枢
     def quit(self):
         self.app_instance.quit()
 
+    @Property(bool, notify=restartRequiredChanged)
+    def restartRequired(self) -> bool:
+        """是否有待应用的重启（供 UI 显示重启提示按钮）"""
+        return self._restart_required
+
+    @Slot()
+    def markRestartRequired(self) -> None:
+        """标记需要重启以应用更改（如插件启用/禁用状态变化）"""
+        if self._restart_required:
+            return
+        self._restart_required = True
+        self.restartRequiredChanged.emit(True)
+
     @Slot()
     @Slot(str)
     def restart(self, extra_argument: Optional[str] = None):
@@ -586,7 +607,9 @@ class AppCentral(QObject):  # Class Widgets 的中枢
         self.theme_manager.load()
         logger.info("Themes loaded successfully")
 
+        # Plugin files must only change before the plugin scan/load phase.
         self.plugin_manager.set_enabled_plugins(self.configs.plugins.enabled)
+        self.plugin_manager.apply_pending_operations()
         # 加载插件（内置+外部）
         self.plugin_manager.scan()  # 延迟扫描插件，确保翻译器已加载
         self.plugin_manager.load_plugins()

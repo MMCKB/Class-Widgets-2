@@ -26,8 +26,8 @@ FluentPage {
             floatLayer.createInfoBar({
                 title: qsTr("Success"),
                 text: qsTr(
-                    "The plugin has been uninstalled successfully. " +
-                    "Restart to take effect."
+                    "The plugin uninstall has been queued. " +
+                    "Restart to apply it."
                 ),
                 severity: Severity.Success,
                 timeout: 5000,
@@ -105,9 +105,9 @@ FluentPage {
     function performImport(zip_path) {
         if (PluginManager.importPluginWithPath(zip_path)) {
             floatLayer.createInfoBar({
-                title: qsTr("Importing"),
-                text: qsTr("Importing the selected plugin. Please wait..."),
-                severity: Severity.Info
+                title: qsTr("Import queued"),
+                text: qsTr("The plugin will be installed after restart."),
+                severity: Severity.Success
             })
         }
     }
@@ -188,7 +188,7 @@ FluentPage {
                     function onPluginImportSucceeded() {
                         floatLayer.createInfoBar({
                             title: qsTr("Success"),
-                            text: qsTr("The plugin has been imported successfully."),
+                            text: qsTr("The plugin import has been queued. Restart to apply it."),
                             severity: Severity.Success,
                             timeout: 5000,
                         })

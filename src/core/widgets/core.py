@@ -15,6 +15,7 @@ from src.core.windows.windows import ReleasableWindow
 class WidgetsWindow(ReleasableWindow, QObject):
     themeReadyToReload = Signal()
     qmlReady = Signal()
+    themeLoadFailed = Signal(str)
 
     def __init__(self, app_central: QObject):
         super().__init__(app_central)
@@ -33,6 +34,7 @@ class WidgetsWindow(ReleasableWindow, QObject):
         self.engine.setUrlInterceptor(self.interceptor)
 
         self.engine.objectCreated.connect(self.on_qml_ready, type=Qt.ConnectionType.QueuedConnection)
+        self.engine.warnings.connect(self._on_qml_warnings)
 
     def _start_listening(self):
         self.timer = QTimer(self)
@@ -42,8 +44,10 @@ class WidgetsWindow(ReleasableWindow, QObject):
     def run(self):
         """启动widgets窗口"""
         self.app_central.widgets_model.load_config()
-        self._load_with_theme()
+        # Connect before the first load so an invalid startup theme can be
+        # replaced immediately when the failure handler selects the default.
         self.app_central.theme_manager.themeChanged.connect(self.on_theme_changed)
+        self._load_with_theme()
 
     def release(self):
         if self.is_released:
@@ -119,17 +123,21 @@ class WidgetsWindow(ReleasableWindow, QObject):
             logger.warning("No current theme ID set during theme change")
             self.interceptor.set_theme(None)
 
-        self.engine.clearComponentCache()
-        self.engine.collectGarbage()
-        logger.info("Component cache cleared")
+        # Do not collect QML garbage from inside a Loader warning/object
+        # creation callback. On some Qt versions this blocks the GUI thread
+        # while the failing component is still being torn down.
+        QTimer.singleShot(0, self._finish_theme_reload)
 
-        if self.root_window:
-            self.root_window.setProperty("_force_theme_reload", True)
-            self.root_window.setProperty("_force_theme_reload", False)
-            logger.info("Force theme reload signal sent")
-
-        self._trigger_widget_reload()
-        self.engine.retranslate()
+    def _finish_theme_reload(self):
+        try:
+            # Theme components are resolved by QML's type cache. Clear it
+            # before recreating Loader contents, otherwise a cache-busted URL
+            # can still instantiate the component from the previous theme.
+            self.engine.clearComponentCache()
+            self._trigger_widget_reload()
+            logger.info("Theme component cache cleared and reload signal sent")
+        finally:
+            self._theme_reloading = False
 
     
     def _trigger_widget_reload(self):
@@ -137,15 +145,16 @@ class WidgetsWindow(ReleasableWindow, QObject):
         logger.info("Triggering widget reload")
         self.app_central.theme_manager.themeReadyToReload.emit()
 
-        self._theme_reloading = False
-        logger.debug("Theme reloading flag reset to False")
-
     def on_qml_ready(self, obj, obj_url):
-        if obj is None:
-            logger.error("Main QML Load Failed")
+        if Path(obj_url.toLocalFile()).resolve() != self.qml_main_path.resolve():
             return
 
-        if Path(obj_url.toLocalFile()).resolve() != self.qml_main_path.resolve():
+        if obj is None:
+            failed_theme = self.app_central.theme_manager.currentTheme
+            logger.error(f"Main QML Load Failed for theme '{failed_theme}'")
+            self._apply_empty_mask()
+            self._qml_ready = False
+            self.themeLoadFailed.emit(failed_theme)
             return
 
         if self._qml_ready:
@@ -167,6 +176,39 @@ class WidgetsWindow(ReleasableWindow, QObject):
             self.qmlReady.emit()
             return
         logger.error("'widgetsLoader' object has not found'")
+        self._apply_empty_mask()
+        self.themeLoadFailed.emit(self.app_central.theme_manager.currentTheme)
+
+    def _on_qml_warnings(self, warnings):
+        """Log QML warnings without treating runtime diagnostics as load failures.
+
+        Qt reports binding loops and non-bindable-property notices through the
+        same warnings channel as component errors. The main QML object and
+        Loader status are the authoritative signals for a failed theme load;
+        warnings alone are not.
+        """
+        theme_path = self.app_central.theme_manager.getThemePath(
+            self.app_central.theme_manager.currentTheme
+        )
+        if not theme_path:
+            return
+
+        theme_root = Path(theme_path).resolve()
+        for warning in warnings:
+            source_path = Path(warning.url().toLocalFile()).resolve()
+            try:
+                source_path.relative_to(theme_root)
+            except ValueError:
+                continue
+
+            description = warning.description()
+            logger.warning("Theme QML warning at {}: {}", source_path, description)
+
+    def _apply_empty_mask(self):
+        """Keep a failed or incomplete QML load from exposing the full window."""
+        self.interactive_rect = QRegion()
+        if self.root_window:
+            self.root_window.setMask(QRegion(QRect(0, 0, 1, 1)))
 
     def schedule_mask_update(self):
         if self._mask_update_pending:
@@ -184,6 +226,9 @@ class WidgetsWindow(ReleasableWindow, QObject):
         mask = QRegion()
         widgets_loader = self.root_window.findChild(QObject, "widgetsLoader")
         if not widgets_loader:
+            # An empty region clears the native mask and makes this full-screen
+            # transparent window cover the entire desktop while QML is loading.
+            self._apply_empty_mask()
             return
 
         menu_show = widgets_loader.property("menuVisible") or False
@@ -228,8 +273,11 @@ class WidgetsWindow(ReleasableWindow, QObject):
 
 
         self.interactive_rect = mask
-        # An empty mask clips the whole transparent window. This is common while
-        # asynchronous widget loaders are still resolving their item sizes.
+        if mask.isEmpty():
+            # setMask(QRegion()) clears the native mask, which makes the
+            # full-screen transparent window cover the entire desktop. Keep a
+            # minimal non-empty mask until a widget has a valid geometry.
+            mask = QRegion(QRect(0, 0, 1, 1))
         self.root_window.setMask(mask)
 
     def update_mouse_state(self):

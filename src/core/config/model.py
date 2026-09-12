@@ -91,11 +91,14 @@ class ZOrder(str, Enum):
     BOTTOM = "bottom"
     NORMAL = "normal"
 
+class CountdownPrecision(str, Enum):
+    SECOND = "second"
+    MINUTE = "minute"
 
 class TapAction(str, Enum):  # 小组件点击触发的行为
-    HIDE = "hide"
-    MINI_MODE = "mini_mode"
-    FLOATING_WIDGET = "floating_widget"
+    HIDE = "hide"  # 隐藏
+    MINI_MODE = "mini_mode"  # 切换迷你模式
+    FLOATING_WIDGET = "floating_widget"  # 切换浮窗模式
 
 
 class WidgetEntry(ConfigBaseModel):
@@ -126,7 +129,11 @@ class HideInteractionsConfig(ConfigBaseModel):
     clicked: bool = True  # 点击时
     maximized: bool = False  # 窗口最大化
     fullscreen: bool = False   # 窗口全屏
-    mini_mode: bool = False  # 切换迷你模式
+    action: TapAction = TapAction.HIDE  # 触发隐藏时的行为（隐藏 / 切换迷你模式 / 浮窗）
+
+    class Config:
+        use_enum_values = True
+        validate_assignment = True
 
 class AppConfig(ConfigBaseModel):
     """
@@ -163,6 +170,7 @@ class PreferencesConfig(ConfigBaseModel):
     display: Optional[str] = None  # 指定显示器
     mini_mode: bool = False  # 迷你
     lighting_effect: bool = True  # 光影效果
+    countdown_precision: CountdownPrecision = CountdownPrecision.SECOND  # 倒计时显示精度
     shortcuts: list[str] = Field(default_factory=lambda: [
         "com.classwidgets.settings",
         "com.classwidgets.schedules",
@@ -228,6 +236,8 @@ class SceneModesConfig(ConfigBaseModel):
 class PluginsConfig(ConfigBaseModel):
     enabled: list[str] = ["builtin.classwidgets.widgets"]
     configs: dict[str, dict[str, JsonData]] = Field(default_factory=dict)
+    # Archives are downloaded while the app is running and applied on startup.
+    pending_operations: list[dict[str, JsonData]] = Field(default_factory=list)
     auto_check_plaza_updates: bool = True
     auto_install_plaza_updates: bool = False
 

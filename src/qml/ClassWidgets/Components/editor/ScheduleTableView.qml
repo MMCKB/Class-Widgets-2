@@ -55,6 +55,10 @@ Item {
 
     // 根据 day 和 row 找 entry，并应用 overrides
     function getEntryByDayAndRow(day, row, columnIndex) {
+        // The function calls into Python, so make the QML binding explicitly
+        // depend on override changes. Otherwise changing a subject can leave
+        // an already-created cell displaying the old entry data.
+        const revision = table.overridesRevision
         if (!day || !day.entries) return null;
 
         let classEntries = day.entries.filter(e => e.type === "class");
@@ -101,6 +105,7 @@ Item {
         property var selectedCell: ({ row: -1, column: -1 })
         property var currentEntry: null
         property int entriesRevision: AppCentral.scheduleEditor.entriesRevision
+        property int overridesRevision: AppCentral.scheduleEditor.overridesRevision
 
         // 动态计算行数（最大 class 数量）
         property int maxRows: {

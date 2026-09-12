@@ -122,6 +122,37 @@ FluentPage {
 
         SettingCard {
             Layout.fillWidth: true
+            title: qsTr("Countdown Precision")
+            description: qsTr("Choose how precisely the remaining time is displayed")
+            icon.name: "ic_fluent_timer_20_regular"
+
+            ComboBox {
+                enabled: !Configs.isKeyLocked("preferences.countdown_precision")
+                textRole: "text"
+                model: ListModel {
+                    ListElement { text: qsTr("To the Second"); value: "second" }
+                    ListElement { text: qsTr("To the Minute"); value: "minute" }
+                }
+
+                onCurrentIndexChanged: {
+                    if (focus && currentIndex >= 0)
+                        Configs.set("preferences.countdown_precision", model.get(currentIndex).value)
+                }
+
+                Component.onCompleted: {
+                    const saved = Configs.data.preferences.countdown_precision || "second"
+                    for (let i = 0; i < model.count; i++) {
+                        if (model.get(i).value === saved) {
+                            currentIndex = i
+                            break
+                        }
+                    }
+                }
+            }
+        }
+
+        SettingCard {
+            Layout.fillWidth: true
             title: qsTr("Mini Mode")
             description: qsTr("Use a more compact layout for smaller widgets")
             icon.name: "ic_fluent_resize_20_regular"

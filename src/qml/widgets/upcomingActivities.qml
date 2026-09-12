@@ -60,9 +60,11 @@ Widget {
     }
 
     Title {
-        width: !settings || !settings.marquee ? implicitWidth : 0
+        id: titleLabel
+        // width: !settings || !settings.marquee ? contentWidth : contentWidth
         visible: !settings || !settings.marquee
         anchors.centerIn: parent
         text: root.title
+        maximumLineCount: 1
     }
 }

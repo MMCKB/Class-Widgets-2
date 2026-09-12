@@ -25,10 +25,17 @@ TutorialComponents.TutorialPage {
         SettingExpander {
             Layout.fillWidth: true
             Layout.minimumHeight: 200
-            icon.name: "ic_fluent_slide_hide_20_regular"
-            title: qsTr("Hide Behavior")
-            description: qsTr("Choose whether widgets disappear or become compact")
+            icon.name: "ic_fluent_tap_single_20_regular"
+            title: qsTr("Tap Action")
+            description: qsTr("Choose whether tapping a widget hides it, switches to mini mode, or opens a floating widget")
             expanded: true
+            enabled: !hoverFadeSwitch.checked
+
+            action: Switch {
+                enabled: !Configs.isKeyLocked("interactions.hide.clicked")
+                onCheckedChanged: Configs.set("interactions.hide.clicked", checked)
+                Component.onCompleted: checked = Configs.data.interactions.hide.clicked
+            }
 
             ButtonGroup {
                 id: hideModeGroup
@@ -43,13 +50,18 @@ TutorialComponents.TutorialPage {
                         model: [
                             {
                                 "name": qsTr("Hide"),
-                                "miniMode": false,
+                                "value": "hide",
                                 "preview": "hide_default"
                             },
                             {
                                 "name": qsTr("Mini Mode"),
-                                "miniMode": true,
+                                "value": "mini_mode",
                                 "preview": "hide_mini"
+                            },
+                            {
+                                "name": qsTr("Floating Widget"),
+                                "value": "floating_widget",
+                                "preview": "hide_floating"
                             }
                         ]
 
@@ -66,55 +78,16 @@ TutorialComponents.TutorialPage {
                             }
 
                             RadioButton {
-                                Layout.fillWidth: true
+                                Layout.alignment: Qt.AlignHCenter
                                 text: modelData.name
-                                checked: Configs.data.interactions.hide.mini_mode === modelData.miniMode
-                                enabled: !Configs.isKeyLocked("interactions.hide.mini_mode")
+                                checked: Configs.data.interactions.tapped_action === modelData.value
+                                enabled: !Configs.isKeyLocked("interactions.tapped_action")
                                 ButtonGroup.group: hideModeGroup
-                                onClicked: Configs.set("interactions.hide.mini_mode", modelData.miniMode)
+                                onClicked: Configs.set("interactions.tapped_action", modelData.value)
                             }
                         }
                     }
                 }
-            }
-        }
-
-        SettingExpander {
-            Layout.fillWidth: true
-            icon.name: "ic_fluent_tap_single_20_regular"
-            title: qsTr("Tap Action")
-            description: qsTr("Choose whether tapping a widget hides it, switches to mini mode, or opens a floating widget")
-            expanded: true
-
-            action: ComboBox {
-                id: tutorialTapActionSelector
-                Layout.preferredWidth: 180
-                model: ListModel {
-                    ListElement { text: qsTr("Hide Widgets"); value: "hide" }
-                    ListElement { text: qsTr("Switch to mini mode"); value: "mini_mode" }
-                    ListElement { text: qsTr("Floating Widget"); value: "floating_widget" }
-                }
-                textRole: "text"
-                valueRole: "value"
-                enabled: !Configs.isKeyLocked("interactions.tapped_action")
-                onCurrentValueChanged: if (focus) Configs.set("interactions.tapped_action", currentValue)
-                Component.onCompleted: {
-                    const action = Configs.data.interactions.tapped_action || "hide"
-                    currentIndex = Math.max(0, indexOfValue(action))
-                }
-            }
-        }
-
-        SettingCard {
-            Layout.fillWidth: true
-            icon.name: "ic_fluent_tap_single_20_regular"
-            title: qsTr("Tap to Hide")
-            description: qsTr("Click on a widget to hide it, click it again to bring it back")
-
-            Switch {
-                enabled: !Configs.isKeyLocked("interactions.hide.clicked")
-                onCheckedChanged: Configs.set("interactions.hide.clicked", checked)
-                Component.onCompleted: checked = Configs.data.interactions.hide.clicked
             }
         }
 
@@ -125,48 +98,58 @@ TutorialComponents.TutorialPage {
             description: qsTr("Hover to make widgets transparent and let clicks pass through")
 
             Switch {
+                id: hoverFadeSwitch
                 enabled: !Configs.isKeyLocked("interactions.hover_fade")
                 onCheckedChanged: Configs.set("interactions.hover_fade", checked)
                 Component.onCompleted: checked = Configs.data.interactions.hover_fade
             }
         }
 
-        // SettingExpander {
-        //     Layout.fillWidth: true
-        //     icon.name: "ic_fluent_eye_off_20_regular"
-        //     title: qsTr("Auto Hide")
-        //     description: qsTr("Automatically hide widgets in specific situations")
-        //     expanded: true
-        //
-        //     SettingItem {
-        //         ColumnLayout {
-        //             Layout.fillWidth: true
-        //
-        //             CheckBox {
-        //                 Layout.fillWidth: true
-        //                 text: qsTr("Hide when in class")
-        //                 enabled: !Configs.isKeyLocked("interactions.hide.in_class")
-        //                 onCheckedChanged: Configs.set("interactions.hide.in_class", checked)
-        //                 Component.onCompleted: checked = Configs.data.interactions.hide.in_class
-        //             }
-        //
-        //             CheckBox {
-        //                 Layout.fillWidth: true
-        //                 text: qsTr("Hide when a window is maximized")
-        //                 enabled: !Configs.isKeyLocked("interactions.hide.maximized") && Qt.platform.os === "windows"
-        //                 onCheckedChanged: Configs.set("interactions.hide.maximized", checked)
-        //                 Component.onCompleted: checked = Configs.data.interactions.hide.maximized
-        //             }
-        //
-        //             CheckBox {
-        //                 Layout.fillWidth: true
-        //                 text: qsTr("Hide when a window enters fullscreen")
-        //                 enabled: !Configs.isKeyLocked("interactions.hide.fullscreen") && Qt.platform.os === "windows"
-        //                 onCheckedChanged: Configs.set("interactions.hide.fullscreen", checked)
-        //                 Component.onCompleted: checked = Configs.data.interactions.hide.fullscreen
-        //             }
-        //         }
-        //     }
-        // }
+        SettingExpander {
+            Layout.fillWidth: true
+            icon.name: "ic_fluent_slide_hide_20_regular"
+            title: qsTr("More hide behavior")
+            description: qsTr("Choose whether widgets hide, switch to Mini Mode, or open a floating widget when triggered")
+
+            action: ComboBox {
+                Layout.preferredWidth: 180
+                model: ListModel {
+                    ListElement { text: qsTr("Hide Widgets"); value: "hide" }
+                    ListElement { text: qsTr("Switch to mini mode"); value: "mini_mode" }
+                    ListElement { text: qsTr("Floating widget"); value: "floating_widget" }
+                }
+                textRole: "text"
+                valueRole: "value"
+                enabled: !Configs.isKeyLocked("interactions.hide.action")
+                onCurrentValueChanged: if (focus) Configs.set("interactions.hide.action", currentValue)
+                Component.onCompleted: currentIndex = indexOfValue(Configs.data.interactions.hide.action)
+            }
+            SettingItem {
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    CheckBox {
+                        Layout.fillWidth: true
+                        text: qsTr("Hide when in class")
+                        enabled: !Configs.isKeyLocked("interactions.hide.in_class")
+                        onCheckedChanged: Configs.set("interactions.hide.in_class", checked)
+                        Component.onCompleted: checked = Configs.data.interactions.hide.in_class
+                    }
+                    CheckBox {
+                        Layout.fillWidth: true
+                        text: qsTr("Hide when a window is maximized")
+                        enabled: !Configs.isKeyLocked("interactions.hide.maximized") && Qt.platform.os === "windows"
+                        onCheckedChanged: Configs.set("interactions.hide.maximized", checked)
+                        Component.onCompleted: checked = Configs.data.interactions.hide.maximized
+                    }
+                    CheckBox {
+                        Layout.fillWidth: true
+                        text: qsTr("Hide when a window enters fullscreen")
+                        enabled: !Configs.isKeyLocked("interactions.hide.fullscreen") && Qt.platform.os === "windows"
+                        onCheckedChanged: Configs.set("interactions.hide.fullscreen", checked)
+                        Component.onCompleted: checked = Configs.data.interactions.hide.fullscreen
+                    }
+                }
+            }
+        }
     }
 }

@@ -17,6 +17,16 @@ TutorialComponents.TutorialPage {
     property string currentInstallingId: ""
     property bool installingSelection: false
     property bool currentInstallFinished: false
+    readonly property var recommendationsBridge: typeof TutorialRecommendationsBridge !== "undefined"
+                                                  ? TutorialRecommendationsBridge : null
+    readonly property var recommendations: root.recommendationsBridge
+                                           ? (root.recommendationsBridge.recommendations || []) : []
+    readonly property bool recommendationsLoading: root.recommendationsBridge
+                                                   ? root.recommendationsBridge.loading : false
+    readonly property string recommendationsError: root.recommendationsBridge
+                                                   ? (root.recommendationsBridge.error || "") : ""
+    readonly property string recommendationsBaseUrl: root.recommendationsBridge
+                                                    ? (root.recommendationsBridge.baseUrl || "") : ""
 
     title: qsTr("Recommended plugins")
     description: qsTr("Pick certified plugins from Plugin Plaza to install with your first setup.")
@@ -54,10 +64,13 @@ TutorialComponents.TutorialPage {
         onTriggered: root.finishCurrentInstallItem()
     }
 
-    Component.onCompleted: TutorialRecommendationsBridge.fetchRecommendations()
+    Component.onCompleted: {
+        if (root.recommendationsBridge)
+            root.recommendationsBridge.fetchRecommendations()
+    }
 
     Connections {
-        target: TutorialRecommendationsBridge
+        target: root.recommendationsBridge
 
         function onRecommendationsChanged() {
             root.initializeSelectionState()
@@ -70,11 +83,16 @@ TutorialComponents.TutorialPage {
             if (plugins[i].id === pluginId)
                 return true
         }
+        var pending = PluginManager.pendingPluginOperations || []
+        for (var j = 0; j < pending.length; ++j) {
+            if (pending[j].plugin_id === pluginId && pending[j].type === "install")
+                return true
+        }
         return false
     }
 
     function pluginName(pluginId) {
-        var plugins = TutorialRecommendationsBridge.recommendations || []
+        var plugins = root.recommendations
         for (var i = 0; i < plugins.length; ++i) {
             if (plugins[i].id === pluginId)
                 return plugins[i].name || pluginId
@@ -141,7 +159,7 @@ TutorialComponents.TutorialPage {
 
     function selectAllPlugins() {
         var next = []
-        var recommendations = TutorialRecommendationsBridge.recommendations || []
+        var recommendations = root.recommendations
         for (var i = 0; i < recommendations.length; ++i) {
             var pluginId = recommendations[i].id || ""
             if (pluginId.length > 0 && !root.isInstalled(pluginId))
@@ -156,7 +174,7 @@ TutorialComponents.TutorialPage {
 
     function selectablePluginCount() {
         var count = 0
-        var recommendations = TutorialRecommendationsBridge.recommendations || []
+        var recommendations = root.recommendations
         for (var i = 0; i < recommendations.length; ++i) {
             if (recommendations[i].id && !root.isInstalled(recommendations[i].id))
                 count++
@@ -220,7 +238,13 @@ TutorialComponents.TutorialPage {
     function installSingle(pluginId) {
         if (!pluginId || root.isInstalled(pluginId))
             return false
-        return PluginManager.installFromPlaza(pluginId)
+        // Tutorial installs are enabled for the first load after restart.
+        PluginManager.setPluginEnabled(pluginId, true)
+        if (!PluginManager.installFromPlaza(pluginId)) {
+            PluginManager.setPluginEnabled(pluginId, false)
+            return false
+        }
+        return true
     }
 
     function startInstallQueue(ids) {
@@ -295,6 +319,8 @@ TutorialComponents.TutorialPage {
         function onPluginInstallSucceeded(pluginId, version) {
             if (!root.installingSelection || pluginId !== root.currentInstallingId)
                 return
+            // Installation is deferred, but tutorial-selected plugins should
+            // be enabled for the first load after restart.
             PluginManager.setPluginEnabled(pluginId, true)
             root.addSuccess(pluginId)
         }
@@ -302,6 +328,7 @@ TutorialComponents.TutorialPage {
         function onPluginInstallFailed(message) {
             if (!root.installingSelection || root.currentInstallingId.length === 0)
                 return
+            PluginManager.setPluginEnabled(root.currentInstallingId, false)
             root.addFailure(root.currentInstallingId, message)
             installFailureSettleTimer.restart()
         }
@@ -309,6 +336,7 @@ TutorialComponents.TutorialPage {
         function onPluginInstallCancelled(pluginId) {
             if (!root.installingSelection || (pluginId && pluginId !== root.currentInstallingId))
                 return
+            PluginManager.setPluginEnabled(pluginId || root.currentInstallingId, false)
             root.addFailure(pluginId || root.currentInstallingId, qsTr("Installation cancelled"))
             installFailureSettleTimer.restart()
         }
@@ -391,8 +419,8 @@ TutorialComponents.TutorialPage {
                     anchors.fill: parent
                     anchors.rightMargin: 6
                     anchors.bottomMargin: failureCard.visible ? failureCard.height + 4 : 0
-                    visible: !TutorialRecommendationsBridge.loading
-                             && TutorialRecommendationsBridge.recommendations.length > 0
+                    visible: !root.recommendationsLoading
+                             && root.recommendations.length > 0
                     clip: true
                     boundsBehavior: Flickable.StopAtBounds
                     ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
@@ -405,9 +433,9 @@ TutorialComponents.TutorialPage {
 
                     cellWidth: (width - cellSpacing * (columns - 1)) / columns
                     cellHeight: cardHeight + cellSpacing
-                    model: TutorialRecommendationsBridge.loading
+                    model: root.recommendationsLoading
                            ? []
-                           : TutorialRecommendationsBridge.recommendations
+                           : root.recommendations
 
                     delegate: TutorialComponents.TutorialPluginCard {
                         width: pluginGrid.cellWidth - pluginGrid.cellSpacing
@@ -417,7 +445,7 @@ TutorialComponents.TutorialPage {
                         plugin: modelData
                         selected: root.isSelected(pluginId)
                         installed: !!modelData.id && root.isInstalled(modelData.id)
-                        baseUrl: TutorialRecommendationsBridge.baseUrl
+                        baseUrl: root.recommendationsBaseUrl
                         installActive: root.installingSelection && root.currentInstallingId === pluginId
                         installStatus: PluginManager.installPluginId === pluginId
                                        ? PluginManager.installStatus
@@ -445,7 +473,7 @@ TutorialComponents.TutorialPage {
 
                 ProgressRing {
                     anchors.centerIn: parent
-                    visible: TutorialRecommendationsBridge.loading
+                    visible: root.recommendationsLoading
                     indeterminate: true
                 }
 
@@ -453,28 +481,31 @@ TutorialComponents.TutorialPage {
                     anchors.centerIn: parent
                     width: Math.min(parent.width, 420)
                     spacing: 4
-                    visible: !TutorialRecommendationsBridge.loading
-                             && TutorialRecommendationsBridge.recommendations.length === 0
+                    visible: !root.recommendationsLoading
+                             && root.recommendations.length === 0
 
                     PlazaComponents.EmptyState {
                         Layout.fillWidth: true
-                        title: TutorialRecommendationsBridge.error.length > 0
+                        title: root.recommendationsError.length > 0
                                ? qsTr("Could not load recommendations")
                                : qsTr("No recommendations available")
-                        description: TutorialRecommendationsBridge.error.length > 0
-                                     ? TutorialRecommendationsBridge.error
+                        description: root.recommendationsError.length > 0
+                                     ? root.recommendationsError
                                      : qsTr("You can browse Plugin Plaza after setup.")
-                        icon.name: TutorialRecommendationsBridge.error.length > 0
+                        icon.name: root.recommendationsError.length > 0
                                    ? "ic_fluent_cloud_error_20_regular"
                                    : "ic_fluent_plug_disconnected_20_regular"
                     }
 
                     Button {
                         Layout.alignment: Qt.AlignHCenter
-                        visible: TutorialRecommendationsBridge.error.length > 0
+                        visible: root.recommendationsError.length > 0
                         text: qsTr("Retry")
                         icon.name: "ic_fluent_arrow_sync_20_regular"
-                        onClicked: TutorialRecommendationsBridge.fetchRecommendations()
+                        onClicked: {
+                            if (root.recommendationsBridge)
+                                root.recommendationsBridge.fetchRecommendations()
+                        }
                     }
                 }
 

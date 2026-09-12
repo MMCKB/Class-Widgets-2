@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import tempfile
+import time
 import zipfile
 from dataclasses import dataclass
 from pathlib import Path, PurePosixPath
@@ -46,6 +48,8 @@ class PluginArchiveInstaller:
     MAX_EXTRACTED_SIZE = 500 * 1024 * 1024
     MAX_FILE_COUNT = 10_000
     MAX_COMPRESSION_RATIO = 200
+    WINDOWS_RENAME_ATTEMPTS = 8
+    WINDOWS_RENAME_DELAY = 0.25
 
     def __init__(self, plugins_path: Path):
         self.plugins_path = Path(plugins_path)
@@ -115,10 +119,10 @@ class PluginArchiveInstaller:
                 self.backup_path.mkdir(parents=True, exist_ok=True)
                 backup_dir = Path(tempfile.mkdtemp(prefix=f"{archive_info.plugin_id}-", dir=self.backup_path))
                 backup_target = backup_dir / archive_info.plugin_id
-                target.rename(backup_target)
+                self._rename_with_retry(target, backup_target)
                 target_moved = True
 
-            extracted_plugin.rename(target)
+            self._rename_with_retry(extracted_plugin, target)
             target_installed = True
         except Exception:
             if target_installed and target.exists():
@@ -144,6 +148,19 @@ class PluginArchiveInstaller:
             previous_version=previous_version,
             replaced=previous_version is not None,
         )
+
+    @classmethod
+    def _rename_with_retry(cls, source: Path, destination: Path) -> None:
+        """Allow Windows teardown handles a short window to be released."""
+        attempts = cls.WINDOWS_RENAME_ATTEMPTS if os.name == "nt" else 1
+        for attempt in range(attempts):
+            try:
+                source.rename(destination)
+                return
+            except PermissionError:
+                if attempt + 1 >= attempts:
+                    raise
+                time.sleep(cls.WINDOWS_RENAME_DELAY)
 
     def inspect_extracted(self, plugin_dir: Path) -> PluginArchiveInfo:
         manifest_path = plugin_dir / "cwplugin.json"

@@ -25,12 +25,6 @@ Clip {
         radius: entryDelegate.radius
         opacity: checked ? 1 : 0.3
 
-        Behavior on opacity {
-            NumberAnimation {
-                duration: 250
-                easing.type: Easing.OutQuint
-            }
-        }
     }
 
     property int tempStart: parseTime(entry.startTime)
@@ -44,7 +38,10 @@ Clip {
 
     HoverHandler {
         id: hoverHandler
+        onHoveredChanged: updateListHoverState()
     }
+
+    onCheckedChanged: updateListHoverState()
 
     Menu {
         id: contextMenu
@@ -65,40 +62,59 @@ Clip {
 
     onClicked: {
         currentIndex = entryDelegate.index
-        detailFlyout.refresh(entry)
+        // Loader creation is asynchronous when the selection changes.
+        Qt.callLater(function() {
+            if (detailViewLoader.item)
+                detailViewLoader.item.refresh(entry)
+        })
     }
 
-    EntryDetailView {
-        id: detailFlyout
-        sourceItem: entryDelegate.listViewRoot
+    // The flyout contains a subject Repeater and several controls. Keeping
+    // one instance per entry makes large schedules expensive to build.
+    Loader {
+        id: detailViewLoader
+        active: entryDelegate.checked
+        sourceComponent: Component {
+            EntryDetailView {
+                sourceItem: entryDelegate.listViewRoot
+            }
+        }
     }
+
+    // 正在编辑该条（详情 Flyout 打开）时，禁用其拖动手柄，避免时间选择器
+    // 里的拖拽穿透把本条带跑。
+    readonly property bool detailOpen: detailViewLoader.active
+        && detailViewLoader.item ? detailViewLoader.item.opened : false
 
     // 上拖拽调整
     Item {
+        id: startResizeHandle
         anchors.top: parent.top
-        anchors.horizontalCenter: parent.horizontalCenter
-        width: parent.width / 6
+        width: parent.width
         height: 12
+        z: 2
 
         Rectangle {
             anchors.top: parent.top
             anchors.margins: 4
-            width: parent.width
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: parent.width / 6
             height: 4
             radius: height / 2
             color: Qt.alpha("white", 0.4)
         }
 
         DragHandler {
+            id: startResizeHandler
             target: null
             yAxis.enabled: true
             grabPermissions: PointerHandler.CanTakeOverFromAnything
             onTranslationChanged: {
                 let deltaMins = Math.round(translation.y / pxPerMin / 5) * 5
                 let newStart = parseTime(entry.startTime) + deltaMins
-                if (newStart < entryDelegate.tempEnd - 5) {
-                    entryDelegate.tempStart = newStart
-                }
+                entryDelegate.tempStart = Math.max(0, Math.min(
+                    newStart, entryDelegate.tempEnd - 5
+                ))
             }
             onActiveChanged: if (!active) commitUpdate()
         }
@@ -108,38 +124,41 @@ Clip {
         }
 
         visible: enabledDrag
-        enabled: enabledDrag
+        enabled: enabledDrag && !entryDelegate.detailOpen
     }
 
     // 下拖拽调整时间
     Item {
-        width: parent.width / 6
+        id: endResizeHandle
+        width: parent.width
         height: 12
         anchors.bottom: parent.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
+        z: 2
 
         visible: enabledDrag
-        enabled: enabledDrag
+        enabled: enabledDrag && !entryDelegate.detailOpen
 
         Rectangle {
             anchors.bottom: parent.bottom
             anchors.margins: 4
-            width: parent.width
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: parent.width / 6
             height: 4
             radius: height / 2
             color: Qt.alpha("white", 0.4)
         }
 
         DragHandler {
+            id: endResizeHandler
             target: null
             yAxis.enabled: true
             grabPermissions: PointerHandler.CanTakeOverFromAnything
             onTranslationChanged: {
                 let deltaMins = Math.round(translation.y / pxPerMin / 5) * 5
                 let newEnd = parseTime(entry.endTime) + deltaMins
-                if (newEnd > entryDelegate.tempStart + 5) {
-                    entryDelegate.tempEnd = newEnd
-                }
+                entryDelegate.tempEnd = Math.min(24 * 60, Math.max(
+                    newEnd, entryDelegate.tempStart + 5
+                ))
             }
             onActiveChanged: if (!active) commitUpdate()
         }
@@ -152,10 +171,12 @@ Clip {
     // 拖动整体调整
     DragHandler {
         id: moveHandler
-        enabled: checked
+        // The selected entry must be able to take the pointer from Flickable.
+        // 详情/时间选择器打开时禁用，避免拖拽穿透把本条带跑。
+        enabled: checked && !entryDelegate.detailOpen && !startResizeHandler.active && !endResizeHandler.active
         target: null
         yAxis.enabled: true
-        grabPermissions: PointerHandler.TakeOverForbidden
+        grabPermissions: PointerHandler.CanTakeOverFromAnything
 
         property int startTempStart
         property int startTempEnd
@@ -267,6 +288,12 @@ Clip {
     
     function commitUpdate() {
         updateTimer.restart()
+    }
+
+    function updateListHoverState() {
+        if (listViewRoot) {
+            listViewRoot.selectedEntryHovered = checked && hoverHandler.hovered
+        }
     }
 
     function parseTime(t) {

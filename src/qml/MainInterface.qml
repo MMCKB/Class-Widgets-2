@@ -42,7 +42,8 @@ QQW.Window {
     property alias editMode: widgetsLoader.editMode
     property bool mouseHovered: false
     property bool isFloatingMode: Configs.data.interactions.hide.state
-        && Configs.data.interactions.tapped_action === "floating_widget"
+        && (Configs.data.interactions.tapped_action === "floating_widget"
+            || Configs.data.interactions.hide.action === "floating_widget")
 
     onMouseHoveredChanged: {
         root.flags = mouseHovered

@@ -14,14 +14,20 @@ class ScheduleServices:
 
     def get_day_entries(self, schedule: ScheduleData, now: datetime) -> Optional[Timeline]:
         """
-        返回当前日期对应的 DayEntry（深拷贝，应用 override，不修改原始数据）
+        返回当前日期对应的 Timeline（深拷贝，应用 override，不修改原始数据）。
+
+        带有 date 的 Timeline 是指定日期时间线，优先于按星期和周次匹配的时间线。
         """
+        date_str = now.strftime("%Y-%m-%d")
+
+        # 指定日期时间线优先，不受 dayOfWeek/weeks 限制。
+        matched_day = next((day for day in schedule.days if day.date == date_str), None)
+
         # 当前是第几周（可为负）
         raw_week_index = self._get_week_index(schedule, now)
         reschedule_map = self._get_reschedule_map()
 
         # 调休处理：优先使用调休映射表
-        date_str = now.strftime("%Y-%m-%d")
         if date_str in reschedule_map:
             weekday = reschedule_map[date_str]  # 1-7
         else:
@@ -40,30 +46,45 @@ class ScheduleServices:
             if isinstance(swap_week, int) and 1 <= swap_week <= max_week_cycle:
                 current_week = swap_week
 
-        for day in schedule.days:
-            day_of_week_list = [day.dayOfWeek] if isinstance(day.dayOfWeek, int) else day.dayOfWeek
-            if day_of_week_list and weekday in day_of_week_list:
-                if self._is_in_week(day.weeks, current_week, max_week_cycle):
-                    # 深拷贝 day 和 entries
-                    day_copy = day.model_copy()
-                    day_copy.entries = [entry.model_copy() for entry in day.entries]
+        if matched_day is None:
+            for day in schedule.days:
+                day_of_week_list = [day.dayOfWeek] if isinstance(day.dayOfWeek, int) else day.dayOfWeek
+                if (
+                    day_of_week_list
+                    and weekday in day_of_week_list
+                    and self._is_in_week(day.weeks, current_week, max_week_cycle)
+                ):
+                    matched_day = day
+                    break
 
-                    # 应用 override 到副本
-                    for entry in day_copy.entries:
-                        for override in schedule.overrides:
-                            if override.entryId != entry.id:
-                                continue
-                            if self._override_applies(override, weekday, current_week, max_week_cycle):
-                                if override.subjectId:
-                                    entry.subjectId = override.subjectId
-                                if override.title:
-                                    entry.title = override.title
-                                if override.startTime:
-                                    entry.startTime = override.startTime
-                                if override.endTime:
-                                    entry.endTime = override.endTime
+        if matched_day is not None:
+            # 深拷贝 day 和 entries
+            day_copy = matched_day.model_copy()
+            day_copy.entries = [entry.model_copy() for entry in matched_day.entries]
 
-                    return day_copy
+            # 应用 override 到副本
+            for entry in day_copy.entries:
+                subject_overridden = False
+                title_overridden = False
+                for override in schedule.overrides:
+                    if override.entryId != entry.id:
+                        continue
+                    if self._override_applies(override, weekday, current_week, max_week_cycle):
+                        if override.subjectId:
+                            entry.subjectId = override.subjectId
+                            subject_overridden = True
+                        if override.title:
+                            entry.title = override.title
+                            title_overridden = True
+                        if override.startTime:
+                            entry.startTime = override.startTime
+                        if override.endTime:
+                            entry.endTime = override.endTime
+
+                if subject_overridden and not title_overridden:
+                    entry.title = None
+
+            return day_copy
         return None
 
     def _override_applies(self, override: Timetable, weekday: int, current_week: int, max_week_cycle: int = 1) -> bool:

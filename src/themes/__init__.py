@@ -56,4 +56,17 @@ BUILTIN_THEMES = [
             "color": "#6750A4",
         }
     },
+{
+        "path": SRC_PATH / "themes" / "vista",
+        "meta": {
+            "id": "com.classwidgets.vista",
+            "name": "Vista",
+            "description": "Windows Vista Skeuomorphic Style Theme",
+            "author": "Class Widgets Official",
+            "version": "1.0.0",
+            "api_version": "*",
+            "preview": ASSETS_PATH / "images" / "themes" / "vista.png",
+            "color": "#4F95AE",
+        }
+    },
 ]
