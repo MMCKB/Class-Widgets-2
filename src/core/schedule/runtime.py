@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from typing import Optional, TYPE_CHECKING
 
-from PySide6.QtCore import QObject, Property, Signal, Slot, QCoreApplication
+from PySide6.QtCore import QObject, Property, Signal, Slot, QCoreApplication, QTimer
 from loguru import logger
 
 from src.core.notification import NotificationProvider, NotificationData, NotificationLevel
