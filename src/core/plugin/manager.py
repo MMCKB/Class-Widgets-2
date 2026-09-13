@@ -174,6 +174,7 @@ class PluginManager(QObject):
             except Exception as e:
                 logger.error(f"Failed to unload plugin {pid}: {e}")
             self.api.ui.unregister_plugin_shortcuts(pid)
+            self.api.automation.unregister_plugin_projects(pid)
             # 尝试从 sys.modules 移除对应模块（使用标准模块前缀 cw_plugin_{id}）
             mod_name = f"cw_plugin_{pid}"
             if mod_name in sys.modules:
